@@ -1,0 +1,435 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+::-moz-selection {
+    background: rgb(90, 115, 171);
+    text-shadow: none;
+}
+
+::selection {
+    background: rgb(90, 115, 171);
+    text-shadow: none;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+img {
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ===== Initializr Styles ==================================================
+   Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
+   ========================================================================== */
+
+body {
+    font: 100%/26px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Arial, Helvetica, sans-serif;
+    background-color: rgb(249, 246, 237);
+}
+
+.wrapper {
+    width: 90%;
+    margin: 0 5%;
+}
+
+/* ===================
+    ALL: Orange Theme
+   =================== */
+
+.header-container {
+    /*border-bottom: 8px solid rgb(42, 55, 83);*/
+    /*font-family: Georgia, "Times New Roman", Times, serif;*/
+    box-shadow: 0px 4px 4px #333;
+}
+
+.footer-container,
+.main aside {
+    border-top: 15px solid rgb(42, 55, 83);
+    margin-bottom: 15px;
+}
+
+.header-container,
+.main aside {
+    background: rgb(90, 115, 171);
+}
+.footer-container {
+    background: rgb(42, 55, 83);
+}
+
+.title {
+    color: rgb(249, 246, 237) ;
+}
+.title a {
+    text-decoration:none;
+    color:rgb(249, 246, 237) ;
+}
+
+/* ==============
+    MOBILE: Menu
+   ============== */
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: block;
+    margin: 0 1% 8px;
+    float:left;
+    width:31%;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+
+}
+nav h1{
+    margin: 20px 0 0;
+}
+nav a {
+    display:block;
+    padding: 15px 0;
+    color: rgb(239, 236, 227);
+    background: rgb(42, 55, 83);
+    text-shadow:none;
+}
+nav a:hover {
+    color: rgb(42, 55, 83);
+    background: rgb(239, 236, 227);
+}
+.apostles .nav_apostles,
+.prophets .nav_prophets,
+.study .nav_study {
+    color: rgb(42, 55, 83);
+    background: rgb(249, 246, 237);
+}
+
+/* ==============
+    MOBILE: Main
+   ============== */
+
+.main {
+    padding: 0;
+}
+
+.main article h1 {
+    font-size: 2em;
+}
+
+.main aside {
+    color: rgb(249, 246, 237) ;
+    padding: 0px 5% 10px;
+}
+
+.footer-container {
+    margin: 100px 0 0;
+}
+.footer-container footer {
+    color: rgb(249, 246, 237) ;
+    padding: 20px 0;
+}
+
+/* ===============
+    ALL: IE Fixes
+   =============== */
+
+.ie7 .title {
+    padding-top: 20px;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+.quiz{
+    overflow:hidden;
+}
+.question{
+
+}
+.question span{
+    
+}
+.question .img{
+    display:block;
+}
+
+.question .img, .answer{
+    width: 48%;
+    float:left;
+    margin: 1%;
+    height: 0;
+    cursor: pointer; 
+    padding-top: 53%;
+    position: relative;
+    overflow: hidden;
+  -webkit-transition: all 0.3s ease-out;  /* Saf3.2+, Chrome */
+     -moz-transition: all 0.3s ease-out;  /* FF4+ */
+      -ms-transition: all 0.3s ease-out;  /* IE10 */
+       -o-transition: all 0.3s ease-out;  /* Opera 10.5+ */
+          transition: all 0.3s ease-out;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    webkit-transform: translate3d(0,0,0);
+    background-image: none;
+    background-position: center 60%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    box-shadow: 4px 4px 4px rgb(51, 51, 51), 0px 0px 4px rgb(51, 51, 51);
+    -webkit-box-shadow: 4px 4px 4px rgb(51, 51, 51), 0px 0px 4px rgb(51, 51, 51);
+}
+.answers{
+    float:right;
+    width:48%;
+    margin: 1%;
+}
+.answers .answer {
+    width: 100%;
+    line-height:2em;
+    margin: 0 1% 1.4em;
+    height: 3em;
+}
+.answers .answer.answer_name p {
+    padding: .5em 0;
+}
+.question .img img, .answer img {
+    width: 100%;
+    height: auto;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 1;
+}
+.answer_name {
+    clear:left;
+    padding: 0;
+    height: 2em;
+    margin-bottom: 2em;
+}
+.answer.answer_name p {
+    position:relative;
+    margin: 0;
+    padding:0;
+    top:0;
+}
+.answer p {
+    font-size: 1em;
+    position:absolute;
+    bottom:0;
+    left:0;
+    z-index: 2;
+    color: #fff;
+    background: rgb(42, 55, 83);
+    width: 100%;
+    height: 2em;
+    padding: 1em 0;
+    text-align:center;
+    text-shadow:1px 1px 1px #000;
+}
+.answer.clicked { 
+    opacity: 1;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    webkit-transform: translate3d(0,0,0);
+    background: url('../img/x.png') center 60% no-repeat transparent;
+ }
+.answer.clicked img {
+    opacity: .25;
+}
+.answer.clicked.correct { 
+    background: url('../img/check.png') center 60% no-repeat transparent; 
+}
+.quiz .answer .label { 
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    webkit-transform: translate3d(0,0,0);
+}
+.answers .answer.clicked p{
+    background-color: #d90101;/*red*/
+}
+.answers .answer.clicked.correct p{ 
+    background-color: #80bf00;/*green*/ 
+}
+
+h2.question {
+    margin: .5em 0 .25em;
+}
+
+.study_list {
+    list-style:none;
+    overflow:hidden;
+}
+.profile {
+    width: 48%;
+    float:left;
+    margin: 1%;
+}
+.is_odd_0 {
+    clear:left;
+}
+.study_list .answer{
+    width: 100%;
+    padding-bottom: 64%;
+}
+.study_list .answer img {
+    width: 100%;
+    height: auto;
+}
+.label {
+    clear:left;
+    float:left;
+    font-size: 1em;
+    color: #fff;
+    background: rgb(42, 55, 83);
+    width: 100%;
+    height: 2em;
+    padding: 1em 0;
+    text-align: center;
+    text-shadow: 1px 1px 1px #000;
+    margin: -2% 1% 2% 1%;
+    z-index: 10;
+    position: relative;
+    box-shadow: 4px 4px 4px rgb(51, 51, 51), 0px 0px 4px rgb(51, 51, 51);
+    -webkit-box-shadow: 4px 4px 4px rgb(51, 51, 51), 0px 0px 4px rgb(51, 51, 51);
+}
+.profile .stats{
+    font-size: .85rem;
+}
+.study_list_apostles,
+.study_list_prophets{
+    padding: 1em 0;
+    overflow:hidden;
+}
+.study_list_apostles h3,
+.study_list_prophets h3{
+    margin: 2em 0 0;
+}
+
+.levels{
+    margin: 12px 0;
+    overflow:hidden;
+}
+.level_select, .level_start, .level_complete{
+    float:left;
+    margin: 12px 1% 0;
+    padding: 24px 0;
+    width: 97%;
+    text-align: center;
+    cursor:pointer;
+    color: rgb(239, 236, 227);
+    background: rgb(90, 115, 171);
+}
+.level_select:hover. .level_start:hover, .level_complete:hover{
+    /*color: rgb(90, 115, 171);*/
+    background: rgb(42, 55, 83);
+}
+.level_intro {
+    line-height: 2em;
+}
+.level_select.locked {
+    background: rgb(90, 90, 90);
+    cursor:default;
+}
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (max-width: 330px) {
+    body {
+        font-size: 75%;
+    }
+
+}
+@media only screen and (min-width: 480px) {
+
+
+}
+
+@media only screen and (min-width: 768px) {
+    body {
+        font-size: 150%;
+    }
+
+/* ============
+    WIDE: Main
+   ============ */
+
+    /*.main article {
+        float: left;
+        width: 66%;
+    }
+
+    .main aside {
+        float: right;
+        width: 30%;
+    }*/
+}
+
+@media only screen and (min-width: 1140px) {
+
+/* ===============
+    Maximal Width
+   =============== */
+
+    /*.wrapper {
+        width: 1026px;  1140px - 10% for margins 
+        margin: 0 auto;
+    }*/
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+

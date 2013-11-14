@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.circlecube.ldsquizpro"
+        versionCode="140" 
+        version   = "0.1.4">
+
+    <name>LDS Quiz</name>
+
+    <description>
+        This Latter-Day Saint Quiz will test your knowledge and teach you to know the apostles and prophets. Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow. Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples.
+    </description>
+
+    <author href="http://circlecube.com" email="evan@circlecube.com">
+        Evan Mullins 
+    </author>
+    <preference name="orientation" value="portrait"/>
+    <preference name="fullscreen" value="true" />
+    <icon src="icon-large.png" />
+    <gap:splash src="splash.png" />
+    <preference name="permissions" value="none"/>
+</widget>
