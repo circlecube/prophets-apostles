@@ -1,193 +1,425 @@
+
+if (!window.console) console = {log: function() {}};
+
 $(function () {
-	//object of all prophets
-	//each prophet an object containing, name, birthdate, deathdate, sustaindate, order, photos, videos, audios, mantra, trivias
-	var prophets = [];
-	jsj = { name: 'Joseph Smith, Jr.', photo: ['JosephSmith.jpg','joseph smith.jpg','joseph-smith.jpg','JS_Bible_st.jpg'], birthdate:'December 23, 1805', deathdate:'June 27, 1844', sustaindate:'April 6, 1830', ordinal:'1'};
-	by  = { name: 'Brigham Young', photo: ['BY_hero.jpg'], birthdate:'June 1, 1801', deathdate:'August 29, 1877', sustaindate:'December 27, 1847', ordinal:'2'};
-	jt  = { name: 'John Taylor', photo: ['JT_hero.jpg'], birthdate:'November 1, 1808', deathdate:'July 25, 1887', sustaindate:'October 10, 1880', ordinal:'3'};
-	ww  = { name: 'Wilford Woodruff', photo: ['WW_hero.jpg'], birthdate:'March 1, 1807 ', deathdate:'September 2, 1898', sustaindate:'April 7, 1889', ordinal:'4'};
-	ls  = { name: 'Lorenzo Snow', photo: ['LS_hero.jpg'], birthdate:'April 3, 1814', deathdate:'October 10, 1901', sustaindate:'September 13, 1898', ordinal:'5'};
-	jfs = { name: 'Joseph F. Smith', photo: ['JFS_hero.jpg'], birthdate:'November 13, 1838', deathdate:' November 19, 1918', sustaindate:'October 17, 1901', ordinal:'6'};
-	hjg = { name: 'Heber J. Grant', photo: ['HJG_hero.jpg'], birthdate:'November 22, 1856', deathdate:'May 14, 1945', sustaindate:'November 23, 1918', ordinal:'7'};
-	gas = { name: 'George Albert Smith', photo: ['GAS_hero.jpg'], birthdate:'April 4, 1870', deathdate:'April 4, 1951', sustaindate:'May 21, 1945', ordinal:'8'};
-	dom = { name: 'David O. McKay', photo: ['DOM_hero.jpg'], birthdate:'September 8, 1873', deathdate:'January 18, 1970', sustaindate:'April 9, 1951', ordinal:'9'};
-	jfis= { name: 'Joseph Fielding Smith', photo: ['JFiS_hero.jpg'], birthdate:'July 19, 1876', deathdate:'July 2, 1972', sustaindate:'January 23, 1970', ordinal:'10'};
-	hbl = { name: 'Harold B. Lee', photo: ['HBL_hero.jpg'], birthdate:'March 28, 1899', deathdate:'December 26, 1973', sustaindate:'July 7, 1972', ordinal:'11'};
-	swk = { name: 'Spencer W. Kimball', photo: ['SWK_hero.jpg'], birthdate:'March 28, 1895', deathdate:'November 5, 1985', sustaindate:'December 30, 1973', ordinal:'12'};
-	etb = { name: 'Ezra Taft Benson', photo: ['ETB_hero.jpg'], birthdate:'August 4, 1899', deathdate:'May 30, 1994', sustaindate:'November 10, 1985', ordinal:'13'};
-	hwh = { name: 'Howard W. Hunter', photo: ['HWH_hero.jpg'], birthdate:'November 14, 1907', deathdate:'March 3, 1995', sustaindate:'June 5, 1994', ordinal:'14'};
-	gbh = { name: 'Gordon B. Hinckley', photo: ['GBH_hero.jpg'], birthdate:'June 23, 1910', deathdate:'January 27, 2008', sustaindate:'March 12, 1995', ordinal:'15'};
-	tsm = { name: 'Thomas S. Monson', photo: ['president-thomas-s-monson-lds-gallery.jpg'], birthdate: 'August 21, 1927', deathdate: 'present', sustaindate: 'February 3, 2008', ordinal:'16'};
-	prophets.push(jsj, by, jt, ww, ls, jfs, hjg, gas, dom, jfis, hbl, swk, etb, hwh, gbh, tsm);
-	//object of all apostles
-	//each apostle an object conaining: name, birthdate, sustaindate, position, photos, videos, audios, mantra, trivias
-	var apostles = [];
-	//tsm = { name: 'Thomas S. Monson', photo: ['president-thomas-s-monson-lds-gallery.jpg'], mantra: 'Rescue', birthdate: 'August 21, 1927', sustaindate: 'October 4, 1963' };
-	hbe = { name: 'Henry B. Eyring', photo: ['president-henry-b-eyring-lds-gallery.jpg'], mantra: '', birthdate: 'May 31, 1933', sustaindate: 'April 1, 1995' };
-	dfu = { name: 'Dieter F. Uchtdorf ', photo: ['president-dieter-f-uchtdorf-lds-gallery.jpg'], mantra: '', birthdate: 'November 6, 1940', sustaindate: 'October 2, 2004' };
-	bkp = { name: 'Boyd K. Packer', photo: ['elder-boyd-k-packer-lds-gallery.jpg'], mantra: '', birthdate: 'September 10, 1924', sustaindate: 'April 9, 1970' };
-	ltp = { name: 'L. Tom Perry', photo: ['elder-l-tom-perry-lds-gallery.jpg'], mantra: '', birthdate: 'August 5, 1922', sustaindate: 'April 6, 1974' };
-	rmn = { name: 'Russell M. Nelson', photo: ['elder-russell-m-nelson-lds-gallery.jpg'], mantra: '', birthdate: 'September 9, 1924', sustaindate: 'April 7, 1984' };
-	dho = { name: 'Dallin H. Oaks', photo: ['elder-dallin-h-oaks-lds-gallery.jpg'], mantra: '', birthdate: 'August 12, 1932', sustaindate: 'May 3, 1984' };
-	mrb = { name: 'M. Russell Ballard', photo: ['elder-m-russell-ballard-lds-gallery.jpg'], mantra: '', birthdate: 'October 8, 1928', sustaindate: 'October 6, 1985' };
-	rgs = { name: 'Richard G. Scott', photo: ['elder-richard-g-scott-lds-gallery.jpg'], mantra: '', birthdate: 'November 7, 1928', sustaindate: 'October 1, 1983' };
-	rdh = { name: 'Robert D. Hales', photo: ['elder-robert-d-hales-lds-gallery.jpg'], mantra: '', birthdate: 'August 24, 1932', sustaindate: 'April 2, 1994' };
-	jrh = { name: 'Jeffrey R. Holland', photo: ['elder-jeffrey-r-holland-lds-gallery.jpg'], mantra: '', birthdate: 'December 3, 1940', sustaindate: 'April 1, 1989' };
-	dab = { name: 'David A. Bednar', photo: ['elder-david-a-bednar-lds-gallery.jpg'], mantra: '', birthdate: 'June 15, 1952', sustaindate: 'October 7, 2004' };
-	qlc = { name: 'Quentin L. Cook', photo: ['elder-quentin-l-cook-lds-gallery.jpg'], mantra: '', birthdate: 'September 8, 1940', sustaindate: 'October 6, 2007' };
-	dtc = { name: 'D. Todd Christofferson', photo: ['elder-d-todd-christofferson-lds-gallery.jpg'], mantra: '', birthdate: 'January 24, 1945', sustaindate: 'April 5, 2008' };
-	nla = { name: 'Neil L. Andersen', photo: ['elder-neil-l-andersen-lds-gallery.jpg'], mantra: '', birthdate: 'August 9, 1951', sustaindate: 'April 4, 2009' };
-
-	apostles.push(hbe, dfu, bkp, ltp, rmn, dho, mrb, rgs, rdh, jrh, dab, qlc, dtc, nla);
-
-	var both = [];
-	both.push(hbe, dfu, bkp, ltp, rmn, dho, mrb, rgs, rdh, jrh, dab, qlc, dtc, nla, jsj, by, jt, ww, ls, jfs, hjg, gas, dom, jfis, hbl, swk, etb, hwh, gbh, tsm);
-
-	var completed = [];
-	var	num_total = 0;
-	var num_correct = 0;
-	var img_iteration = 0;
-
-	function new_question(){
-		
-		if( $('body').hasClass('apostles') ){
-			make_question(apostles, get_random_index(apostles));
-		}
-		else if( $('body').hasClass('prophets') ){
-			make_question(prophets, get_random_index(prophets));
-		}
-		else if( $('body').hasClass('both') ){
-			make_question(both, get_random_index(both));
-		}
-	}
-	function make_question(group, answer_index){
-		//get mc answers
-		var mc_answers = get_random_mc_answers(group, answer_index);
-		$('.quiz').html('<h2 class="question">Find ' + group[answer_index].name + '</h2>');
-		for (var i = 0; i < 4; i++){
-			$('.quiz').append(get_answer_div(group,mc_answers,i,0));
-			// if(i == answer_index) {
-			// 	$('.answer_'+i).parent().addClass('correct');
-			// }
-		}
-		var correct = $.inArray(answer_index, mc_answers);
-		$('.answer_'+correct).parent().addClass('correct');
-		//$('.quiz').append('<div class="next">Next Question > </div>');
-	}
-	function get_answer_div(group, mc_answers, index, img){
-		return '<div class="answer"><img class="answer_'+index+'" src="img/'+group[mc_answers[index]].photo[img]+'" alt="'+group[mc_answers[index]].name+'" data-id="'+mc_answers[index]+'" /></div>';
-	}
-
-	function get_random_mc_answers(group, correct){
-		var generated = [];
-		generated.push(correct);
-		for (var i = 1; i < 4; i++) {
-			while(true){
-	        	var next = Math.floor(Math.random()*group.length);
-		        if (0 > $.inArray(next, generated)) {
-		            // Done for this iteration
-		            generated.push(next);
-		            break;
-		        }
-		    }
-    	}
-    	randomize(generated);
-    	return generated;
-	}
-	function get_random_index(group){
-		var random_index = Math.floor(Math.random()*group.length);
-		//console.log(completed.toString(), random_index, $.inArray(random_index, completed));
-		if ( $.inArray(random_index, completed) < 0 ){
-			//console.log('unique found');
-			return random_index;
-		}
-		else if( completed.length == group.length ){
-			completed = [];
-			return random_index;
-		}
-		else{
-			//console.log('potential repeat found');
-			return get_random_index(group);
-		}
-	}
-
-	function randomize(myArray) {
-	  var i = myArray.length, j, tempi, tempj;
-	  if ( i == 0 ) return false;
-	  while ( --i ) {
-	     j = Math.floor( Math.random() * ( i + 1 ) );
-	     tempi = myArray[i];
-	     tempj = myArray[j];
-	     myArray[i] = tempj;
-	     myArray[j] = tempi;
-	   }
-	}
+    //object of all prophets
+    //each prophet an object containing, name, birthdate, deathdate, sustaindate, order, photos, videos, audios, mantra, trivias
+    var prophets = [
+        { name: 'Joseph Smith, Jr.', photo: ['joseph-smith.jpg', 'JS_Bible_st.jpg'], birthdate:'December 23, 1805', deathdate:'June 27, 1844', sustaindate:'April 6, 1830', ordinal:'1st', conference:'"The King Follett Sermon", April 1840'},
+        { name: 'Brigham Young', photo: ['BY_mm7_st.jpg', 'BY_mm3_st.jpg'], birthdate:'June 1, 1801', deathdate:'August 29, 1877', sustaindate:'December 27, 1847', ordinal:'2nd', conference:'This is the work of God, April 1877'},
+        { name: 'John Taylor', photo: ['JT_mm3_st.jpg', 'JT_mm4_st.jpg'], birthdate:'November 1, 1808', deathdate:'July 25, 1887', sustaindate:'October 10, 1880', ordinal:'3rd', conference:'We Will Trust in The Living God, October 1884'},
+        { name: 'Wilford Woodruff', photo: ['WW_mm10_st.jpg', 'WW_mm7_st.jpg'], birthdate:'March 1, 1807 ', deathdate:'September 2, 1898', sustaindate:'April 7, 1889', ordinal:'4th', conference:'Rise Up and Bear Off This Kingdom, April 1898'},
+        { name: 'Lorenzo Snow', photo: ['LS_mm2_st.jpg', 'LS_mm4_st.jpg'], birthdate:'April 3, 1814', deathdate:'October 10, 1901', sustaindate:'September 13, 1898', ordinal:'5th', conference:'The Channel of the Priesthood, October 1901'},
+        { name: 'Joseph F. Smith', photo: ['JFS_mm2_st.jpg', 'JFS_mm5_st.jpg'], birthdate:'November 13, 1838', deathdate:' November 19, 1918', sustaindate:'October 17, 1901', ordinal:'6th', conference:'Continuous Communication With the Spirit of the Lord , October 1918'},
+        { name: 'Heber J. Grant', photo: ['HJG_mm11_st.jpg', 'HJG_mm2_st.jpg'], birthdate:'November 22, 1856', deathdate:'May 14, 1945', sustaindate:'November 23, 1918', ordinal:'7th', conference:'Joy in the Integrity of the Officers of the Church, April 1945'},
+        { name: 'George Albert Smith', photo: ['GAS_mm1_st.jpg', 'GAS_mm9_st.jpg'], birthdate:'April 4, 1870', deathdate:'April 4, 1951', sustaindate:'May 21, 1945', ordinal:'8th', conference:'Divine Mission of Jesus Christ, October 1950'},
+        { name: 'David O. McKay', photo: ['DOM_mm2_st.jpg', 'DOM_mm5_st.jpg'], birthdate:'September 8, 1873', deathdate:'January 18, 1970', sustaindate:'April 9, 1951', ordinal:'9th', conference:'How may we know Him? October 1966'},
+        { name: 'Joseph Fielding Smith', photo: ['JFiS_Pres-apr-23-1970_st.jpg', 'JFiSmith_1923_st.jpg'], birthdate:'July 19, 1876', deathdate:'July 2, 1972', sustaindate:'January 23, 1970', ordinal:'10th', conference:'Believe in Chris, April 1972'},
+        { name: 'Harold B. Lee', photo: ['HBL_standing-by-globe_st.jpg', 'HBL_1936_p6581_1_st.jpg'], birthdate:'March 28, 1899', deathdate:'December 26, 1973', sustaindate:'July 7, 1972', ordinal:'11th', conference:'Where else can you go for guidance? October 1973'},
+        { name: 'Spencer W. Kimball', photo: ['SWK-2_st.jpg', 'SWK_ca-1950-60_st.jpg'], birthdate:'March 28, 1895', deathdate:'November 5, 1985', sustaindate:'December 30, 1973', ordinal:'12th', conference:'The Mission of the Church is Threefold, April 1981'},
+        { name: 'Ezra Taft Benson', photo: ['ETB_Ezra-T-Benson_st.jpg', 'ETB_p5216_9_710_st.jpg'], birthdate:'August 4, 1899', deathdate:'May 30, 1994', sustaindate:'November 10, 1985', ordinal:'13th', conference:'Each Of You Truly Is A Child Of God, April 1989'},
+        { name: 'Howard W. Hunter', photo: ['HWH-21_st.jpg', 'HWH-20_st.jpg'], birthdate:'November 14, 1907', deathdate:'March 3, 1995', sustaindate:'June 5, 1994', ordinal:'14th', conference:'As Followers of Jesus Christ, October 1994'},
+        { name: 'Gordon B. Hinckley', photo: ['GBH-Hinckley2_st.jpg', 'GBH-portrait_1959_st.jpg'], birthdate:'June 23, 1910', deathdate:'January 27, 2008', sustaindate:'March 12, 1995', ordinal:'15th', conference:'The Lord Fulfills His Ppromise, October 2007'},
+        { name: 'Thomas S. Monson', photo: ['thomas-s-monson-large.jpg', 'Thomas-S-Monson-1963.jpg'], birthdate: 'August 21, 1927', deathdate: 'present', sustaindate: 'February 3, 2008', ordinal:'16th', conference:'Obedience Brings Blessings, April 2013'}
+    ]
+    //object of all apostles
+    //each apostle an object conaining: name, birthdate, sustaindate, position, photos, videos, audios, mantra, trivias
+    //http://www.maxoutput.com/djdj/apostles_answers.html
+    var apostles = [
+        { name: 'Thomas S. Monson', position: 'President', photo: ['thomas-s-monson-large.jpg', 'Thomas-S-Monson-1937.jpg', 'conference/thomas-s-monson.jpg'], mantra: 'Rescue', birthdate: 'August 21, 1927', sustaindate: 'October 4, 1963', ordinal:'1st', mission: 'Mission President, Canadian Mission, Ontario, 1959-1962', birthplace: 'Salt Lake City, Utah', profession: '', conference:'Obedience Brings Blessings' },
+        { name: 'Henry B. Eyring', position: 'First Counselor, First Presidency', photo: ['henry-b-eyring-large.jpg', 'Henry_B_Eyring2.jpg', 'conference/henry-b-eyring.jpg'], mantra: '', birthdate: 'May 31, 1933', sustaindate: 'April 1, 1995', ordinal:'10th', mission: '', birthplace: 'Princeton, New Jersey', profession: '', conference:'"Come unto Me"' },
+        { name: 'Dieter F. Uchtdorf ', position: 'Second Counselor, First Presidency', photo: ['dieter-f-uchtdorf-large.jpg', 'dieter-uctdorf-german-air-force.jpg', 'conference/dieter-f-uchtdorf.jpg'], mantra: '', birthdate: 'November 6, 1940', sustaindate: 'October 2, 2004', ordinal:'11th', mission: '', birthplace: 'Ostrava, Czechoslovakia', profession: '', conference:"The Hope of God's Light" },
+        { name: 'Boyd K. Packer', position: 'President, Quorum of the Twelve Apostles', photo: ['boyd-k-packer-large.jpg', 'packer-bio-world-war-two.jpg', 'conference/boyd-k-packer.jpg'], mantra: '', birthdate: 'September 10, 1924', sustaindate: 'April 9, 1970', ordinal:'2nd', mission: '', birthplace: 'Brigham City, Utah', profession: '', conference:'These Things I Know' },
+        { name: 'L. Tom Perry', photo: ['l-tom-perry-large.jpg', 'l-tom-perry-marines.jpg', 'conference/l-tom-perry.jpg'], mantra: '', birthdate: 'August 5, 1922', sustaindate: 'April 6, 1974', ordinal:'3rd', mission: '', birthplace: 'Logan, Cache, Utah', profession: '', conference:'Obedience to Law Is Liberty' },
+        { name: 'Russell M. Nelson', photo: ['russell-m-nelson-large.jpg', 'russell-nelson-army.jpg', 'conference/russell-m-nelson.jpg'], mantra: '', birthdate: 'September 9, 1924', sustaindate: 'April 7, 1984', ordinal:'4th', mission: '', birthplace: 'Salt Lake City, Utah', profession: '', conference:'Catch the Wave' },
+        { name: 'Dallin H. Oaks', photo: ['dallin-h-oaks-large.jpg', 'dallin-h-oaks.jpg', 'conference/dallin-h-oaks.jpg'], mantra: '', birthdate: 'August 12, 1932', sustaindate: 'May 3, 1984', ordinal:'5th', mission: '', birthplace: 'Provo, Utah', profession: '', conference:'Followers of Christ' },
+        { name: 'M. Russell Ballard', photo: ['m-russell-ballard-large.jpg', 'russell-ballard-boy.jpg', 'conference/m-russell-ballard.jpg'], mantra: '', birthdate: 'October 8, 1928', sustaindate: 'October 10, 1985', ordinal:'6th', mission: '', birthplace: 'Salt Lake City, Utah', profession: '', conference:'"This Is My Work and Glory"' },
+        { name: 'Richard G. Scott', photo: ['richard-g-scott-large.jpg', 'richard-g-scott-navy.jpg', 'conference/richard-g-scott.jpg'], mantra: '', birthdate: 'November 7, 1928', sustaindate: 'October 1, 1988', ordinal:'7th', mission: '', birthplace: 'Pocatello, Idaho', profession: '', conference:'For Peace at Home' },
+        { name: 'Robert D. Hales', photo: ['robert-d-hales-large.jpg', 'robert-hales-boy.jpg', 'conference/robert-d-hales.jpg'], mantra: '', birthdate: 'August 24, 1932', sustaindate: 'April 2, 1994', ordinal:'8th', mission: '', birthplace: 'New York City, New York', profession: '', conference:'Stand Strong in Holy Places' },
+        { name: 'Jeffrey R. Holland', photo: ['jeffrey-r-holland-large.jpg', 'jeffery-r-holland-young.jpg', 'conference/jeffrey-r-holland.jpg'], mantra: '', birthdate: 'December 3, 1940', sustaindate: 'June 23, 1994', ordinal:'9th', mission: '', birthplace: 'St George, Utah', profession: '', conference:'"Lord, I Believe"' },
+        { name: 'David A. Bednar', photo: ['david-a-bednar-large.jpg', 'david-bednar-boy.jpg', 'conference/david-a-bednar.jpg'], mantra: '', birthdate: 'June 15, 1952', sustaindate: 'October 2, 2004', ordinal:'12th', mission: '', birthplace: 'San Leandro, California', profession: '', conference:'We Believe in Being Chaste' },
+        { name: 'Quentin L. Cook', photo: ['quentin-l-cook-large.jpg', 'quentin-cook-boy.jpg', 'conference/quentin-l-cook.jpg'], mantra: '', birthdate: 'September 8, 1940', sustaindate: 'October 6, 2007', ordinal:'13th', mission: '', birthplace: 'Logan, Utah', profession: '', conference:'Personal Peace: The Reward of Righteousness' },
+        { name: 'D. Todd Christofferson', photo: ['d-todd-christofferson-large.jpg', 'todd-christofferson-boy.jpg', 'conference/d-todd-christofferson.jpg'], mantra: '', birthdate: 'January 24, 1945', sustaindate: 'April 5, 2008', ordinal:'14th', mission: '', birthplace: 'Pleasant Grove, Utah', profession: '', conference:'Redemption' },
+        { name: 'Neil L. Andersen', photo: ['neil-l-andersen-large.jpg', 'neil-l-andersen-missionary.jpg', 'conference/neil-l-andersen.jpg'], mantra: '', birthdate: 'August 9, 1951', sustaindate: 'April 4, 2009', ordinal:'15th', mission: '', birthplace: 'Logan, Utah', profession: '', conference: "It's a Miracle" }
+    ]
+    //reset
+    //localStorage.setItem("unlocked", 1);
+    
+    //save the unlocked level in local storage, then as they unlock levels they will stay unlocked.
+    //first play unlocked will be 0. when unlocked is 0, just start the first level without showing the list? Or gray out the other levels. Incentivise them to beat levels.
+    //require a certain % or cpm rate to pass?
+    var unlocked = localStorage.getItem("unlocked");
 
 
+    //once a level is chosen, display a title card with quick instructions to the topic of the quiz level. Remind how the quiz works. Then the quiz can be minimal text and explanation.
+    var active_group = apostles;
+    var active_group_title = 'Apostle';
+    var completed = [];
+    var num_total = 0;
+    var num_correct = 0;
+    var level = 0;
+    var num_levels = 4;
+    if (unlocked){
+        num_levels = unlocked;
+    }
+    var levels = [
+        ['Face to the Name', "You'll be given a name and 4 faces. Select the correct face for that name. To finish the quiz you must correctly know all the faces, on your first answer. If you miss, keep guessing until you get it right (and learn) because the name will come again during your quiz. The more you get wrong, the longer the quiz gets.", "name", "photo[0]"],
+        ['Name that Face', "You'll be given a face and 4 names. Select the correct name for the face. To finish the quiz you must correctly know all the names, on your first answer. If you miss, keep guessing until you get it right (and learn) because the face will come again during your quiz.", "photo[0]", "name"],
+        ['When they were young(er)',"You'll be given a name and 4 faces of when they were younger. Select the correct face for the name. To finish the quiz you must correctly know all the faces, on your first answer.", "name", "photo[1]"],
+        ['Who Came First', "You'll be asked about which leader was called first, and second and so on. These questions are in order, but you still need to answer them all correctly. If you miss, keep guessing until you get it right and the quiz will continue.", "ordinal", "photo[0]"]
+        
+    ];
+    /*  
+        ['Last Conference', "You'll be given a topic or conference talk title. Select the face of who gave that talk in their last General Conference appearance. To finish the quiz you must correctly know all the topics, on your first answer. Need help? Go check out the latest conference!", "photo[0]", "conference"],
+        ['Career'],
+        ['Mantra']
+    */
+    var start_time = new Date();
+    var end_time = new Date();
+    var seconds = 0; // (start_time - end_time)/-1000;
+    var perfect = ['Perfect!', 'Thou art the Man!', 'Flawless!', 'Amazing!', 'On a Roll!', 'Impeccable!', 'Inspired!', 'Superb!', 'Unblemished!', '=D'];
+    var kudos =  ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!', 'Feelin\' it!', 'Dynamite!', 'Gold Star!', 'Impressive!', 'Exactly!', 'Correct!', '=)', 'Bingo!', 'On the nose!', 'Right!', 'Right on!', 'Righteous!', '', 'Inspiring!', 'Precisely!', 'Exactly!', 'Right as Rain!', ''];
+    var banter = ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '];
 
-	$('.quiz').on('click', '.answer', function(e){
-		$(this).addClass('clicked');
-		if ( $(this).hasClass('correct') ){
-			//calculate total
-			var num_clicked = $('.clicked').length;
-			if ( num_clicked < 2){
-				num_correct++;
-				//add correct to completed list
-				completed.push( parseInt($(this).find('img').attr('data-id')) );
-			}
-			num_total++;
-			$('.score').html('<h3>'+ num_correct +' of '+num_total+' correct');
-			//advance to next question
-			setTimeout(function() {
-  				new_question();
-			}, 1000);
-		}
-		else {
-			$(this).prepend( '<p class="label">' + $(this).find('img').attr('alt') +'</p>' );
-		}
-	});
-	$('.quiz').on('click', '.next', function(e){
-		new_question();
-	});
+    function new_question(){
+        
+        if( active_group == apostles ){
 
-	new_question();
+            if (levels[level][0] == 'Who Came First' ){ //go in order if asking about order
+                var order_array = active_group;
+                order_array.sort(function(a, b){ return parseInt(a.ordinal) - parseInt(b.ordinal); });
+                active_group = order_array;
+                make_question(active_group, num_correct);
+                //console.log(num_correct);
+            }
+            else{ //random order
+                make_question(active_group, get_random_groupindex(active_group));
+            }
+        }
+        else if( active_group == prophets ){
 
-	$('.nav_apostles').on('click', function(e){
-		$('body').addClass('apostles').removeClass('prophets').removeClass('study');
-		$('.list').addClass('quiz').removeClass('list');
-		new_question();
-	});
+            if (levels[level][0] == 'Who Came First' ){ //go in order if asking about order
+                make_question(active_group, num_correct);
+            }
+            else{
+                make_question(active_group, get_random_groupindex(active_group));
+            }
+        }
+    }
+    function make_question(group, answer_index){
+        //get mc answers
+        var mc_answers = get_random_mc_answers(group, answer_index);
+        switch(levels[level][0]) {
+            case 'Face to the Name': //photo
+                $('.quiz').html('<h2 class="question">' + group[answer_index].name + '</h2>');
+                for (var i = 0; i < 4; i++){
+                    $('.quiz').append(get_answer_div(group,mc_answers,i,2));
+                } 
+              break;
+            case 'Last Conference': //photo
+                $('.quiz').html('<h2 class="question">' + group[answer_index].conference + '</h2>');
+                for (var i = 0; i < 4; i++){
+                    $('.quiz').append(get_answer_div(group,mc_answers,i,0));
+                } 
+              break;
+            case 'When they were young(er)': //young photo
+                $('.quiz').html('<h2 class="question">' + group[answer_index].name + '</h2>');
+                for (var i = 0; i < 4; i++){
+                    $('.quiz').append(get_answer_div(group,mc_answers,i,1));
+                }
+              break;
+            case 'Who Came First': //order
+                $('.quiz').html('<h2 class="question">Called ' + group[answer_index].ordinal +  '</h2>');
+                for (var i = 0; i < 4; i++){
+                    $('.quiz').append(get_answer_div(group,mc_answers,i,0));
+                }
+              break;
+            case 'Name that Face': //name
+                $('.quiz').html('<div class="question"><span class="img"><img src="img/' + group[answer_index].photo[0] + '" alt="guess my name" /></span></div>');
+                var answers = '<div class="answers">';
+                for (var i = 0; i < 4; i++){
+                    answers += get_answer_div(group,mc_answers,i,0);
+                }
+                $('.quiz').append( answers +'</div>');
+              break;
+            default:
+              //error
+        }
+        
 
-	$('a.nav_prophets').on('click', function(e){
-		$('body').removeClass('apostles').addClass('prophets').removeClass('study');
-		$('.list').addClass('quiz').removeClass('list');
-		new_question();
-	});
+        var correct = $.inArray(answer_index, mc_answers);
+        $('.answer_'+correct).parent().addClass('correct');
+    }
+    function get_answer_div(group, mc_answers, index, img){
+        var answer_div = "";
+        switch(levels[level][0]) {
+            //photo and young photo as default
+            case 'Who Came First': //order
+                answer_div = '<div class="answer" data-id="' + mc_answers[index] + '"><img class="answer_' + index + '" src="img/' + group[mc_answers[index]].photo[img] + '" alt="' + group[mc_answers[index]].name + ', ' + group[mc_answers[index]].ordinal  + '" /></div>';
+              break;
+            case 'Name that Face': //name
+                answer_div = '<div class="answer answer_name" data-id="' + mc_answers[index] + '"><p class="answer_' + index + ' label">' + group[mc_answers[index]].name + '</p></div>';
+              break;
+            default: //photo, young photo
+                answer_div = '<div class="answer" data-id="' + mc_answers[index] + '"><img class="answer_' + index + '" src="img/' + group[mc_answers[index]].photo[img] + '" alt="' + group[mc_answers[index]].name + '" /></div>';
+              //error
+        }
+        return answer_div;
+    }
 
-	$('a.nav_study').on('click', function(e){
-		$('body').removeClass('apostles').removeClass('prophets').addClass('study');
-		$('.quiz').html('<div class="study_list_prophets"></div><div class="study_list_apostles"></div>').removeClass('quiz').addClass('list');
-		init_study();
-	});
+    function get_random_mc_answers(group, correct){
+        var generated = [];
+        generated.push(correct);
+        for (var i = 1; i < 4; i++) {
+            while(true){
+                var next = Math.floor(Math.random()*group.length);
+                if (0 > $.inArray(next, generated)) {
+                    // Done for this iteration
+                    generated.push(next);
+                    break;
+                }
+            }
+        }
+        randomize(generated);
+        return generated;
+    }
+    function get_random_groupindex(group){
+        var random_index = Math.floor(Math.random()*group.length);
+        //console.log(completed.toString(), random_index, $.inArray(random_index, completed));
+        if ( $.inArray(random_index, completed) < 0 ){
+            //console.log('unique found');
+            return random_index;
+        }
+        else if( completed.length == group.length ){
+            completed = [];
+            return random_index;
+        }
+        else{
+            //console.log('potential repeat found');
+            return get_random_groupindex(group);
+        }
+    }
+    function get_random_index(group){
+        var random_index = Math.floor(Math.random()*group.length);
+        return random_index;
+    }
+    function randomize(myArray) {
+      var i = myArray.length, j, tempi, tempj;
+      if ( i == 0 ) return false;
+      while ( --i ) {
+         j = Math.floor( Math.random() * ( i + 1 ) );
+         tempi = myArray[i];
+         tempj = myArray[j];
+         myArray[i] = tempj;
+         myArray[j] = tempi;
+       }
+    }
 
-	function init_study(){
-		//study
-		$('.study_list_prophets').html('');
-		for ( var i=0; i<prophets.length; i++){
-			var html = '<div class="profile"><div class="answer"><img src="img/' + prophets[i].photo[0] + '" alt="' + prophets[i].name + '" data-id="' + i + '" /><p class="label">' + prophets[i].name + '</p></div>';
-			html += '<div class="stats">Born: ' + prophets[i].birthdate + '<br />';
-			html += 'President: ' + prophets[i].sustaindate + ' - ' + prophets[i].deathdate + '</div></div>';
-			$('.study_list_prophets').append(html);
-		}
+
+    $('.main').on('click', '.quiz .answer', function(e){
+        $(this).addClass('clicked');
+        var is_correct = false;
+            end_time = new Date();
+            time = start_time - end_time;
+
+        if ( $(this).hasClass('correct') ){
+            is_correct = true;
+            //calculate total clicked answers for this question
+            var num_clicked = $('.clicked').length;
+            if ( num_clicked == 1 || levels[level][0] == 'Who Came First'){
+                //console.log('correct logged for ' + $(this).find('img').attr('alt'));
+                //add correct to completed list - it there are no other previous wrong answers
+                completed.push( parseInt($(this).attr('data-id')) );
+                num_correct++;
+            }
+        }
+        
+        if( $(this).find('img').attr('alt') != undefined ) {
+            $(this).prepend( '<p class="label">' + $(this).find('img').attr('alt') +'</p>' );
+        }
+
+            end_time = new Date();
+            seconds = Math.floor( (start_time - end_time ) / -1000);
+            var correct_per_minute = Math.round( (num_correct / seconds ) * 60 );
+        //console.log( correct_per_minute );
+        //update score + feedback
+        $('.score').html('<h3/>');
+        //if round complete
+        //console.log(is_correct, num_correct, active_group.length, num_total);
+        if( is_correct && num_correct == active_group.length ) {
+            // _gaq.push(['_trackEvent', 'Answer', 'correct', $(this).find('img').attr('alt') ]);
+            // _gaq.push(['_trackEvent', 'Level', 'finish', levels[level][0], correct_per_minute ]);
+
+            $('.score h3').html(kudos[get_random_index(kudos)] + ' You Know All ' + active_group.length + '! ');
+            $('.score h3').append( parseInt(num_correct / (num_total+1)*100 ) + '% Accuracy! ');
+            //$('.score h3').append('That\'s a rate of '+ correct_per_minute + ' correct answers a minute!');
+            completed.length = 0;
+            num_total = -1;
+            num_correct = 0;
+            is_correct = false;
+            if(level+1 == num_levels && num_levels < levels.length) {
+                num_levels++;
+                localStorage.setItem("unlocked", num_levels);
+                $('.score h3').append('<h3 class="level_complete">You unlocked a new level!</h3>');
+                //console.log('new level unlocked: '+num_levels);
+            }
+            else{
+                $('.score h3').append('<h3 class="level_complete">Play another level?</h3>');
+            }
+            level = 0;
+            //init_levels();
+            $('.quiz').html('');
+        }
+        //perfect score
+        else if ( is_correct && num_correct > num_total ){
+            $('.score h3').append(perfect[get_random_index(perfect)]);
+            $('.score h3').append(' You know ' + num_correct + ' ' + active_group_title );
+            if (num_correct > 1){ $('.score h3').append('s'); }
+            $('.score h3').append( '! ' + parseInt(active_group.length - completed.length)  + ' left. ');
+            //$('.score h3').append( seconds + ' seconds! ');
+            // _gaq.push(['_trackEvent', 'Answer', 'correct', $(this).find('img').attr('alt') ]);
+        }
+        //correct answer
+        else if (is_correct){
+            $('.score h3').append(kudos[get_random_index(kudos)]);
+            $('.score h3').append(' You know ' + num_correct + ' ' + active_group_title );
+            if (num_correct > 1){ $('.score h3').append('s'); }
+            $('.score h3').append( '! ' + parseInt(active_group.length - completed.length)  + ' left. ');
+            //$('.score h3').append( seconds + ' seconds! ');
+            // _gaq.push(['_trackEvent', 'Answer', 'correct', $(this).find('img').attr('alt') ]);
+        }
+        //incorrect answer
+        else{
+            $('.score h3').append(banter[get_random_index(banter)]);
+            $('.score h3').append(' You know ' + num_correct + ' ' + active_group_title );
+            if (num_correct > 1){ $('.score h3').append('s'); }
+            $('.score h3').append( '! ' + parseInt(active_group.length - completed.length)  + ' left. ');
+            //$('.score h3').append( seconds + ' seconds! ');
+            // _gaq.push(['_trackEvent', 'Answer', 'incorrect', $(this).find('img').attr('alt') +' mistaken for ' + $(this).parent().find('.correct img').attr('alt') ]);
+        }
+
+        num_total++;
+
+        if( is_correct ){
+            //num_total++;
+            //advance to next question
+            setTimeout(function() {
+                new_question();
+            }, 750);
+        }
+    });
+    $('.quiz').on('click', '.next', function(e){
+        new_question();
+    });
 
 
-		$('.study_list_apostles').html('');
-		for ( var i=0; i<apostles.length; i++){
-			var html = '<div class="profile"><div class="answer"><img src="img/'+apostles[i].photo[0]+'" alt="'+apostles[i].name+'" data-id="'+i+'" /><p class="label">'+apostles[i].name+'</p></div>';
-			html += '<div class="stats">Born: ' + apostles[i].birthdate + '<br />';
-			html += 'Called: ' + apostles[i].sustaindate + '</div></div>';
-			$('.study_list_apostles').append(html);
-		}
-	}
-	//click images to load more
+    $('.nav_apostles').on('click', function(e){
+        $('body').addClass('apostles').removeClass('prophets').removeClass('study');
+        $('.study_list').addClass('quiz').removeClass('study_list');
+        $('.quiz').html('');
+        $('.score').html('');
+        init_levels();
+        active_group = apostles;
+        active_group_title = 'Apostle';
+    });
+
+    $('a.nav_prophets').on('click', function(e){
+        $('body').removeClass('apostles').addClass('prophets').removeClass('study');
+        $('.study_list').addClass('quiz').removeClass('study_list');
+        $('.quiz').html('');
+        $('.score').html('');
+        init_levels();
+        active_group = prophets;
+        active_group_title = 'Prophet';
+    });
+
+    $('a.nav_study').on('click', function(e){
+        $('body').removeClass('apostles').removeClass('prophets').addClass('study');
+        $('.quiz').html('');
+        $('.quiz').removeClass('quiz').addClass('study_list');
+        $('.study_list').html('<div class="study_list_apostles"></div><div class="study_list_prophets"></div>');
+        completed.length = 0;
+        num_total = 0;
+        num_correct = 0;
+        $('.score').html('');
+        init_study();
+    });
+
+    function init_study(){
+        //study
+        $('.study_list_apostles').html('<h3>Apostles</h3>');
+            for ( var i=0; i<apostles.length; i++){
+                var html = '<div class="profile is_odd_' +  i % 2 + '">';
+                html += '<div class="answer">';
+                html += '<img class="photo_young" src="img/'+apostles[i].photo[1]+'" alt="'+apostles[i].name+'" data-id="'+i+'" />';
+                html += '<img class="photo " src="img/'+apostles[i].photo[0]+'" alt="'+apostles[i].name+'" data-id="'+i+'" />';
+                html += '</div>';
+                html += '<div class="stats">';
+                html += '<p class="label">'+apostles[i].name+'</p>';
+                //html += '<span class="stat stat_birth">Born: ' + apostles[i].birthdate + '.</span>';
+                if( apostles[i].position ){
+                    html += '<span class="stat stat_position">' + apostles[i].position + ', </span>';
+                }
+                html += '<span class="stat stat_sustained">' + apostles[i].ordinal + ' Sustained (' + apostles[i].sustaindate + ')</span>';
+                html += '</div>';
+                $('.study_list_apostles').append(html);
+            }
+        
+        $('.study_list_prophets').html('<h3>Prophets</h3>');
+            for ( var i=0; i<prophets.length; i++){
+                var html = '<div class="profile is_odd_' +  i % 2 + '">';
+                html += '<div class="answer">';
+                html += '<img class="photo_young" src="img/'+prophets[i].photo[1]+'" alt="'+prophets[i].name+'" data-id="'+i+'" />';
+                html += '<img class="photo " src="img/'+prophets[i].photo[0]+'" alt="'+prophets[i].name+'" data-id="'+i+'" />';
+                html += '</div>';
+                html += '<div class="stats">';
+                html += '<p class="label">'+prophets[i].name+'</p>';
+                html += '<span class="stat stat_sustained">' + prophets[i].ordinal + ' Sustained (' + prophets[i].sustaindate + ')</span>';
+                html += '</div>';
+                $('.study_list_prophets').append(html);
+            }
+        
+    }
+    //click images to show more info
+
+
+    function init_levels(){
+        var html = '<div class="levels">';
+        for (var i = 0; i < levels.length; i++) {
+            var islocked = 'unlocked';
+            if (i >= num_levels){ islocked = 'locked'; }
+            html += '<div class="level_select ' + islocked + '" data-level="' + i + '">' + levels[i][0] + '</div>';
+        }
+        html += '</div>';
+        $('.quiz').html(html);
+    }
+
+    init_levels();
+    $('.nav_apostles').click();
+    //alert(unlocked);
+
+    $('.quiz').on('click', '.level_select.unlocked', function(e){
+        level = parseInt( $(this).attr('data-level') );
+        //console.log('level', level, 'chosen');
+        $('.quiz').html("<h2 class='level_name'>" + levels[level][0] + "</h2><h3 class='level_intro'>" + levels[level][1] + "</h3><h3 class='level_start'>Begin</h3>");
+    });
+    $('.quiz').on('click', '.level_start', function(e){
+        // _gaq.push(['_trackEvent', 'Level', 'start', $(this).text() ]);
+        //start quiz
+        start_time = new Date();
+        completed.length = 0;
+        num_total = 0;
+        num_correct = 0;
+        new_question();
+        $('.score').html('<h3>Do you know all ' + active_group.length + ' ' + active_group_title + 's?</h3>');
+    });
+    $('.score').on('click', '.level_complete', function(e){
+        init_levels();
+        $('.score').html('');
+    });
+
+    $('.main').on('click', '.study_list .answer', function(e){
+        $(this).find('.photo').toggleClass('hidden');
+    });
+
 });
