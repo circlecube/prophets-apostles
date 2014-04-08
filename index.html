@@ -71,21 +71,21 @@ $(function () {
     //each apostle an object conaining: name, birthdate, sustaindate, position, photos, videos, audios, mantra, trivias
     //http://www.maxoutput.com/djdj/apostles_answers.html
     var apostles = [
-        { name: 'Thomas S. Monson', position: 'President', photo: ['thomas-s-monson-large.jpg', 'Thomas-S-Monson-1937.jpg'], mantra: 'Rescue', birthdate: 'August 21, 1927', sustaindate: 'October 4, 1963', ordinal:'1st', mission: 'Mission President, Canadian Mission, Ontario, 1959-1962', birthplace: 'Salt Lake City, Utah', profession: '', conference:'Obedience Brings Blessings' },
-        { name: 'Henry B. Eyring', position: 'First Counselor, First Presidency', photo: ['henry-b-eyring-large.jpg', 'Henry_B_Eyring2.jpg'], mantra: '', birthdate: 'May 31, 1933', sustaindate: 'April 1, 1995', ordinal:'10th', mission: '', birthplace: 'Princeton, New Jersey', profession: '', conference:'"Come unto Me"' },
-        { name: 'Dieter F. Uchtdorf ', position: 'Second Counselor, First Presidency', photo: ['dieter-f-uchtdorf-large.jpg', 'dieter-uctdorf-german-air-force.jpg'], mantra: '', birthdate: 'November 6, 1940', sustaindate: 'October 2, 2004', ordinal:'11th', mission: '', birthplace: 'Ostrava, Czechoslovakia', profession: '', conference:"The Hope of God's Light" },
-        { name: 'Boyd K. Packer', position: 'President, Quorum of the Twelve Apostles', photo: ['boyd-k-packer-large.jpg', 'packer-bio-world-war-two.jpg'], mantra: '', birthdate: 'September 10, 1924', sustaindate: 'April 9, 1970', ordinal:'2nd', mission: '', birthplace: 'Brigham City, Utah', profession: '', conference:'These Things I Know' },
-        { name: 'L. Tom Perry', photo: ['l-tom-perry-large.jpg', 'l-tom-perry-marines.jpg'], mantra: '', birthdate: 'August 5, 1922', sustaindate: 'April 6, 1974', ordinal:'3rd', mission: '', birthplace: 'Logan, Cache, Utah', profession: '', conference:'Obedience to Law Is Liberty' },
-        { name: 'Russell M. Nelson', photo: ['russell-m-nelson-large.jpg', 'russell-nelson-army.jpg'], mantra: '', birthdate: 'September 9, 1924', sustaindate: 'April 7, 1984', ordinal:'4th', mission: '', birthplace: 'Salt Lake City, Utah', profession: '', conference:'Catch the Wave' },
-        { name: 'Dallin H. Oaks', photo: ['dallin-h-oaks-large.jpg', 'dallin-h-oaks.jpg'], mantra: '', birthdate: 'August 12, 1932', sustaindate: 'May 3, 1984', ordinal:'5th', mission: '', birthplace: 'Provo, Utah', profession: '', conference:'Followers of Christ' },
-        { name: 'M. Russell Ballard', photo: ['m-russell-ballard-large.jpg', 'russell-ballard-boy.jpg'], mantra: '', birthdate: 'October 8, 1928', sustaindate: 'October 10, 1985', ordinal:'6th', mission: '', birthplace: 'Salt Lake City, Utah', profession: '', conference:'"This Is My Work and Glory"' },
-        { name: 'Richard G. Scott', photo: ['richard-g-scott-large.jpg', 'richard-g-scott-navy.jpg'], mantra: '', birthdate: 'November 7, 1928', sustaindate: 'October 1, 1988', ordinal:'7th', mission: '', birthplace: 'Pocatello, Idaho', profession: '', conference:'For Peace at Home' },
-        { name: 'Robert D. Hales', photo: ['robert-d-hales-large.jpg', 'robert-hales-boy.jpg'], mantra: '', birthdate: 'August 24, 1932', sustaindate: 'April 2, 1994', ordinal:'8th', mission: '', birthplace: 'New York City, New York', profession: '', conference:'Stand Strong in Holy Places' },
-        { name: 'Jeffrey R. Holland', photo: ['jeffrey-r-holland-large.jpg', 'jeffery-r-holland-young.jpg'], mantra: '', birthdate: 'December 3, 1940', sustaindate: 'June 23, 1994', ordinal:'9th', mission: '', birthplace: 'St George, Utah', profession: '', conference:'"Lord, I Believe"' },
-        { name: 'David A. Bednar', photo: ['david-a-bednar-large.jpg', 'david-bednar-boy.jpg'], mantra: '', birthdate: 'June 15, 1952', sustaindate: 'October 2, 2004', ordinal:'12th', mission: '', birthplace: 'San Leandro, California', profession: '', conference:'We Believe in Being Chaste' },
-        { name: 'Quentin L. Cook', photo: ['quentin-l-cook-large.jpg', 'quentin-cook-boy.jpg'], mantra: '', birthdate: 'September 8, 1940', sustaindate: 'October 6, 2007', ordinal:'13th', mission: '', birthplace: 'Logan, Utah', profession: '', conference:'Personal Peace: The Reward of Righteousness' },
-        { name: 'D. Todd Christofferson', photo: ['d-todd-christofferson-large.jpg', 'todd-christofferson-boy.jpg'], mantra: '', birthdate: 'January 24, 1945', sustaindate: 'April 5, 2008', ordinal:'14th', mission: '', birthplace: 'Pleasant Grove, Utah', profession: '', conference:'Redemption' },
-        { name: 'Neil L. Andersen', photo: ['neil-l-andersen-large.jpg', 'neil-l-andersen-missionary.jpg'], mantra: '', birthdate: 'August 9, 1951', sustaindate: 'April 4, 2009', ordinal:'15th', mission: '', birthplace: 'Logan, Utah', profession: '', conference: "It's a Miracle" }
+        { name: 'Thomas S. Monson', position: 'President', photo: ['thomas-s-monson-large.jpg', 'Thomas-S-Monson-1937.jpg', 'conference/thomas-s-monson.jpg'], mantra: 'Rescue', birthdate: 'August 21, 1927', sustaindate: 'October 4, 1963', ordinal:'1st', mission: 'Mission President, Canadian Mission, Ontario, 1959-1962', birthplace: 'Salt Lake City, Utah', profession: '', conference:'Obedience Brings Blessings' },
+        { name: 'Henry B. Eyring', position: 'First Counselor, First Presidency', photo: ['henry-b-eyring-large.jpg', 'Henry_B_Eyring2.jpg', 'conference/henry-b-eyring.jpg'], mantra: '', birthdate: 'May 31, 1933', sustaindate: 'April 1, 1995', ordinal:'10th', mission: '', birthplace: 'Princeton, New Jersey', profession: '', conference:'"Come unto Me"' },
+        { name: 'Dieter F. Uchtdorf ', position: 'Second Counselor, First Presidency', photo: ['dieter-f-uchtdorf-large.jpg', 'dieter-uctdorf-german-air-force.jpg', 'conference/dieter-f-uchtdorf.jpg'], mantra: '', birthdate: 'November 6, 1940', sustaindate: 'October 2, 2004', ordinal:'11th', mission: '', birthplace: 'Ostrava, Czechoslovakia', profession: '', conference:"The Hope of God's Light" },
+        { name: 'Boyd K. Packer', position: 'President, Quorum of the Twelve Apostles', photo: ['boyd-k-packer-large.jpg', 'packer-bio-world-war-two.jpg', 'conference/boyd-k-packer.jpg'], mantra: '', birthdate: 'September 10, 1924', sustaindate: 'April 9, 1970', ordinal:'2nd', mission: '', birthplace: 'Brigham City, Utah', profession: '', conference:'These Things I Know' },
+        { name: 'L. Tom Perry', photo: ['l-tom-perry-large.jpg', 'l-tom-perry-marines.jpg', 'conference/l-tom-perry.jpg'], mantra: '', birthdate: 'August 5, 1922', sustaindate: 'April 6, 1974', ordinal:'3rd', mission: '', birthplace: 'Logan, Cache, Utah', profession: '', conference:'Obedience to Law Is Liberty' },
+        { name: 'Russell M. Nelson', photo: ['russell-m-nelson-large.jpg', 'russell-nelson-army.jpg', 'conference/russell-m-nelson.jpg'], mantra: '', birthdate: 'September 9, 1924', sustaindate: 'April 7, 1984', ordinal:'4th', mission: '', birthplace: 'Salt Lake City, Utah', profession: '', conference:'Catch the Wave' },
+        { name: 'Dallin H. Oaks', photo: ['dallin-h-oaks-large.jpg', 'dallin-h-oaks.jpg', 'conference/dallin-h-oaks.jpg'], mantra: '', birthdate: 'August 12, 1932', sustaindate: 'May 3, 1984', ordinal:'5th', mission: '', birthplace: 'Provo, Utah', profession: '', conference:'Followers of Christ' },
+        { name: 'M. Russell Ballard', photo: ['m-russell-ballard-large.jpg', 'russell-ballard-boy.jpg', 'conference/m-russell-ballard.jpg'], mantra: '', birthdate: 'October 8, 1928', sustaindate: 'October 10, 1985', ordinal:'6th', mission: '', birthplace: 'Salt Lake City, Utah', profession: '', conference:'"This Is My Work and Glory"' },
+        { name: 'Richard G. Scott', photo: ['richard-g-scott-large.jpg', 'richard-g-scott-navy.jpg', 'conference/richard-g-scott.jpg'], mantra: '', birthdate: 'November 7, 1928', sustaindate: 'October 1, 1988', ordinal:'7th', mission: '', birthplace: 'Pocatello, Idaho', profession: '', conference:'For Peace at Home' },
+        { name: 'Robert D. Hales', photo: ['robert-d-hales-large.jpg', 'robert-hales-boy.jpg', 'conference/robert-d-hales.jpg'], mantra: '', birthdate: 'August 24, 1932', sustaindate: 'April 2, 1994', ordinal:'8th', mission: '', birthplace: 'New York City, New York', profession: '', conference:'Stand Strong in Holy Places' },
+        { name: 'Jeffrey R. Holland', photo: ['jeffrey-r-holland-large.jpg', 'jeffery-r-holland-young.jpg', 'conference/jeffrey-r-holland.jpg'], mantra: '', birthdate: 'December 3, 1940', sustaindate: 'June 23, 1994', ordinal:'9th', mission: '', birthplace: 'St George, Utah', profession: '', conference:'"Lord, I Believe"' },
+        { name: 'David A. Bednar', photo: ['david-a-bednar-large.jpg', 'david-bednar-boy.jpg', 'conference/david-a-bednar.jpg'], mantra: '', birthdate: 'June 15, 1952', sustaindate: 'October 2, 2004', ordinal:'12th', mission: '', birthplace: 'San Leandro, California', profession: '', conference:'We Believe in Being Chaste' },
+        { name: 'Quentin L. Cook', photo: ['quentin-l-cook-large.jpg', 'quentin-cook-boy.jpg', 'conference/quentin-l-cook.jpg'], mantra: '', birthdate: 'September 8, 1940', sustaindate: 'October 6, 2007', ordinal:'13th', mission: '', birthplace: 'Logan, Utah', profession: '', conference:'Personal Peace: The Reward of Righteousness' },
+        { name: 'D. Todd Christofferson', photo: ['d-todd-christofferson-large.jpg', 'todd-christofferson-boy.jpg', 'conference/d-todd-christofferson.jpg'], mantra: '', birthdate: 'January 24, 1945', sustaindate: 'April 5, 2008', ordinal:'14th', mission: '', birthplace: 'Pleasant Grove, Utah', profession: '', conference:'Redemption' },
+        { name: 'Neil L. Andersen', photo: ['neil-l-andersen-large.jpg', 'neil-l-andersen-missionary.jpg', 'conference/neil-l-andersen.jpg'], mantra: '', birthdate: 'August 9, 1951', sustaindate: 'April 4, 2009', ordinal:'15th', mission: '', birthplace: 'Logan, Utah', profession: '', conference: "It's a Miracle" }
     ]
     //reset
     //localStorage.setItem("unlocked", 1);
@@ -103,19 +103,19 @@ $(function () {
     var num_total = 0;
     var num_correct = 0;
     var level = 0;
-    var num_levels = 2;
+    var num_levels = 4;
     if (unlocked){
         num_levels = unlocked;
     }
     var levels = [
         ['Face to the Name', "You'll be given a name and 4 faces. Select the correct face for that name. To finish the quiz you must correctly know all the faces, on your first answer. If you miss, keep guessing until you get it right (and learn) because the name will come again during your quiz. The more you get wrong, the longer the quiz gets.", "name", "photo[0]"],
-        ['Last Conference', "You'll be given a topic or conference talk title. Select the face of who gave that talk in their last General Conference appearance. To finish the quiz you must correctly know all the topics, on your first answer. Need help? Go check out the latest conference!", "photo[0]", "conference"],
         ['Name that Face', "You'll be given a face and 4 names. Select the correct name for the face. To finish the quiz you must correctly know all the names, on your first answer. If you miss, keep guessing until you get it right (and learn) because the face will come again during your quiz.", "photo[0]", "name"],
         ['When they were young(er)',"You'll be given a name and 4 faces of when they were younger. Select the correct face for the name. To finish the quiz you must correctly know all the faces, on your first answer.", "name", "photo[1]"],
         ['Who Came First', "You'll be asked about which leader was called first, and second and so on. These questions are in order, but you still need to answer them all correctly. If you miss, keep guessing until you get it right and the quiz will continue.", "ordinal", "photo[0]"]
         
     ];
-    /*
+    /*  
+        ['Last Conference', "You'll be given a topic or conference talk title. Select the face of who gave that talk in their last General Conference appearance. To finish the quiz you must correctly know all the topics, on your first answer. Need help? Go check out the latest conference!", "photo[0]", "conference"],
         ['Career'],
         ['Mantra']
     */
@@ -158,7 +158,7 @@ $(function () {
             case 'Face to the Name': //photo
                 $('.quiz').html('<h2 class="question">' + group[answer_index].name + '</h2>');
                 for (var i = 0; i < 4; i++){
-                    $('.quiz').append(get_answer_div(group,mc_answers,i,0));
+                    $('.quiz').append(get_answer_div(group,mc_answers,i,2));
                 } 
               break;
             case 'Last Conference': //photo
