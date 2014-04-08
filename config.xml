@@ -5,10 +5,47 @@
         versionCode="150" 
         version   = "0.1.5">
 
-    <name>LDS Prophets Quiz</name>
+    <name>LDS Prophets and Apostles</name>
 
     <description>
-        This Latter-Day Saint Quiz will test your knowledge and teach you to know the apostles and prophets. Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow. Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples.
+        This Latter-Day Saint Prophet and Apostle Quiz will test your knowledge and teach you to know the apostles and prophets. Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow. Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples. 
+
+        Containing the First Presidency: 
+        President Thomas S. Monson (President)
+        President Henry B. Eyring (First Counselor) 
+        President Dieter F. Uchtdorf (Second Counselor)
+
+        The Quorum of the Twelve Aposltes: 
+        Boyd K. Packer (President)
+        L. Tom Perry
+        Russell M. Nelson
+        Dallin H. Oaks
+        M. Russell Ballard
+        Richard G. Scott
+        Robert D. Hales
+        Jeffrey R. Holland
+        David A. Bednar
+        Quentin L. Cook
+        D. Todd Christofferson
+        Neil L. Andersen
+
+        Also all the Latter-Day Prophets of the Restoration:
+        Joseph Smith
+        Brigham Young
+        John Taylor
+        Wilford Woodruff
+        Lorenzo Snow
+        Joseph F. Smith
+        Heber J. Grant
+        George Albert Smith
+        David O. McKay
+        Joseph Fielding Smith
+        Harold B. Lee
+        Spencer W. Kimball
+        Ezra Taft Benson
+        Howard W. Hunter
+        Gordon B. Hinckley
+        Thomas S. Monson
     </description>
 
     <author href="http://circlecube.com" email="evan@circlecube.com">
