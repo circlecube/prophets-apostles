@@ -220,7 +220,7 @@ jQuery(document).ready(function($) {
 	            } 
 	          break;
 	        case 'initial': //middle initial/name
-	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">' + group[answer_index].middle_name + '</h2>');
+	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">' + group[answer_index][group[answer_index].initial] + '</h2>');
 	            for (var i = 0; i < 4; i++){
 	                $('.content').append(get_answer_div(group,mc_answers,i,1));
 	            }
