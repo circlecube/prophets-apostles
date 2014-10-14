@@ -306,8 +306,8 @@ var deceased_general_authorities = [
 		'deathdate': 'March 3, 1995',
 		'ordinal': '14th',
 		'hometown': 'Boise, Idaho',
-		'img': 'HWH-21_st.jpg.jpg',
-		'img_young': 'HWH-20_st.jpg.jpg',
+		'img': 'HWH-21_st.jpg',
+		'img_young': 'HWH-20_st.jpg',
 		'conference_talks': '',
 		'profession': 'Lawyer'
 	},
@@ -519,3 +519,4 @@ var deceased_general_authorities = [
 		'img_young': 'JS_Bible_st.jpg',
 		'conference_talks': '',
 	},
+];
