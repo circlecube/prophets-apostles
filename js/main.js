@@ -17,13 +17,17 @@ var level = 0;
 var num_levels = 4;
 var mode = 'learn';// learn/test
 var levels = [
+//'slug, Title, fa-icon'
     ['face', 'Faces', 'user'],
-    ['bday', 'Birthday', 'birthday-cake'],
     ['face2', 'Young Faces', 'child'],
-    ['talks', 'Conference Talks', 'comment'],
     ['initial', 'Initial', 'font'],
-    ['hometown', 'Hometown', 'map-marker']
-    //fa-graduation-cap
+    ['hometown', 'Hometown', 'map-marker'],
+    ['bday', 'Birthday', 'birthday-cake'],
+    // ['talks', 'Conference Talks', 'comment'],
+    // ['education', 'Education', 'graduation-cap'],
+    // ['profession', 'Professtion', 'briefcase'],
+    // ['miliraty', 'Military Service', 'star-o'],
+    // ['seniority', 'Seniority', 'site-map']
     //fa-institution
     //fa-microphone
 ];
