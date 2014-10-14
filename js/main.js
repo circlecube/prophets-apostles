@@ -521,7 +521,7 @@ jQuery(document).ready(function($) {
 			    //incorrect answer
 			    else{
 			        $('.score').append(banter[get_random_index(banter)]);
-			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title + ' players' );
+			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
 			        //$('.score').append( seconds + ' seconds! ');
@@ -590,8 +590,8 @@ jQuery(document).ready(function($) {
 		//console.log('share social_sharing');
 	  	window.plugins.socialsharing.available(function(isAvailable) {
 		    if (isAvailable) {
-		    	var message = 'Do you know the US World Cup Team? Take the test in this mobile app!';
-				var subject = 'I Believe That We Can Win!';
+		    	var message = 'Do you know the Latter-Day Prophets? Take the test in this mobile app!';
+				var subject = 'Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets.';
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
 				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
@@ -604,8 +604,8 @@ jQuery(document).ready(function($) {
 
 	  	window.plugins.socialsharing.available(function(isAvailable) {
 		    if (isAvailable) {
-		    	var message = 'Do you know the US World Cup Team? I do! Just took the test and got ' + $('.share_button').data('score') + '% correct!';
-				var subject = 'I Believe That We Can Win!';
+		    	var message = 'Do you know the Latter-Day Prophets? I do! Just took the test and got ' + $('.share_button').data('score') + '% correct!';
+				var subject = 'Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets.';
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
 				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
