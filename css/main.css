@@ -1,8 +1,8 @@
 
 @font-face{
     font-family:"Trajan";
-    src:url("Fonts/b1ea5371-054f-484d-aa42-a79997cd4e21.eot?#iefix");
-    src:url("Fonts/b1ea5371-054f-484d-aa42-a79997cd4e21.eot?#iefix") format("eot"),url("Fonts/2649890f-ced1-4b53-9a01-4ce5a76159a6.woff") format("woff"),url("Fonts/b66b7a48-c18d-4214-8f34-27f14538f51f.ttf") format("truetype"),url("Fonts/083f0ff8-1ce1-4e64-bb92-478df522f370.svg#083f0ff8-1ce1-4e64-bb92-478df522f370") format("svg");
+    src:url("fonts/b1ea5371-054f-484d-aa42-a79997cd4e21.eot?#iefix");
+    src:url("fonts/b1ea5371-054f-484d-aa42-a79997cd4e21.eot?#iefix") format("eot"),url("fonts/2649890f-ced1-4b53-9a01-4ce5a76159a6.woff") format("woff"),url("fonts/b66b7a48-c18d-4214-8f34-27f14538f51f.ttf") format("truetype"),url("Fonts/083f0ff8-1ce1-4e64-bb92-478df522f370.svg#083f0ff8-1ce1-4e64-bb92-478df522f370") format("svg");
 }
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
@@ -598,23 +598,23 @@ body.font-small {
 }
 .question {
     font-family:'Trajan','Georgia',serif;
-    text-transform: uppercase;
-    font-size: 36px;
-    text-align:center;
+    /*text-transform: uppercase;*/
+    font-size: 24px;
+    text-align: center;
     margin: .1em 0;
     /*color: #4380b7;*/
 }
 .question_bio {
     font-family:'Trajan','Georgia',serif;
     font-size: 18px;
-    text-align:left;
+    text-align: left;
     text-transform: none;
     padding: 0 1em;
 }
 .answer {
     width: 50%;
-    float:left;
-    position:relative;
+    float: left;
+    position: relative;
     padding-top: 66%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -630,9 +630,9 @@ body.font-small {
     webkit-transform: translate3d(0,0,0);
 }
 .answer.list{
-    width:100%;
-    height:auto;
-    padding:0;
+    width: 100%;
+    height: auto;
+    padding: 0;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
 }
@@ -649,8 +649,8 @@ body.font-small {
     width: 100%;
     background: #2a3753;
     color:#fff;
-    font-size: 24px;
-    padding: 8px 0;
+    font-size: 18px;
+    padding: 8px 1px;
     text-align:center;
     border-bottom: 12px solid #f07d25;
     margin:0;
