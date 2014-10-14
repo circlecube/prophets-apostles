@@ -17,12 +17,15 @@ var level = 0;
 var num_levels = 4;
 var mode = 'learn';// learn/test
 var levels = [
-    ['face', 'Faces'],
-    ['bday', 'Birthday'],
-    ['face2', 'Young Faces'],
-    ['talks', 'Conference Talks'],
-    ['initial', 'Initial'],
-    ['hometown', 'Hometown']
+    ['face', 'Faces', 'user'],
+    ['bday', 'Birthday', 'birthday-cake'],
+    ['face2', 'Young Faces', 'child'],
+    ['talks', 'Conference Talks', 'comment'],
+    ['initial', 'Initial', 'font'],
+    ['hometown', 'Hometown', 'map-marker']
+    //fa-graduation-cap
+    //fa-institution
+    //fa-microphone
 ];
 var free_version = false;
 
@@ -46,6 +49,14 @@ jQuery(document).ready(function($) {
 		document.addEventListener("deviceready", onDeviceReady, false);
 		document.addEventListener("menubutton", onMenuKeyDown, false);
 		document.addEventListener("backbutton", onBackKeyDown, false);
+		
+
+		
+		set_levels();
+		
+		if (free_version) {
+			update_free();
+		}
 
 		//get local storage settings
 		if (localStorage.activity_log){
@@ -60,12 +71,6 @@ jQuery(document).ready(function($) {
 			mode = localStorage.mode;
 			$('.mode').parent().removeClass('active');
 			$('.mode[data-mode="'+mode+'"]').parent().addClass('active');
-		}
-
-		set_levels();
-
-		if (free_version) {
-			update_free();
 		}
 
 		set_ages();
@@ -86,7 +91,9 @@ jQuery(document).ready(function($) {
 	function set_levels(){
 		var quiz_levels = '';
 		for (var i = 0; i < levels.length; i++){
-			quiz_levels += '<li><a href="#" class="quiz quiz_number" data-index="'+i+'" data-value="'+levels[i][0]+'">'+levels[i][1]+'</a></li>';
+			quiz_levels += '<li><a href="#" class="quiz quiz_number" data-index="'+i+'" data-value="'+levels[i][0]+'">';
+			quiz_levels += '<i class="fa fa-'+levels[i][2]+'"></i> '+levels[i][1]+'</a>';
+			quiz_levels += '</li>';
 		}
 		$('.quiz_type').html(quiz_levels);
 	}
@@ -205,7 +212,7 @@ jQuery(document).ready(function($) {
 	function make_question(group, answer_index){
 	    //get mc answers
 	    var mc_answers = get_random_mc_answers(group, answer_index);
-	    //console.log(levels[level][0]);
+	    // console.log(level, levels[level][0]);
 	    switch(levels[level][0]) {
 	        case 'hometown': //photo
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question question_bio">From ' + group[answer_index].hometown + '</h2>');
