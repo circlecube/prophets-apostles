@@ -42,7 +42,7 @@ var kudos =  ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!
 var banter = ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '];
 
 
-var active_team = living_general_authorities;
+var active_team = deceased_general_authorities;
 var active_team_title = 'Living Apostles';
 var list_player;
 var list_player_template;
@@ -112,7 +112,7 @@ jQuery(document).ready(function($) {
 		$('.quiz .mm-subopen').remove();
 
 		//add upgrade link
-		$('.menu .share').parent().after('<li><a href="market://details?id=com.circlecube.usmntsoccerroster" class="about">Upgrade</a></li>');
+		$('.menu .share').parent().after('<li><a href="market://details?id=com.circlecube.ldsquizpro" class="about">Upgrade</a></li>');
 		//remove list all link
 		// $('.list_all').parent().remove();
 		//
@@ -139,7 +139,7 @@ jQuery(document).ready(function($) {
 		//https://github.com/phonegap-build/GAPlugin/blob/c928e353feb1eb75ca3979b129b10b216a27ad59/README.md
 		//gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event only", 1);
 	    gaPlugin = window.plugins.gaPlugin;
-	    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-1466312-13", 10);
+	    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-1466312-14", 10);
 
 		gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "App", "Begin");
 	}
@@ -594,7 +594,7 @@ jQuery(document).ready(function($) {
 				var subject = 'I Believe That We Can Win!';
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
-				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.usmntsoccerroster';
+				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
 				window.plugins.socialsharing.share(message, subject, files, url );
 		    }
 		});
@@ -608,7 +608,7 @@ jQuery(document).ready(function($) {
 				var subject = 'I Believe That We Can Win!';
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
-				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.usmntsoccerroster';
+				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
 				window.plugins.socialsharing.share(message, subject, files, url );
 		    }
 		});
