@@ -279,6 +279,22 @@ var deceased_general_authorities = [
 	},
 //*/
 	{
+		'name': 'Thomas S. Monson',
+		'first_name': 'Thomas',
+		'middle_name': 'Spencer',
+		'last_name': 'Monson',
+		'initial': 'middle_name',
+		'position': 'President',
+		'birthdate': 'August 21, 1927',
+		'ordained_date': 'October 4, 1963',
+		'ordinal': '1st',
+		'deathdate': null,
+		'hometown': 'Salt Lake City, Utah',
+		'img': 'thomas-s-monson-large.jpg',
+		'img_young': 'Thomas-S-Monson-1937.jpg',
+		'conference_talks': '220',
+	},
+	{
 		'name': 'Gordon B. Hinckley',
 		'first_name': 'Gordon',
 		'middle_name': 'Bitner',
