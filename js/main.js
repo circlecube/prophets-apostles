@@ -81,6 +81,13 @@ jQuery(document).ready(function($) {
 			subject = localStorage.subject;
 			$('.subject').parent().removeClass('active');
 			$('.subject[data-subject="'+subject+'"]').parent().addClass('active');
+			
+			if (subject == 'living'){
+				active_team = living_general_authorities;
+			}
+			else { //past
+				active_team = deceased_general_authorities;
+			}
 		}
 
 		set_ages();
