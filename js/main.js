@@ -237,12 +237,20 @@ jQuery(document).ready(function($) {
 	            } 
 	          break;
 	        case 'initial': //middle initial/name
-	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">' + group[answer_index][group[answer_index].initial] + '</h2>');
+	        	var html = '<h2 data-answer="' + group[answer_index][group[answer_index].initial] + '" class="question">';
+	        	if ( group[answer_index][group[answer_index].initial] != undefined ) {
+	        		html += group[answer_index][group[answer_index].initial];
+	        	}
+	        	else {
+	        		html += 'No Initial';
+	        	}
+	        	html += '</h2>';
+	            $('.content').html(html);
 	            for (var i = 0; i < 4; i++){
 	                $('.content').append(get_answer_div(group,mc_answers,i,1));
 	            }
 	          break;
-	        case 'bday': //middle initial/name
+	        case 'bday': //birthdate
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">' + group[answer_index].birthdate + ' (' + group[answer_index].age + ')</h2>');
 	            for (var i = 0; i < 4; i++){
 	                $('.content').append(get_answer_div(group,mc_answers,i,1));
@@ -289,6 +297,9 @@ jQuery(document).ready(function($) {
 	          break;
 	        case 'talks': //number
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + ' #' + group[mc_answers[index]].conference_talks + '"></div>';
+	          break;
+	        case 'initial': //initial
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]][group[mc_answers[index]].initial] + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'face2': //name
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img_young + '); background-position:'+ group[mc_answers[index]].img2_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
