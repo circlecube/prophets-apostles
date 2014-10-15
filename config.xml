@@ -2,8 +2,8 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.circlecube.ldsquizpro"
-        versionCode="150" 
-        version   = "0.1.5">
+        versionCode="400" 
+        version   = "0.4.0">
 
     <name>LDS Prophets and Apostles</name>
 
@@ -51,12 +51,23 @@
     <author href="http://circlecube.com" email="evan@circlecube.com">
         Evan Mullins 
     </author>
-    <gap:plugin name="com.adobe.plugins.gaplugin" />
     <gap:platform name="android" />
-    <preference name="phonegap-version" value="3.3.0" />
+    <preference name="android-minSdkVersion" value="11" />
+    <preference name="android-targetSdkVersion" value="14" />
+    <gap:plugin name="nl.x-services.plugins.socialsharing" />
+    <gap:plugin name="com.adobe.plugins.gaplugin" />
+    <preference name="phonegap-version" value="3.5.0" />
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
-    <icon src="icon-large.png" />
-    <gap:splash src="splash.png" />
+    <icon src="icon-large.png" width="512" height="512" density="mdpi" />
+    <icon src="icon.png" width="64" height="64" density="mdpi" />
     <preference name="permissions" value="none"/>
 </widget>
+<!--
+    update id - ldsquizpro - ldsquiz
+    update name - LDS Prophets and Apostles - LDS Prophets and Apostles Free
+    update icon - icon-large.png - icon-large-free.png
+
+	main.js
+    free_version - false - true
+-->
