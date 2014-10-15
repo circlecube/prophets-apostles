@@ -18,7 +18,7 @@ var num_levels = 4;
 var mode = 'learn';// learn/test
 var subject = 'living'; //living/past
 var levels = [
-//'slug, Title, fa-icon'
+//['slug', 'Title', 'fa-icon']
     ['face', 'Faces', 'user'],
     ['face2', 'Young Faces', 'child'],
     ['initial', 'Initial', 'font'],
@@ -43,7 +43,8 @@ var kudos =  ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!
 var banter = ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '];
 
 
-var active_team = living_general_authorities;
+var active_team = current_leaders;
+// var active_team = latter_day_prophets;
 var active_team_title = 'Living Apostles';
 var list_player;
 var list_player_template;
@@ -81,6 +82,13 @@ jQuery(document).ready(function($) {
 			subject = localStorage.subject;
 			$('.subject').parent().removeClass('active');
 			$('.subject[data-subject="'+subject+'"]').parent().addClass('active');
+			
+			if (subject == 'living'){
+				active_team = current_leaders;
+			}
+			else { //past
+				active_team = latter_day_prophets;
+			}
 		}
 
 		set_ages();
@@ -124,12 +132,12 @@ jQuery(document).ready(function($) {
 		//
 	}
 	function set_ages(){
-		for ( var i = 0; i < active_team.length; i++){
-			active_team[i].age = get_age(active_team[i].birthdate);
+		for ( var i = 0; i < current_leaders.length; i++){
+			current_leaders[i].age = get_age(current_leaders[i].birthdate);
 		}
-		// for ( var i = 0; i < usmnt_coaches.length; i++){
-		// 	usmnt_coaches[i].age = get_age(usmnt_coaches[i].birthdate);
-		// }
+		for ( var i = 0; i < latter_day_prophets.length; i++){
+			latter_day_prophets[i].age = get_age(latter_day_prophets[i].birthdate);
+		}
 	}
 	function get_age(dateString) {
 	    var today = new Date();
@@ -237,12 +245,20 @@ jQuery(document).ready(function($) {
 	            } 
 	          break;
 	        case 'initial': //middle initial/name
-	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">' + group[answer_index][group[answer_index].initial] + '</h2>');
+	        	var html = '<h2 data-answer="' + group[answer_index][group[answer_index].initial] + '" class="question">';
+	        	if ( group[answer_index][group[answer_index].initial] != undefined ) {
+	        		html += group[answer_index][group[answer_index].initial];
+	        	}
+	        	else {
+	        		html += 'No Initial';
+	        	}
+	        	html += '</h2>';
+	            $('.content').html(html);
 	            for (var i = 0; i < 4; i++){
 	                $('.content').append(get_answer_div(group,mc_answers,i,1));
 	            }
 	          break;
-	        case 'bday': //middle initial/name
+	        case 'bday': //birthdate
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">' + group[answer_index].birthdate + ' (' + group[answer_index].age + ')</h2>');
 	            for (var i = 0; i < 4; i++){
 	                $('.content').append(get_answer_div(group,mc_answers,i,1));
@@ -289,6 +305,9 @@ jQuery(document).ready(function($) {
 	          break;
 	        case 'talks': //number
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + ' #' + group[mc_answers[index]].conference_talks + '"></div>';
+	          break;
+	        case 'initial': //initial
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]][group[mc_answers[index]].initial] + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'face2': //name
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img_young + '); background-position:'+ group[mc_answers[index]].img2_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
@@ -593,10 +612,10 @@ jQuery(document).ready(function($) {
 		localStorage.subject = subject;
 		// console.log('subject set to', subject);
 		if (subject == 'living'){
-			active_team = living_general_authorities;
+			active_team = current_leaders;
 		}
 		else { //past
-			active_team = deceased_general_authorities;
+			active_team = latter_day_prophets;
 		}
 		game_players();
 	});
