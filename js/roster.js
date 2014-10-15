@@ -1,4 +1,4 @@
-var living_general_authorities = [
+var current_leaders = [
 /*//
 	{
 		'name': 'NAME',
@@ -259,7 +259,7 @@ var living_general_authorities = [
 	},
 ];
 
-var deceased_general_authorities = [
+var latter_day_prophets = [
 /*//
 	{
 		'name': 'NAME',

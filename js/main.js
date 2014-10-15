@@ -18,7 +18,7 @@ var num_levels = 4;
 var mode = 'learn';// learn/test
 var subject = 'living'; //living/past
 var levels = [
-//'slug, Title, fa-icon'
+//['slug', 'Title', 'fa-icon']
     ['face', 'Faces', 'user'],
     ['face2', 'Young Faces', 'child'],
     ['initial', 'Initial', 'font'],
@@ -43,7 +43,8 @@ var kudos =  ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!
 var banter = ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '];
 
 
-var active_team = living_general_authorities;
+var active_team = current_leaders;
+// var active_team = latter_day_prophets;
 var active_team_title = 'Living Apostles';
 var list_player;
 var list_player_template;
@@ -83,10 +84,10 @@ jQuery(document).ready(function($) {
 			$('.subject[data-subject="'+subject+'"]').parent().addClass('active');
 			
 			if (subject == 'living'){
-				active_team = living_general_authorities;
+				active_team = current_leaders;
 			}
 			else { //past
-				active_team = deceased_general_authorities;
+				active_team = latter_day_prophets;
 			}
 		}
 
@@ -131,12 +132,12 @@ jQuery(document).ready(function($) {
 		//
 	}
 	function set_ages(){
-		for ( var i = 0; i < active_team.length; i++){
-			active_team[i].age = get_age(active_team[i].birthdate);
+		for ( var i = 0; i < current_leaders.length; i++){
+			current_leaders[i].age = get_age(current_leaders[i].birthdate);
 		}
-		// for ( var i = 0; i < usmnt_coaches.length; i++){
-		// 	usmnt_coaches[i].age = get_age(usmnt_coaches[i].birthdate);
-		// }
+		for ( var i = 0; i < latter_day_prophets.length; i++){
+			latter_day_prophets[i].age = get_age(latter_day_prophets[i].birthdate);
+		}
 	}
 	function get_age(dateString) {
 	    var today = new Date();
@@ -611,10 +612,10 @@ jQuery(document).ready(function($) {
 		localStorage.subject = subject;
 		// console.log('subject set to', subject);
 		if (subject == 'living'){
-			active_team = living_general_authorities;
+			active_team = current_leaders;
 		}
 		else { //past
-			active_team = deceased_general_authorities;
+			active_team = latter_day_prophets;
 		}
 		game_players();
 	});
