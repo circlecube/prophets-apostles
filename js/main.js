@@ -16,14 +16,19 @@ var score_percent = 0;
 var level = 0;
 var num_levels = 4;
 var mode = 'learn';// learn/test
+var subject = 'living'; //living/past
 var levels = [
+//'slug, Title, fa-icon'
     ['face', 'Faces', 'user'],
-    ['bday', 'Birthday', 'birthday-cake'],
     ['face2', 'Young Faces', 'child'],
-    ['talks', 'Conference Talks', 'comment'],
     ['initial', 'Initial', 'font'],
-    ['hometown', 'Hometown', 'map-marker']
-    //fa-graduation-cap
+    ['hometown', 'Hometown', 'map-marker'],
+    ['bday', 'Birthday', 'birthday-cake'],
+    // ['talks', 'Conference Talks', 'comment'],
+    // ['education', 'Education', 'graduation-cap'],
+    // ['profession', 'Professtion', 'briefcase'],
+    // ['miliraty', 'Military Service', 'star-o'],
+    // ['seniority', 'Seniority', 'site-map']
     //fa-institution
     //fa-microphone
 ];
@@ -72,6 +77,11 @@ jQuery(document).ready(function($) {
 			$('.mode').parent().removeClass('active');
 			$('.mode[data-mode="'+mode+'"]').parent().addClass('active');
 		}
+		if (localStorage.subject){
+			subject = localStorage.subject;
+			$('.subject').parent().removeClass('active');
+			$('.subject[data-subject="'+subject+'"]').parent().addClass('active');
+		}
 
 		set_ages();
 
@@ -108,7 +118,7 @@ jQuery(document).ready(function($) {
 		$('.quiz .mm-subopen').remove();
 
 		//add upgrade link
-		$('.menu .share').parent().after('<li><a href="market://details?id=com.circlecube.usmntsoccerroster" class="about">Upgrade</a></li>');
+		$('.menu .share').parent().after('<li><a href="market://details?id=com.circlecube.ldsquizpro" class="about">Upgrade</a></li>');
 		//remove list all link
 		// $('.list_all').parent().remove();
 		//
@@ -135,7 +145,7 @@ jQuery(document).ready(function($) {
 		//https://github.com/phonegap-build/GAPlugin/blob/c928e353feb1eb75ca3979b129b10b216a27ad59/README.md
 		//gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event only", 1);
 	    gaPlugin = window.plugins.gaPlugin;
-	    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-1466312-13", 10);
+	    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-1466312-14", 10);
 
 		gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "App", "Begin");
 	}
@@ -517,7 +527,7 @@ jQuery(document).ready(function($) {
 			    //incorrect answer
 			    else{
 			        $('.score').append(banter[get_random_index(banter)]);
-			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title + ' players' );
+			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
 			        //$('.score').append( seconds + ' seconds! ');
@@ -576,6 +586,20 @@ jQuery(document).ready(function($) {
 		// console.log('mode set to', mode);
 		game_players();
 	});
+	$('.subject').on('click touch', function(e){
+		$('.subject').parent().removeClass('active');
+		$(this).parent().addClass('active');
+		subject = $(this).data('subject');
+		localStorage.subject = subject;
+		// console.log('subject set to', subject);
+		if (subject == 'living'){
+			active_team = living_general_authorities;
+		}
+		else { //past
+			active_team = deceased_general_authorities;
+		}
+		game_players();
+	});
 	$('.about').on('click touch', function(e){
 		//show_about();
 	});
@@ -586,11 +610,11 @@ jQuery(document).ready(function($) {
 		//console.log('share social_sharing');
 	  	window.plugins.socialsharing.available(function(isAvailable) {
 		    if (isAvailable) {
-		    	var message = 'Do you know the US World Cup Team? Take the test in this mobile app!';
-				var subject = 'I Believe That We Can Win!';
+		    	var message = 'Do you know the Latter-Day Prophets? Take the test in this mobile app!';
+				var subject = 'Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets.';
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
-				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.usmntsoccerroster';
+				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
 				window.plugins.socialsharing.share(message, subject, files, url );
 		    }
 		});
@@ -600,11 +624,11 @@ jQuery(document).ready(function($) {
 
 	  	window.plugins.socialsharing.available(function(isAvailable) {
 		    if (isAvailable) {
-		    	var message = 'Do you know the US World Cup Team? I do! Just took the test and got ' + $('.share_button').data('score') + '% correct!';
-				var subject = 'I Believe That We Can Win!';
+		    	var message = 'Do you know the Latter-Day Prophets? I do! Just took the test and got ' + $('.share_button').data('score') + '% correct!';
+				var subject = 'Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets.';
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
-				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.usmntsoccerroster';
+				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
 				window.plugins.socialsharing.share(message, subject, files, url );
 		    }
 		});

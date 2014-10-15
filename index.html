@@ -42,8 +42,18 @@
             <ul>
                 <!-- <li class="active"><a href="#" class="option_keep_log">Keep Log</a></li>
                 <li><a href="#" class="activity_log">View Activity</a></li> -->
-                <li class="active"><a href="#" class="mode mode_learn" data-mode="learn">Learn Mode</a></li>
-                <li><a href="#" class="mode mode_test" data-mode="test">Test Mode</a></li>
+                <li><a href="#" class="subject">Quiz Subject</a>
+                    <ul>
+                        <li class="active"><a href="#" class="subject subject_living" data-subject="living">Current Leaders</a></li>
+                        <li><a href="#" class="subject subject_past" data-subject="past">Past Prophets</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="mode">Quiz Mode</a>
+                	<ul>
+                		<li class="active"><a href="#" class="mode mode_learn" data-mode="learn">Learn Mode</a></li>
+                		<li><a href="#" class="mode mode_test" data-mode="test">Test Mode</a></li>
+            		</ul>
+        		</li>
             </ul>
         </li>
     </ul>
@@ -58,7 +68,14 @@
                 <img class="list_img" src='img/{{player.img}}'>
                 <p class="label">{{player.name}}</p>
                 <img class="list_img2" src='img/{{player.img_young}}'>
-                <p class="stats question_bio">{{player.first_name}} {{player.middle_name}} {{player.last_name}}{{#if player.position}}, {{player.position}}{{/if}} ({{player.age}}, {{player.birthdate}}), ordained on {{player.ordained_date}}  from {{player.hometown}}. {{#if player.conference_talks}} Given {{player.conference_talks}} conference talks{{/if}}</p>
+                <p class="stats question_bio">
+                {{player.first_name}} {{player.middle_name}} {{player.last_name}}
+                {{#if player.position}}, {{player.position}}{{/if}} 
+                ({{#unless player.deathdate}}{{player.age}}, {{/unless}}{{player.birthdate}}), 
+                ordained on {{player.ordained_date}} &amp; 
+                from {{player.hometown}}. 
+                {{#if player.conference_talks}} Given {{player.conference_talks}} conference talks{{/if}}
+                </p>
                 <p class="question_bio">{{player.bio}}</p>
             </article>
         </script>
