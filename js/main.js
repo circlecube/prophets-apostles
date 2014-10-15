@@ -16,6 +16,7 @@ var score_percent = 0;
 var level = 0;
 var num_levels = 4;
 var mode = 'learn';// learn/test
+var subject = 'living'; //living/past
 var levels = [
 //'slug, Title, fa-icon'
     ['face', 'Faces', 'user'],
@@ -42,7 +43,7 @@ var kudos =  ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!
 var banter = ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '];
 
 
-var active_team = deceased_general_authorities;
+var active_team = living_general_authorities;
 var active_team_title = 'Living Apostles';
 var list_player;
 var list_player_template;
@@ -75,6 +76,11 @@ jQuery(document).ready(function($) {
 			mode = localStorage.mode;
 			$('.mode').parent().removeClass('active');
 			$('.mode[data-mode="'+mode+'"]').parent().addClass('active');
+		}
+		if (localStorage.subject){
+			subject = localStorage.subject;
+			$('.subject').parent().removeClass('active');
+			$('.subject[data-subject="'+subject+'"]').parent().addClass('active');
 		}
 
 		set_ages();
@@ -578,6 +584,20 @@ jQuery(document).ready(function($) {
 		mode = $(this).data('mode');
 		localStorage.mode = mode;
 		// console.log('mode set to', mode);
+		game_players();
+	});
+	$('.subject').on('click touch', function(e){
+		$('.subject').parent().removeClass('active');
+		$(this).parent().addClass('active');
+		subject = $(this).data('subject');
+		localStorage.subject = subject;
+		// console.log('subject set to', subject);
+		if (subject == 'living'){
+			active_team = living_general_authorities;
+		}
+		else { //past
+			active_team = deceased_general_authorities;
+		}
 		game_players();
 	});
 	$('.about').on('click touch', function(e){
