@@ -19,11 +19,31 @@ var mode = 'learn';// learn/test
 var subject = 'living'; //living/past
 var levels = [
 //['slug', 'Title', 'fa-icon']
-    ['face', 'Faces', 'user'],
-    ['face2', 'Young Faces', 'child'],
-    ['initial', 'Initial', 'font'],
-    ['hometown', 'Hometown', 'map-marker'],
-    ['bday', 'Birthday', 'birthday-cake'],
+    {
+    	slug:'face',
+    	english:'Faces',
+    	data:'user'
+    },
+    {
+    	slug:'face2',
+    	english:'Young Faces',
+    	data:'child'
+    },
+    {
+    	slug:'initial',
+    	english:'Initial',
+    	data:'font'
+    },
+    {
+    	slug:'hometown',
+    	english:'Hometown',
+    	data:'map-marker'
+    },
+    {
+    	slug:'bday',
+    	english:'Birthday',
+    	data:'birthday-cake'
+    },
     // ['talks', 'Conference Talks', 'comment'],
     // ['education', 'Education', 'graduation-cap'],
     // ['profession', 'Professtion', 'briefcase'],
@@ -32,7 +52,34 @@ var levels = [
     //fa-institution
     //fa-microphone
 ];
-var free_version = true;
+var language = {
+	english: {
+		language_native: "English", 
+		language_english: "English", 
+		lds_prophets_postles: "LDS Prophets & Apostles",
+		current_leaders: "Living Apostles",
+		latter_day_prophets: "Latter-Day Prophets",
+		quiz: "Quiz",
+		list_all: "List All",
+		share: "Share",
+		settings: "Settings",
+		quiz_settings: "Quiz Settings",
+		quiz_subject: "Quiz Subject",
+		quiz_mode: "Quiz Mode",
+		learn_more: "Learn Mode",
+		test_mode: "Test Mode",
+		you_know: "You know",
+		left: "left",
+		share_your_score: "Share Your Score"
+	},
+	french: {
+		language_native: "Français", 
+		language_english: "French", 
+		
+	}
+}
+
+var free_version = false;
 
 var start_time = new Date();
 var end_time = new Date();
@@ -45,7 +92,7 @@ var banter = ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!',
 
 var active_team = current_leaders;
 // var active_team = latter_day_prophets;
-var active_team_title = 'Living Apostles';
+var active_team_title = language.english[active_team];
 var list_player;
 var list_player_template;
 
@@ -109,8 +156,8 @@ jQuery(document).ready(function($) {
 	function set_levels(){
 		var quiz_levels = '';
 		for (var i = 0; i < levels.length; i++){
-			quiz_levels += '<li><a href="#" class="quiz quiz_number" data-index="'+i+'" data-value="'+levels[i][0]+'">';
-			quiz_levels += '<i class="fa fa-'+levels[i][2]+'"></i> '+levels[i][1]+'</a>';
+			quiz_levels += '<li><a href="#" class="quiz quiz_number" data-index="'+i+'" data-value="'+levels[i].slug+'">';
+			quiz_levels += '<i class="fa fa-'+levels[i].data+'"></i> '+levels[i].english+'</a>';
 			quiz_levels += '</li>';
 		}
 		$('.quiz_type').html(quiz_levels);
@@ -230,8 +277,8 @@ jQuery(document).ready(function($) {
 	function make_question(group, answer_index){
 	    //get mc answers
 	    var mc_answers = get_random_mc_answers(group, answer_index);
-	    // console.log(level, levels[level][0]);
-	    switch(levels[level][0]) {
+	    // console.log(level, levels[level].slug);
+	    switch(levels[level].slug) {
 	        case 'hometown': //photo
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question question_bio">From ' + group[answer_index].hometown + '</h2>');
 	            for (var i = 0; i < 4; i++){
@@ -298,7 +345,7 @@ jQuery(document).ready(function($) {
 	}
 	function get_answer_div(group, mc_answers, index, img){
 	    var answer_div = "";
-	    switch(levels[level][0]) {
+	    switch(levels[level].slug) {
 	        //photo and young photo as default
 	        case 'name': //name
 	            answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '"><p class="answer_' + index + ' label">' + group[mc_answers[index]].name + '</p></div>';
@@ -407,7 +454,7 @@ jQuery(document).ready(function($) {
 		    if( is_correct && num_correct == active_team.length ) {
 		        if (gaPlugin) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
-		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Round", "End", levels[level][0] + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
+		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Round", "End", levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
 		        }
 		        $('.score').html(kudos[get_random_index(kudos)] + ' You Know All ' + active_team.length + '! ');
 		        $('.score').append( score_percent + '% Accuracy! ');
@@ -423,7 +470,7 @@ jQuery(document).ready(function($) {
 		    //perfect score
 		    else if ( is_correct && num_correct > num_total ){
 		        $('.score').append(perfect[get_random_index(perfect)]);
-		        $('.score').append(' You know ' + num_correct + ' ' + active_team_title + ' player' );
+		        $('.score').append(' You know ' + num_correct + ' ' + active_team_title );
 		        if (num_correct > 1){ $('.score').append('s'); }
 		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
 		        //$('.score').append( seconds + ' seconds! ');
@@ -434,7 +481,7 @@ jQuery(document).ready(function($) {
 		    //correct answer
 		    else if (is_correct){
 		        $('.score').append(kudos[get_random_index(kudos)]);
-		        $('.score').append(' You know ' + num_correct + ' ' + active_team_title + ' player' );
+		        $('.score').append(' You know ' + num_correct + ' ' + active_team_title );
 		        if (num_correct > 1){ $('.score').append('s'); }
 		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
 		        //$('.score').append( seconds + ' seconds! ');
@@ -445,7 +492,7 @@ jQuery(document).ready(function($) {
 		    //incorrect answer
 		    else{
 		        $('.score').append(banter[get_random_index(banter)]);
-		        $('.score').append(' You know ' + num_correct + ' ' + active_team_title + ' player' );
+		        $('.score').append(' You know ' + num_correct + ' ' + active_team_title );
 		        if (num_correct > 1){ $('.score').append('s'); }
 		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
 		        //$('.score').append( seconds + ' seconds! ');
@@ -506,9 +553,9 @@ jQuery(document).ready(function($) {
 		    if( parseInt(active_team.length - completed.length) <= 0 ) {
 		        if (gaPlugin) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
-		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Round", "End", levels[level][0] + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
+		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Round", "End", levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
 		        }
-		        $('.score').html('Test Complete. You Know ' + num_correct + ' of ' + active_team.length + ' players! ');
+		        $('.score').html('Test Complete. You Know ' + num_correct + ' of ' + active_team.length + '! ');
 		        $('.score').append( score_percent + '% Accuracy! ');
 		        //$('.score').append('That\'s a rate of '+ correct_per_minute + ' correct answers a minute!');
 		        completed.length = 0;
@@ -524,7 +571,7 @@ jQuery(document).ready(function($) {
 			    //perfect score
 			    if ( is_correct && num_correct > num_total ){
 			        $('.score').append(perfect[get_random_index(perfect)]);
-			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title + ' players' );
+			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
 			        //$('.score').append( seconds + ' seconds! ');
@@ -535,7 +582,7 @@ jQuery(document).ready(function($) {
 			    //correct answer
 			    else if (is_correct){
 			        $('.score').append(kudos[get_random_index(kudos)]);
-			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title + ' players' );
+			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
 			        //$('.score').append( seconds + ' seconds! ');
