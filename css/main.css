@@ -679,6 +679,9 @@ body.font-small {
 .answer.clicked.correct:after{
 	background: #56d22d;
 }
+.answer.list.clicked:after {
+	content: none;
+}
 .score{
     font-family:'Trajan','Georgia',serif;
     font-size: 18px;
