@@ -52,29 +52,74 @@ var levels = [
     //fa-institution
     //fa-microphone
 ];
-var language = {
+var language = 'english';
+var langs = {
 	english: {
 		language_native: "English", 
 		language_english: "English", 
-		lds_prophets_postles: "LDS Prophets & Apostles",
+		language_string: "Language",
+		lds_prophets_apostles: "LDS Prophets & Apostles",
 		current_leaders: "Living Apostles",
 		latter_day_prophets: "Latter-Day Prophets",
 		quiz: "Quiz",
-		list_all: "List All",
+		list: "List All",
 		share: "Share",
 		settings: "Settings",
 		quiz_settings: "Quiz Settings",
 		quiz_subject: "Quiz Subject",
 		quiz_mode: "Quiz Mode",
-		learn_more: "Learn Mode",
+		learn_mode: "Learn Mode",
 		test_mode: "Test Mode",
 		you_know: "You know",
 		left: "left",
-		share_your_score: "Share Your Score"
+		share_your_score: "Share Your Score",
+		hometown: "Hometown",
+		bday: "Birthday",
+		initial: "Initial",
+		face: "Face",
+		face2: "Young Face",
+		perfect: ['Perfect!', 'Thou art the Man!', 'Flawless!', 'Amazing!', 'On a Roll!', 'Impeccable!', 'Inspired!', 'Superb!', 'Unblemished!', '=D'],
+		kudos: ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!', 'Feelin\' it!', 'Dynamite!', 'Gold Star!', 'Impressive!', 'Exactly!', 'Correct!', '=)', 'Bingo!', 'On the nose!', 'Right!', 'Right on!', 'Righteous!', '', 'Inspiring!', 'Precisely!', 'Exactly!', 'Right as Rain!', ''],
+		banter: ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '],
+		accuracy: "accuracy",
+		all: "all",
+		play_another_level: "Play another level",
 	},
 	french: {
 		language_native: "Français", 
 		language_english: "French", 
+		language_string: "Langue",
+		lds_prophets_apostles: "SDJ Prophètes & Apôtres",
+		current_leaders: "Apôtres Vivant",
+		latter_day_prophets: "Dernier Jour Prophèts",
+		quiz: "Quiz",
+		list: "Liste Complète",
+		share: "Partager",
+		settings: "Paramètres",
+		quiz_settings: "Quiz Paramètres",
+		quiz_subject: "Quiz Sujet",
+		quiz_mode: "Quiz Type",
+		learn_mode: "Apprendre",
+		test_mode: "Examen",
+		you_know: "Vous connissez",
+		left: "qui rest",
+		share_your_score: "Partagez votre score",
+		hometown: "Ville natale",
+		bday: "Anniversaire",
+		initial: "Initiale",
+		face: "Visage",
+		face2: "Jeune Visage",
+		perfect: ['Parfait!', 'Impecable!', 'Bien Fait!', 'Vertueux!', 'C\'est Vrai!', '=D'],
+		kudos: ['Oui', '=)', 'Bon!'],
+		banter: ['Ouch!', 'Non!', 'Ce n\'est pas possible.', 'Ca fait mal.', 'Qu\'est-ce que c\'est!'],
+		accuracy: "précision",
+		all: "tout",
+		play_another_level: "Encore",
+	},
+	spanish: { 
+		language_native: "Español", 
+		language_english: "Spanish", 
+		language_string: "Lengua"
 		
 	}
 }
@@ -85,14 +130,16 @@ var start_time = new Date();
 var end_time = new Date();
 var seconds = 0; // (start_time - end_time)/-1000;
 var delay_time = 900;
-var perfect = ['Perfect!', 'Thou art the Man!', 'Flawless!', 'Amazing!', 'On a Roll!', 'Impeccable!', 'Inspired!', 'Superb!', 'Unblemished!', '=D'];
-var kudos =  ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!', 'Feelin\' it!', 'Dynamite!', 'Gold Star!', 'Impressive!', 'Exactly!', 'Correct!', '=)', 'Bingo!', 'On the nose!', 'Right!', 'Right on!', 'Righteous!', '', 'Inspiring!', 'Precisely!', 'Exactly!', 'Right as Rain!', ''];
-var banter = ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '];
-
 
 var active_team = current_leaders;
 // var active_team = latter_day_prophets;
-var active_team_title = language.english[active_team];
+var active_team_title;
+if (active_team == current_leaders ) {
+	active_team_title = langs[language].current_leaders;
+} else {
+	active_team_title = langs[language].latter_day_prophets;
+}
+// console.log(active_team, active_team_title);
 var list_player;
 var list_player_template;
 
@@ -105,13 +152,18 @@ jQuery(document).ready(function($) {
 		
 
 		
-		set_levels();
-		
 		if (free_version) {
 			update_free();
 		}
 
+		
 		//get local storage settings
+		if (localStorage.language){
+			language = localStorage.language;
+		}
+		
+		update_language();
+
 		if (localStorage.activity_log){
 			activity_log = JSON.parse(localStorage.activity_log);
 		}
@@ -132,10 +184,13 @@ jQuery(document).ready(function($) {
 			
 			if (subject == 'living'){
 				active_team = current_leaders;
+				active_team_title = langs[language].current_leaders;
 			}
 			else { //past
 				active_team = latter_day_prophets;
+				active_team_title = langs[language].latter_day_prophets;
 			}
+
 		}
 
 		set_ages();
@@ -156,12 +211,53 @@ jQuery(document).ready(function($) {
 	function set_levels(){
 		var quiz_levels = '';
 		for (var i = 0; i < levels.length; i++){
-			quiz_levels += '<li><a href="#" class="quiz quiz_number" data-index="'+i+'" data-value="'+levels[i].slug+'">';
-			quiz_levels += '<i class="fa fa-'+levels[i].data+'"></i> '+levels[i].english+'</a>';
+			quiz_levels += '<li><a href="#" class="quiz quiz_number" data-index="'+i+'" data-value="' + levels[i].slug + '">';
+			quiz_levels += '<i class="fa fa-' + levels[i].data + '"></i> ' + langs[language][levels[i].slug] + '</a>';
 			quiz_levels += '</li>';
 		}
 		$('.quiz_type').html(quiz_levels);
 	}
+	
+	function update_language(){
+		//console.log('update_language!', language);
+
+		$('.quiz_begin').text(	langs[language].quiz );
+		
+		set_levels();
+
+		$('.list_all').text(	langs[language].list );
+		$('.share').text(		langs[language].share );
+		$('.settings').text(	langs[language].settings );
+
+		$('.subject').text( 			langs[language].quiz_subject );
+		$('.subject_living').text( 		langs[language].current_leaders );
+		$('.subject_past').text( 		langs[language].latter_day_prophets );
+
+		$('.mode').text( 			langs[language].quiz_mode );
+		$('.mode_learn').text( 		langs[language].learn_mode );
+		$('.mode_test').text( 		langs[language].test_mode );
+
+		$('.language').text( 			langs[language].language_string );
+		$('.language-english').text( 	langs['english'].language_native );
+		$('.language-french').text( 	langs['french'].language_native );
+		// $('.language-spanish').text( langs['spanish'].language_native );
+		// $('.language-german').text( 	langs['german'].language_native );
+		if (active_team == current_leaders ) {
+			active_team_title = langs[language].current_leaders;
+		} else {
+			active_team_title = langs[language].latter_day_prophets;
+		}
+
+		$('.title').text(	langs[language].lds_prophets_apostles );
+
+		//set active from local storage vars
+		// console.log(font_size, difficulty, language);
+		$('.difficulty_option, .language_option, .font_size_option, .hints_option').parent().removeClass('active');
+		// $('.font_size_option[data-value="' + font_size + '"]').parent().addClass('active');
+		$('.language_option[data-value="' + language + '"]').parent().addClass('active');
+		// $('.difficulty_option[data-value="' + difficulty + '"]').parent().addClass('active');
+		// $('.hints_option[data-value="' + show_hints + '"]').parent().addClass('active');
+	}	
 
 	function update_free(){
 		//set attributes/classes on top level quiz
@@ -456,23 +552,23 @@ jQuery(document).ready(function($) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Round", "End", levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
 		        }
-		        $('.score').html(kudos[get_random_index(kudos)] + ' You Know All ' + active_team.length + '! ');
-		        $('.score').append( score_percent + '% Accuracy! ');
+		        $('.score').html( langs[language].kudos[get_random_index(langs[language].kudos)] + ' ' + langs[language].you_know + ' ' + langs[language].all' ' + active_team.length + '! ');
+		        $('.score').append( score_percent + '% ' + langs[language].accuracy + '! ');
 		        //$('.score').append('That\'s a rate of '+ correct_per_minute + ' correct answers a minute!');
 		        completed.length = 0;
 		        num_total = -1;
 		        num_correct = 0;
 		        is_correct = false;
-		        $('.score').append('<br />Play another level?');
+		        $('.score').append('<br />' + langs[language].play_another_level + '?');
 		        
 		        $('.content').html('');
 		    }
 		    //perfect score
 		    else if ( is_correct && num_correct > num_total ){
-		        $('.score').append(perfect[get_random_index(perfect)]);
-		        $('.score').append(' You know ' + num_correct + ' ' + active_team_title );
+		        $('.score').append( langs[language].perfect[get_random_index(langs[language].perfect)] );
+		        $('.score').append(' ' + langs[language].you_know + ' ' + num_correct + ' ' + active_team_title );
 		        if (num_correct > 1){ $('.score').append('s'); }
-		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
+		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 		        //$('.score').append( seconds + ' seconds! ');
 		        if (gaPlugin) {
 					gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
@@ -480,10 +576,10 @@ jQuery(document).ready(function($) {
 		    }
 		    //correct answer
 		    else if (is_correct){
-		        $('.score').append(kudos[get_random_index(kudos)]);
-		        $('.score').append(' You know ' + num_correct + ' ' + active_team_title );
+		        $('.score').append( langs[language].kudos[get_random_index(langs[language].kudos)] );
+		        $('.score').append(' ' + langs[language].you_know + ' ' + num_correct + ' ' + active_team_title );
 		        if (num_correct > 1){ $('.score').append('s'); }
-		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
+		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 		        //$('.score').append( seconds + ' seconds! ');
 		        if (gaPlugin) {
 			        gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
@@ -491,10 +587,10 @@ jQuery(document).ready(function($) {
 		    }
 		    //incorrect answer
 		    else{
-		        $('.score').append(banter[get_random_index(banter)]);
-		        $('.score').append(' You know ' + num_correct + ' ' + active_team_title );
+		        $('.score').append( langs[language].banter[get_random_index(langs[language].banter)] );
+		        $('.score').append(' ' + langs[language].you_know + ' ' + num_correct + ' ' + active_team_title );
 		        if (num_correct > 1){ $('.score').append('s'); }
-		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
+		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 		        //$('.score').append( seconds + ' seconds! ');
 		        if (gaPlugin) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Incorrect", $(this).parent().find('.correct').data('alt') );
@@ -503,7 +599,7 @@ jQuery(document).ready(function($) {
 
 		    //share
 		    score_percent = parseInt(num_correct / (num_total+1)*100 );
-		    $('.score').append('<div class="share_button" data-score="' + score_percent + '">Share your score!</div>');
+		    $('.score').append('<div class="share_button" data-score="' + score_percent + '">' + langs[language].share_your_score + '!</div>');
 
 		    num_total++;
 
@@ -555,8 +651,8 @@ jQuery(document).ready(function($) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Round", "End", levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
 		        }
-		        $('.score').html('Test Complete. You Know ' + num_correct + ' of ' + active_team.length + '! ');
-		        $('.score').append( score_percent + '% Accuracy! ');
+		        $('.score').html('Test Complete. ' + langs[language].you_know + ' ' + num_correct + ' of ' + active_team.length + '! ');
+		        $('.score').append( score_percent + '% ' + langs[language].accuracy + '! ');
 		        //$('.score').append('That\'s a rate of '+ correct_per_minute + ' correct answers a minute!');
 		        completed.length = 0;
 		        num_total = -1;
@@ -570,10 +666,10 @@ jQuery(document).ready(function($) {
 		    else{
 			    //perfect score
 			    if ( is_correct && num_correct > num_total ){
-			        $('.score').append(perfect[get_random_index(perfect)]);
-			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
+			        $('.score').append( langs[language].perfect[get_random_index(langs[language].perfect)] );
+			        $('.score').append(' ' + langs[language].you_know + ' ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
 			        // if (num_correct > 1){ $('.score').append('s'); }
-			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
+			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 			        //$('.score').append( seconds + ' seconds! ');
 			        if (gaPlugin) {
 			        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt'));
@@ -581,10 +677,10 @@ jQuery(document).ready(function($) {
 			    }
 			    //correct answer
 			    else if (is_correct){
-			        $('.score').append(kudos[get_random_index(kudos)]);
-			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
+			        $('.score').append( langs[language].kudos[get_random_index(langs[language].kudos)] );
+			        $('.score').append(' ' + langs[language].you_know + ' ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
 			        // if (num_correct > 1){ $('.score').append('s'); }
-			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
+			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 			        //$('.score').append( seconds + ' seconds! ');
 			        if (gaPlugin) {
 			        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt'));
@@ -592,10 +688,10 @@ jQuery(document).ready(function($) {
 			    }
 			    //incorrect answer
 			    else{
-			        $('.score').append(banter[get_random_index(banter)]);
-			        $('.score').append(' You know ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
+			        $('.score').append( langs[language].banter[get_random_index(langs[language].banter)] );
+			        $('.score').append(' ' + langs[language].you_know + ' ' + num_correct + ' of ' + completed.length + ' ' + active_team_title );
 			        // if (num_correct > 1){ $('.score').append('s'); }
-			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' left. ');
+			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 			        //$('.score').append( seconds + ' seconds! ');
 			        if (gaPlugin) {
 			        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Incorrect", $(this).parent().find('.correct').data('alt') );
@@ -664,6 +760,7 @@ jQuery(document).ready(function($) {
 		else { //past
 			active_team = latter_day_prophets;
 		}
+		active_team_title = langs[english][active_team];
 		game_players();
 	});
 	$('.about').on('click touch', function(e){
@@ -685,6 +782,16 @@ jQuery(document).ready(function($) {
 		    }
 		});
 	});
+	$('.language_option').on('click touch', function(e){
+		//console.log('language change:', $(this).val() );
+		language = $(this).data('value');
+		localStorage.language = language;
+		$(this).parent().siblings().removeClass('active');
+		$(this).parent().addClass('active');
+		update_language();
+		game_players();
+	});
+
 	$('.score').on('click touch', '.share_button', function(e){
 		//console.log('share_button social_sharing');
 
