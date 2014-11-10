@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.circlecube.ldsquiz"
+        id        = "com.circlecube.ldsquizpro"
         versionCode="500" 
         version   = "0.5.0">
 
-    <name>LDS Prophets and Apostles Lite</name>
+    <name>LDS Prophets and Apostles</name>
 
     <description>
-        LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
+        LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquiz">Test the free version first!</a>.
 
         Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow.
 
@@ -84,12 +84,16 @@
     <preference name="phonegap-version" value="3.6.3" />
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
-    <icon src="icon-large-lite.png" width="512" height="512" density="mdpi" />
-    <icon src="icon-lite.png" width="64" height="64" density="mdpi" />
+    <icon src="icon-large.png" width="512" height="512" density="mdpi" />
+    <icon src="icon.png" width="64" height="64" density="mdpi" />
     <preference name="permissions" value="none"/>
 </widget>
 <!--
-	update description first line -  - LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
+	update description first line - 
+		
+		LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquiz">Test the free version first!</a>.
+		
+		LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
     update id - ldsquizpro - ldsquiz
     update name - LDS Prophets and Apostles - LDS Prophets and Apostles Lite
     update icon - icon-large.png - icon-large-lite.png
