@@ -53,7 +53,7 @@
     </author>
     <gap:platform name="android" />
     <preference name="android-minSdkVersion" value="11" />
-    <preference name="android-targetSdkVersion" value="14" />
+    <preference name="android-targetSdkVersion" value="19" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="com.adobe.plugins.gaplugin" />
     <preference name="phonegap-version" value="3.6.3" />
@@ -72,5 +72,5 @@
 	main.js
     free_version - false - true
     
-    ldsquiz.keystore
+    LDSQuizorg keystore
 -->
