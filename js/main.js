@@ -118,11 +118,13 @@ var langs = {
 		accuracy: "précision",
 		all: "tout",
 		play_another_level: "Encore",
-		upgrade: "",
-		share_subject: "",
-		share_message: "",
-		share_score_subject: "",
-		share_score_message: "",
+		upgrade: "Aller Pro",
+		share_message: "Connaisez-vous les Prophèts des dernier jours? Passer le test dans c'est application mobile!",
+		share_subject: "Car le Seigneur, l'Eternel, ne fait rien Sans avoir révélé son secret à ses serviteurs les prophètes.",
+		share_score_message_a: "Connaisez-vous les Prophèts des dernier jours? Je les connais! Je suis passé le test avec un score de ",
+		share_score_message_b: "!",
+		share_score_subject: "Car le Seigneur, l'Eternel, ne fait rien Sans avoir révélé son secret à ses serviteurs les prophètes.",
+		
 	},
 	spanish: { 
 		language_native: "Español", 
