@@ -8,44 +8,69 @@
     <name>LDS Prophets and Apostles Lite</name>
 
     <description>
-        This Latter-Day Saint Prophet and Apostle Quiz will test your knowledge and teach you to know the apostles and prophets. Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow. Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples. Available in English and French!
+        LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
+
+        Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow.
+
+        Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples.
+
+        There are two groups to be quizzed on. Either select to be quizzed on current (living) apostles by selecting the apostles tab, or select the prophet mode and you will be quizzed on presidents of the church. There is also a study mode which will list all the current apostles along with their names followed by all the latter day prophets or presidents of the church. 
+
+
+        There are also multiple levels to each group. 
+        Face - the original. Pick the right apostle/prophet from 4 images (multiple choice) when given a name.
+        Young Face - depictions of the apostles and prophets when they were young (or at least younger). - PRO
+        Initial - Name the initial in their name, be it their middle name or their first. - PRO
+        Birthday - Pick the apostle/prophet by their birthday and age. - PRO
+        Hometown - Pick by hometown or town they were born in. - PRO
+
+        Coming Soon:
+        Who Came First (seniority/order) - Name them in order.
+        Conference Talks - the total number of General Conference messages given to date. 
+        Name that Face – Pick the right name when shown an image
 
         Containing the First Presidency: 
-        President Thomas S. Monson (President)
-        President Henry B. Eyring (First Counselor) 
-        President Dieter F. Uchtdorf (Second Counselor)
+                President Thomas S. Monson (President)
+                President Henry B. Eyring (First Counselor) 
+                President Dieter F. Uchtdorf (Second Counselor)
 
         The Quorum of the Twelve Aposltes: 
-        Boyd K. Packer (President)
-        L. Tom Perry
-        Russell M. Nelson
-        Dallin H. Oaks
-        M. Russell Ballard
-        Richard G. Scott
-        Robert D. Hales
-        Jeffrey R. Holland
-        David A. Bednar
-        Quentin L. Cook
-        D. Todd Christofferson
-        Neil L. Andersen
+                Boyd K. Packer (President)
+                L. Tom Perry
+                Russell M. Nelson
+                Dallin H. Oaks
+                M. Russell Ballard
+                Richard G. Scott
+                Robert D. Hales
+                Jeffrey R. Holland
+                David A. Bednar
+                Quentin L. Cook
+                D. Todd Christofferson
+                Neil L. Andersen
 
         Also all the Latter-Day Prophets of the Restoration:
-        Joseph Smith
-        Brigham Young
-        John Taylor
-        Wilford Woodruff
-        Lorenzo Snow
-        Joseph F. Smith
-        Heber J. Grant
-        George Albert Smith
-        David O. McKay
-        Joseph Fielding Smith
-        Harold B. Lee
-        Spencer W. Kimball
-        Ezra Taft Benson
-        Howard W. Hunter
-        Gordon B. Hinckley
-        Thomas S. Monson
+                Joseph Smith
+                Brigham Young
+                John Taylor
+                Wilford Woodruff
+                Lorenzo Snow
+                Joseph F. Smith
+                Heber J. Grant
+                George Albert Smith
+                David O. McKay
+                Joseph Fielding Smith
+                Harold B. Lee
+                Spencer W. Kimball
+                Ezra Taft Benson
+                Howard W. Hunter
+                Gordon B. Hinckley
+                Thomas S. Monson
+
+        Master the faces, names and details of these great men, and then, try to beat your score and time.
+
+        Now supporting English and French.
+
+        These leaders are according to The Church of Jesus Christ of Latter-Day Saints. This app is not connected with the church other than aiming to uplift it's members.
     </description>
 
     <author href="http://circlecube.com" email="evan@circlecube.com">
@@ -64,6 +89,7 @@
     <preference name="permissions" value="none"/>
 </widget>
 <!--
+	update description first line -  - LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
     update id - ldsquizpro - ldsquiz
     update name - LDS Prophets and Apostles - LDS Prophets and Apostles Lite
     update icon - icon-large.png - icon-large-lite.png
@@ -72,5 +98,5 @@
 	main.js
     free_version - false - true
     
-    LDSQuizorg keystore
+    ldsquiz.keystore
 -->
