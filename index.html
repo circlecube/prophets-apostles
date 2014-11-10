@@ -36,7 +36,6 @@
             </ul>
         </li>
         <li><a href="#" class="list_all">List All</a></li>
-        <!-- <li><a href="#" class="about">About</a></li> -->
         <li><a href="#" class="share">Share</a></li>
         <li><a href="#" class="settings">Settings</a>
             <ul>
@@ -54,7 +53,22 @@
                 		<li><a href="#" class="mode mode_test" data-mode="test">Test Mode</a></li>
             		</ul>
         		</li>
+				<li><a href="#" class="language">Language</a>
+				    <ul>
+				        <li class="active"><a href="#" class="language_option language-english" data-value="english">English</a></li>
+				        <!-- <li><a href="#" class="language_option language-spanish" data-value="spanish">Spanish</a></li> -->
+				        <li><a href="#" class="language_option language-french" data-value="french">French</a></li>
+				        <!-- <li><a href="#" class="language_option language-german" data-value="german">German</a></li> -->
+				    </ul>
+				</li>
             </ul>
+        </li>
+        <!-- <li><a href="#" class="about">About</a></li> -->
+        <li><a href="#" class="more_apps">More Apps</a>
+        	<ul>
+        		<li><a href="market://details?id=com.circlecube.scripturemastery" class="more_apps">Scripture Mastery</a></li>
+        		<li><a href="market://details?id=com.circlecube.articlesoffaith" class="more_apps">Articles of Faith</a></li>
+    		</ul>
         </li>
     </ul>
 </div>        
@@ -74,7 +88,7 @@
                 ({{#unless player.deathdate}}{{player.age}}, {{/unless}}{{player.birthdate}}), 
                 ordained on {{player.ordained_date}} &amp; 
                 from {{player.hometown}}. 
-                {{#if player.conference_talks}} Given {{player.conference_talks}} conference talks{{/if}}
+                <!-- {{#if player.conference_talks}} Given {{player.conference_talks}} conference talks{{/if}} -->
                 </p>
                 <p class="question_bio">{{player.bio}}</p>
             </article>

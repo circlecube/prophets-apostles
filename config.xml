@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.circlecube.ldsquizpro"
-        versionCode="410" 
-        version   = "0.4.1">
+        id        = "com.circlecube.ldsquiz"
+        versionCode="500" 
+        version   = "0.5.0">
 
-    <name>LDS Prophets and Apostles</name>
+    <name>LDS Prophets and Apostles Lite</name>
 
     <description>
-        This Latter-Day Saint Prophet and Apostle Quiz will test your knowledge and teach you to know the apostles and prophets. Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow. Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples. 
+        This Latter-Day Saint Prophet and Apostle Quiz will test your knowledge and teach you to know the apostles and prophets. Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow. Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples. Available in English and French!
 
         Containing the First Presidency: 
         President Thomas S. Monson (President)
@@ -59,15 +59,18 @@
     <preference name="phonegap-version" value="3.5.0" />
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
-    <icon src="icon-large.png" width="512" height="512" density="mdpi" />
-    <icon src="icon.png" width="64" height="64" density="mdpi" />
+    <icon src="icon-large-lite.png" width="512" height="512" density="mdpi" />
+    <icon src="icon-lite.png" width="64" height="64" density="mdpi" />
     <preference name="permissions" value="none"/>
 </widget>
 <!--
     update id - ldsquizpro - ldsquiz
-    update name - LDS Prophets and Apostles - LDS Prophets and Apostles Free
-    update icon - icon-large.png - icon-large-free.png
+    update name - LDS Prophets and Apostles - LDS Prophets and Apostles Lite
+    update icon - icon-large.png - icon-large-lite.png
+	update icon - icon.png - icon-lite.png
 
 	main.js
     free_version - false - true
+    
+    ldsquiz.keystore
 -->
