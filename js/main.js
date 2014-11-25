@@ -15,7 +15,7 @@ var num_incorrect = 0;
 var score_percent = 0;
 var level = 0;
 var num_levels = 4;
-var free_version = true;
+var free_version = false;
 var mode = 'learn';// learn/test
 var subject = 'living'; //living/past
 var levels = [
@@ -40,11 +40,23 @@ var levels = [
     	slug:'bday',
     	data:'birthday-cake'
     },
-    // ['talks', 'Conference Talks', 'comment'],
+    {
+    	slug:'seniority',
+    	data:'sitemap'
+    },
+    {
+    	// include mission, education, profession and military service
+    	slug:'bio',
+    	data:'briefcase' 
+    },
+    {
+    	//number of conference talks (maybe even a couple/most recent titles)
+    	slug:'talks',
+    	data:'comment'
+    }
     // ['education', 'Education', 'graduation-cap'],
     // ['profession', 'Professtion', 'briefcase'],
     // ['miliraty', 'Military Service', 'star-o'],
-    // ['seniority', 'Seniority', 'site-map']
     //fa-institution
     //fa-microphone
 ];
@@ -74,6 +86,9 @@ var langs = {
 		initial: "Initial",
 		face: "Face",
 		face2: "Young Face",
+		seniority: "Seniority",
+		bio: "Biography",
+		talks: "Conference Talks",
 		perfect: ['Perfect!', 'Thou art the Man!', 'Flawless!', 'Amazing!', 'On a Roll!', 'Impeccable!', 'Inspired!', 'Superb!', 'Unblemished!', '=D'],
 		kudos: ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!', 'Feelin\' it!', 'Dynamite!', 'Gold Star!', 'Impressive!', 'Exactly!', 'Correct!', '=)', 'Bingo!', 'On the nose!', 'Right!', 'Right on!', 'Righteous!', '', 'Inspiring!', 'Precisely!', 'Exactly!', 'Right as Rain!', ''],
 		banter: ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '],
@@ -112,6 +127,9 @@ var langs = {
 		initial: "Initiale",
 		face: "Visage",
 		face2: "Jeune Visage",
+		seniority: "Ancienneté",
+		bio: "Biographie",
+		talks: "Discours de conférence",
 		perfect: ['Parfait!', 'Impecable!', 'Bien Fait!', 'Vertueux!', 'C\'est Vrai!', '=D'],
 		kudos: ['Oui', '=)', 'Bon!'],
 		banter: ['Ouch!', 'Non!', 'Ce n\'est pas possible.', 'Ca fait mal.', 'Qu\'est-ce que c\'est!'],
@@ -337,9 +355,23 @@ jQuery(document).ready(function($) {
 		num_correct = 0;
 		num_incorrect = 0;
 		score_percent = 0;
+		if ( level == 5 ){
+			quiz_counter = 0;
+			active_team.sort(sort_by_ordained_date);
+		}
 		new_question();
 	}
-
+	function sort_by_ordained_date(a,b){
+		var a_od = new Date(a.ordained_date);
+		var b_od = new Date(b.ordained_date);
+		
+		if (a_od < b_od)
+		  return -1;
+		if (a_od > b_od)
+		  return 1;
+		
+		return 0;
+	}
 	function list_players(){
 		var players = '';
 
@@ -367,9 +399,12 @@ jQuery(document).ready(function($) {
 	}
 
 	function new_question(){
-	    
-	    make_question(active_team, get_random_groupindex(active_team));
-
+	    if ( level == 5 ) {
+	    	make_question(active_team, quiz_counter++);
+	    }
+	    else {
+	    	make_question(active_team, get_random_groupindex(active_team));
+	    }
 	}
 	/*
     ['face'],
@@ -377,7 +412,8 @@ jQuery(document).ready(function($) {
     ['face2'],
     ['talks'],
     ['initial'],
-    ['hometown']
+    ['hometown'],
+    ['seniority']
     */
 	function make_question(group, answer_index){
 	    //get mc answers
@@ -416,7 +452,7 @@ jQuery(document).ready(function($) {
 	                $('.content').append(get_answer_div(group,mc_answers,i,1));
 	            }
 	          break;
-	        case 'Who Came First': //order
+	        case 'seniority': //order
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">Called ' + group[answer_index].ordinal +  '</h2>');
 	            for (var i = 0; i < 4; i++){
 	                $('.content').append(get_answer_div(group,mc_answers,i,0));
@@ -541,6 +577,9 @@ jQuery(document).ready(function($) {
 		        	completed.push( parseInt($(this).attr('data-id')) );
 		            num_correct++;
 		        }
+		        else if ( level == 5 ) {
+		        	quiz_counter--;
+		        }
 		    }
 		    
 		    if( $(this).data('alt') != undefined ) {
@@ -555,7 +594,7 @@ jQuery(document).ready(function($) {
 		    $('.score').html('');
 
 		    //if round complete
-		    //console.log(is_correct, num_correct, active_team.length, num_total);
+		    console.log(is_correct, num_correct, active_team.length, num_total);
 		    if( is_correct && num_correct == active_team.length ) {
 		        if (gaPlugin) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
@@ -568,6 +607,7 @@ jQuery(document).ready(function($) {
 		        num_total = -1;
 		        num_correct = 0;
 		        is_correct = false;
+		        quiz_counter = 0;
 		        $('.score').append('<br />' + langs[language].play_another_level + '?');
 		        
 		        $('.content').html('');
