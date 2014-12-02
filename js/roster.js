@@ -663,7 +663,7 @@ var latter_day_prophets = [
 		'img': 'joseph-smith.jpg',
 		'img_young': 'JS_Bible_st.jpg',
 		'conference_talks': 'unknown',
-		'profession': 'Farmer',
+		'profession': 'Farmer, Mayor',
 		'military'; 'Lieutenant General, Nauvoo Legion',
 		'education': null,
 		'mission': null,
