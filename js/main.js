@@ -18,7 +18,7 @@ var num_levels = 4;
 var free_version = false;
 var mode = 'learn';// learn/test
 var subject = 'living'; //living/past
-var levels = [
+var levels_pro = [
 //['slug', 'fa-icon']
     {
     	slug:'face',
@@ -50,16 +50,84 @@ var levels = [
     	data:'briefcase' 
     },
     {
-    	//number of conference talks (maybe even a couple/most recent titles)
+    	//number of conference talks (maybe even a couple well known or most recent titles)
     	slug:'talks',
-    	data:'comment'
+    	data:'comment' //microphone
+    },
+    {
+    	slug:'mission',
+    	data:'bicycle'
+    },
+    {
+    	slug:'military',
+    	data:'star-o'
+    },
+    {
+    	slug:'education',
+    	data:'graduation-cap' //institution
+    },
+    {
+    	slug:'profession',
+    	data:'briefcase'
+    },
+    {
+    	slug:'reason',
+    	data:'asterisk'
+    }, 
+    {
+    	slug:'agecalled',
+    	data:'calendar'
     }
-    // ['education', 'Education', 'graduation-cap'],
-    // ['profession', 'Professtion', 'briefcase'],
-    // ['miliraty', 'Military Service', 'star-o'],
-    //fa-institution
-    //fa-microphone
 ];
+var levels_free = [
+    {
+    	slug:'face',
+    	data:'user'
+    },
+    {
+    	slug:'face2',
+    	data:'child'
+    },
+    {
+    	slug:'initial',
+    	data:'font'
+    },
+    {
+    	slug:'seniority',
+    	data:'sitemap'
+    },
+    {
+    	// include mission, education, profession and military service
+    	slug:'bio',
+    	data:'newspaper-o' 
+    },
+    {
+    	//number of conference talks (maybe even a couple well known or most recent titles)
+    	slug:'talks',
+    	data:'comment' //microphone
+    },
+    {
+    	slug:'mission',
+    	data:'bicycle'
+    },
+    {
+    	slug:'military',
+    	data:'star-o'
+    },
+    {
+    	slug:'education',
+    	data:'graduation-cap' //institution
+    },
+    {
+    	slug:'profession',
+    	data:'briefcase'
+    },
+    {
+    	slug:'reason',
+    	data:'asterisk'
+    }
+];
+var levels = levels_pro;
 var language = 'english';
 var langs = {
 	english: {
