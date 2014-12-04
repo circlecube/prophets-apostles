@@ -372,9 +372,11 @@ jQuery(document).ready(function($) {
 	function set_ages(){
 		for ( var i = 0; i < current_leaders.length; i++){
 			current_leaders[i].age = get_age(current_leaders[i].birthdate);
+			current_leaders[i].agecalled = current_leaders[i].age - get_age(current_leaders[i].ordained_date);
 		}
 		for ( var i = 0; i < latter_day_prophets.length; i++){
 			latter_day_prophets[i].age = get_age(latter_day_prophets[i].birthdate);
+			latter_day_prophets[i].agecalled = latter_day_prophets[i].age - get_age(latter_day_prophets[i].ordained_date);
 		}
 	}
 	function get_age(dateString) {
