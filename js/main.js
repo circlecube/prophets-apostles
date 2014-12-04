@@ -157,6 +157,12 @@ var langs = {
 		seniority: "Seniority",
 		bio: "Biography",
 		talks: "Conference Talks",
+		education: "Education",
+		profession: "Profession",
+		military: "Military Service",
+		mission: "Mission Service",
+		reason: "Reason Called",
+		agecalled: "Age Called",
 		perfect: ['Perfect!', 'Thou art the Man!', 'Flawless!', 'Amazing!', 'On a Roll!', 'Impeccable!', 'Inspired!', 'Superb!', 'Unblemished!', '=D'],
 		kudos: ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!', 'Feelin\' it!', 'Dynamite!', 'Gold Star!', 'Impressive!', 'Exactly!', 'Correct!', '=)', 'Bingo!', 'On the nose!', 'Right!', 'Right on!', 'Righteous!', '', 'Inspiring!', 'Precisely!', 'Exactly!', 'Right as Rain!', ''],
 		banter: ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '],
@@ -522,6 +528,95 @@ jQuery(document).ready(function($) {
 	                $('.content').append(get_answer_div(group,mc_answers,i,1));
 	            }
 	          break;
+	        case 'education':
+	        	var html = '<h2 data-answer="' + group[answer_index].education + '" class="question question_bio">';
+	        	if ( group[answer_index].education != undefined ) {
+	        		html += group[answer_index].education;
+	        	}
+	        	else {
+	        		html += 'No Formal Education';
+	        	}
+	        	html += '</h2>';
+	            $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'profession':
+            	var html = '<h2 data-answer="' + group[answer_index].profession + '" class="question question_bio">';
+            	if ( group[answer_index].profession != undefined ) {
+            		html += group[answer_index].profession;
+            	}
+            	else {
+            		html += 'No Formal Profession';
+            	}
+            	html += '</h2>';
+                $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'military':
+            	var html = '<h2 data-answer="' + group[answer_index].military + '" class="question question_bio">';
+            	if ( group[answer_index].military != undefined ) {
+            		html += group[answer_index].military;
+            	}
+            	else {
+            		html += 'No ' + langs[language].military;
+            	}
+            	html += '</h2>';
+                $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'mission':
+            	var html = '<h2 data-answer="' + group[answer_index].mission + '" class="question question_bio">';
+            	if ( group[answer_index].mission != undefined ) {
+            		html += group[answer_index].mission;
+            	}
+            	else {
+            		html += 'No ' + langs[language].mission;
+            	}
+            	html += '</h2>';
+                $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'bio':
+            	var html = '<h2 data-answer="' + group[answer_index].name + '" class="question question_bio">';
+            	html += 'From ' + group[answer_index].hometown + '. ';
+            	if ( group[answer_index].mission != undefined ) {
+            		html += langs[language].mission + ': ' + group[answer_index].mission + '. ';
+            	}
+            	if ( group[answer_index].military != undefined ) {
+            		html += langs[language].military + ': ' + group[answer_index].military + '. ';
+            	}
+            	if ( group[answer_index].education != undefined ) {
+            		html += langs[language].education + ': ' + group[answer_index].education + '. ';
+            	}
+            	if ( group[answer_index].profession != undefined ) {
+            		html += langs[language].profession + ': ' + group[answer_index].profession + '. ';
+            	}
+            	html += '</h2>';
+                $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'reason': //order
+	            $('.content').html('<h2 data-answer="' + group[answer_index].reason_called + '" class="question">' + group[answer_index].reason_called +  '</h2>');
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,0));
+	            }
+	          break;
+	        case 'agecalled': //order
+	            $('.content').html('<h2 data-answer="' + group[answer_index].agecalled + '" class="question">' + group[answer_index].agecalled +  '</h2>');
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,0));
+	            }
+	          break;
 	        case 'seniority': //order
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">Called ' + group[answer_index].ordinal +  '</h2>');
 	            for (var i = 0; i < 4; i++){
@@ -566,6 +661,24 @@ jQuery(document).ready(function($) {
 	          break;
 	        case 'initial': //initial
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]][group[mc_answers[index]].initial] + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'military':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].military + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'education':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].education + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'mission':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].mission + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'profession':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].profession + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'reason':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].reason_called + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'agecalled':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].agecalled + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'face2': //name
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img_young + '); background-position:'+ group[mc_answers[index]].img2_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
