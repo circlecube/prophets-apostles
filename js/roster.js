@@ -403,7 +403,7 @@ var latter_day_prophets = [
 		'military': null,
 		'education': 'Utah State University, Brigham Young University, Iowa State University',
 		'mission': 'Britain',
-		'reason_called': 'Deaths of Sylvester Q. Cannon and Rudger Clawson[1]',
+		'reason_called': 'Deaths of Sylvester Q. Cannon and Rudger Clawson',
 	},
 	{
 		'name': 'Spencer W. Kimball',
@@ -667,6 +667,6 @@ var latter_day_prophets = [
 		'military': 'Lieutenant General, Nauvoo Legion',
 		'education': null,
 		'mission': null,
-		'reason_called': 'The Great Apostacy',
+		'reason_called': 'Organization of the Church',
 	},
 ];
