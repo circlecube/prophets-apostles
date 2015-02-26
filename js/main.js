@@ -50,7 +50,7 @@ var levels_pro = [
     	data:'briefcase' 
     },
     {
-    	//number of conference talks (maybe even a couple well known or most recent titles)
+    	//number of conference talks
     	slug:'talks',
     	data:'comment' //microphone
     },
@@ -89,42 +89,12 @@ var levels_free = [
     	data:'child'
     },
     {
-    	slug:'initial',
-    	data:'font'
-    },
-    {
     	slug:'seniority',
     	data:'sitemap'
     },
     {
-    	// include mission, education, profession and military service
     	slug:'bio',
     	data:'newspaper-o' 
-    },
-    {
-    	//number of conference talks (maybe even a couple well known or most recent titles)
-    	slug:'talks',
-    	data:'comment' //microphone
-    },
-    {
-    	slug:'mission',
-    	data:'bicycle'
-    },
-    {
-    	slug:'military',
-    	data:'star-o'
-    },
-    {
-    	slug:'education',
-    	data:'graduation-cap' //institution
-    },
-    {
-    	slug:'profession',
-    	data:'briefcase'
-    },
-    {
-    	slug:'reason',
-    	data:'asterisk'
     }
 ];
 var levels = levels_pro;
@@ -244,6 +214,15 @@ if (active_team == current_leaders ) {
 var list_player;
 var list_player_template;
 
+// var devicePlatform = 'Android';
+// var devicePlatform = 'iOS';
+var devicePlatform = device.platform;
+var android_android_link = 'market://details?id=com.circlecube.ldsquizpro';
+var android_web_link = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
+var ios_ios_link = 'https://appstore.com/lds-prophets-and-apostles';
+var ios_web_link = 'https://appstore.com/lds-prophets-and-apostles';
+var store_link = android_android_link;
+var web_link = android_web_link;
 jQuery(document).ready(function($) {
 
 	function init(){
@@ -256,7 +235,24 @@ jQuery(document).ready(function($) {
 		if (free_version) {
 			update_free();
 		}
-
+		
+		//platform check
+		if (devicePlatform == 'Android') {
+			//update links to point to play market
+			store_link = android_android_link;
+			web_link = android_web_link;
+		}
+		else if (devicePlatform == 'iOS') {
+			//update links to point to itunes store
+			
+			//remove more apps - in the future update apps with links to itunes apps
+			$('.more_apps').parent('li').remove();
+			
+			//update share links
+			store_link = ios_ios_link;
+			web_link = ios_web_link;
+			
+		}
 		
 		//get local storage settings
 		if (localStorage.language){
@@ -361,19 +357,21 @@ jQuery(document).ready(function($) {
 	}	
 
 	function update_free(){
+		levels = levels_free;
+		set_levels();
 		//set attributes/classes on top level quiz
 		$('.quiz_begin').addClass('quiz').addClass('quiz_face');
 		$('.quiz_begin').attr('data-index', 0);
 		$('.quiz_begin').attr('data-value', 'face');
 		//remove levels
-		$('.quiz_type').remove();
-		$('.quiz .mm-subopen').remove();
+		// $('.quiz_type').remove();
+		// $('.quiz .mm-subopen').remove();
 
 		//add upgrade link
-		$('.menu .share').parent().after('<li><a href="market://details?id=com.circlecube.ldsquizpro" class="about">' + langs[language].upgrade + '</a></li>');
+		$('.menu .share').parent().after('<li><a href="' + store_link + '" class="about">' + langs[language].upgrade + '</a></li>');
 		//remove list all link
 		// $('.list_all').parent().remove();
-		//
+		
 	}
 	function set_ages(){
 		for ( var i = 0; i < current_leaders.length; i++){
@@ -1009,7 +1007,7 @@ jQuery(document).ready(function($) {
 				var subject = langs[language].share_subject;
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
-				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
+				var url = web_link;
 				window.plugins.socialsharing.share(message, subject, files, url );
 		    }
 		});
@@ -1033,7 +1031,7 @@ jQuery(document).ready(function($) {
 				var subject = langs[language].share_score_subject;
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
-				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
+				var url = web_link;
 				window.plugins.socialsharing.share(message, subject, files, url );
 		    }
 		});

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.circlecube.ldsquiz"
-        versionCode="510" 
-        version   = "0.5.1">
+        id        = "com.circlecube.ldsquizpro"
+        versionCode="520" 
+        version   = "0.5.2">
 
-    <name>LDS Prophets and Apostles Lite</name>
+    <name>LDS Prophets and Apostles Pro</name>
 
 <description>
 LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
@@ -77,15 +77,16 @@ These leaders are according to The Church of Jesus Christ of Latter-Day Saints. 
         Evan Mullins 
     </author>
     <gap:platform name="android" />
+    <gap:platform name="ios" />
     <preference name="android-minSdkVersion" value="11" />
     <preference name="android-targetSdkVersion" value="19" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="com.adobe.plugins.gaplugin" />
-    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="phonegap-version" value="3.7.0" />
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
-    <icon src="icon-large-lite.png" width="512" height="512" density="mdpi" />
-    <icon src="icon-lite.png" width="64" height="64" density="mdpi" />
+    <icon src="icon-large.png" width="512" height="512" density="mdpi" />
+    <icon src="icon.png" width="64" height="64" density="mdpi" />
     <preference name="permissions" value="none"/>
 </widget>
 <!--
