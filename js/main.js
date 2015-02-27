@@ -214,9 +214,12 @@ if (active_team == current_leaders ) {
 var list_player;
 var list_player_template;
 
-// var devicePlatform = 'Android';
+var devicePlatform = 'Android';
 // var devicePlatform = 'iOS';
-var devicePlatform = device.platform;
+if (typeof( device ) !== 'undefined') {
+	devicePlatform = device.platform;
+}
+// var devicePlatform = device.platform;
 var android_android_link = 'market://details?id=com.circlecube.ldsquizpro';
 var android_web_link = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
 var ios_ios_link = 'https://appstore.com/lds-prophets-and-apostles';
