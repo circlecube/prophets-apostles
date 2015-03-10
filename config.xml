@@ -87,8 +87,8 @@ These leaders are according to The Church of Jesus Christ of Latter-Day Saints. 
     <preference name="fullscreen" value="true" />
     <preference name="permissions" value="none"/>
     
-    <icon src="icon-large.png" width="512" height="512" />
-    <icon src="icon.png" width="64" height="64" />
+    <icon src="res/icon-large.png" width="512" height="512" />
+    <icon src="res/icon.png" width="64" height="64" />
     
     <!-- Androind -->
     <icon src="res/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
@@ -133,5 +133,16 @@ LDS Quiz will test your knowledge of and teach you about the apostles and prophe
 	main.js
     free_version - false - true
     
-    ldsquiz.keystore
+    android: ldsquiz.keystore
+    ios: ldsquizpro
+    
+    
+    
+    
+    Bundle ID- The bundle ID must match the one you used in Xcode. It can't be changed after you submit your first build.
+    com.circlecube.ldsquizpro
+    Apple ID- An automatically generated ID assigned to your app.
+    971859234
+    SKU- A unique ID for your app that is not visible on the App Store.
+    com.circlecube.ldsquizpro
 -->
