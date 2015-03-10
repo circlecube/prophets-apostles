@@ -348,7 +348,7 @@ var latter_day_prophets = [
 		'position': 'President',
 		'birthdate': 'June 23, 1910',
 		'president_date': 'March 12, 1995',
-		'ordained_date': 'April 6, 1958',
+		'ordained_date': 'October 5, 1961',
 		'deathdate': 'January 27, 2008',
 		'ordinal': '15th',
 		'hometown': 'Salt Lake City, Utah',
