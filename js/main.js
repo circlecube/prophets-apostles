@@ -225,7 +225,8 @@ var android_web_link = 'https://play.google.com/store/apps/details?id=com.circle
 var ios_ios_link = 'https://appstore.com/lds-prophets-and-apostles';
 var ios_web_link = 'https://appstore.com/lds-prophets-and-apostles';
 var store_link = android_android_link;
-var web_link = android_web_link;
+var web_link = 'https://ldsmormonapps.com/app/lds-prophets-apostles-pro/';
+
 jQuery(document).ready(function($) {
 
 	function init(){
@@ -243,7 +244,7 @@ jQuery(document).ready(function($) {
 		if (devicePlatform == 'Android') {
 			//update links to point to play market
 			store_link = android_android_link;
-			web_link = android_web_link;
+			// web_link = android_web_link;
 		}
 		else if (devicePlatform == 'iOS') {
 			//update links to point to itunes store
@@ -253,7 +254,7 @@ jQuery(document).ready(function($) {
 			
 			//update share links
 			store_link = ios_ios_link;
-			web_link = ios_web_link;
+			// web_link = ios_web_link;
 			
 		}
 		
