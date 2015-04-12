@@ -779,7 +779,7 @@ jQuery(document).ready(function($) {
 		    $('.score').html('');
 
 		    //if round complete
-		    console.log(is_correct, num_correct, active_team.length, num_total);
+		    // console.log(is_correct, num_correct, active_team.length, num_total);
 		    if( is_correct && num_correct == active_team.length ) {
 		        if (gaPlugin) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
@@ -871,7 +871,7 @@ jQuery(document).ready(function($) {
 		    if( $(this).data('alt') != undefined ) {
 		        $(this).prepend( '<p class="label">' + $(this).data('alt') +'</p>' );
 		    }
-
+		    
 		        // end_time = new Date();
 		        // seconds = Math.floor( (start_time - end_time ) / -1000);
 		        // var correct_per_minute = Math.round( (num_correct / seconds ) * 60 );
@@ -994,7 +994,7 @@ jQuery(document).ready(function($) {
 		else { //past
 			active_team = latter_day_prophets;
 		}
-		active_team_title = langs[english][active_team];
+		active_team_title = langs[language][active_team];
 		game_players();
 	});
 	$('.about').on('click touch', function(e){
