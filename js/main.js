@@ -45,6 +45,10 @@ var levels_pro = [
     	data:'sitemap'
     },
     {
+    	slug:'sort',
+    	data:'arrows'
+    },
+    {
     	// include mission, education, profession and military service
     	slug:'bio',
     	data:'briefcase' 
@@ -125,6 +129,7 @@ var langs = {
 		face: "Face",
 		face2: "Young Face",
 		seniority: "Seniority",
+		sort: "Sort",
 		bio: "Biography",
 		talks: "Conference Talks",
 		education: "Education",
@@ -142,8 +147,9 @@ var langs = {
 		upgrade: "Upgrade",
 		share_message: "Do you know the Latter-Day Prophets? Take the test in this mobile app!",
 		share_subject: "Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets.",
-		share_score_message_a: "Do you know the Latter-Day Prophets? I do! Just took the test and got ",
+		share_score_message_a: "Do you know the Latter-Day Prophets? I do! ",
 		share_score_message_b: "% correct!",
+		share_score_message_b_2: " tries!",
 		share_score_subject: "Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets.",
 		
 	},
@@ -172,6 +178,7 @@ var langs = {
 		face: "Visage",
 		face2: "Jeune Visage",
 		seniority: "Ancienneté",
+		sort: "Arranger",
 		bio: "Biographie",
 		talks: "Discours de conférence",
 		perfect: ['Parfait!', 'Impecable!', 'Bien Fait!', 'Vertueux!', 'C\'est Vrai!', '=D'],
@@ -185,6 +192,7 @@ var langs = {
 		share_subject: "Car le Seigneur, l'Eternel, ne fait rien Sans avoir révélé son secret à ses serviteurs les prophètes.",
 		share_score_message_a: "Connaisez-vous les Prophèts des dernier jours? Je les connais! Je suis passé le test avec un score de ",
 		share_score_message_b: "!",
+		share_score_message_b_2: " fois!",
 		share_score_subject: "Car le Seigneur, l'Eternel, ne fait rien Sans avoir révélé son secret à ses serviteurs les prophètes.",
 		
 	},
@@ -227,7 +235,11 @@ var ios_web_link = 'https://appstore.com/lds-prophets-and-apostles';
 var store_link = android_android_link;
 var web_link = 'https://ldsmormonapps.com/app/lds-prophets-apostles-pro/';
 
+
 jQuery(document).ready(function($) {
+	
+var $sorts;
+var $draggable;
 
 	function init(){
 		document.addEventListener("deviceready", onDeviceReady, false);
@@ -477,8 +489,11 @@ jQuery(document).ready(function($) {
 	}
 
 	function new_question(){
-	    if ( level == 5 ) {
+	    if ( levels[level].slug == 'seniority' ) {
 	    	make_question(active_team, quiz_counter++);
+	    }
+	    else if( levels[level].slug == 'sort') {
+	    	make_question(active_team);
 	    }
 	    else {
 	    	make_question(active_team, get_random_groupindex(active_team));
@@ -633,11 +648,42 @@ jQuery(document).ready(function($) {
 	            }
 	            $('.content').append( answers +'</div>');
 	          break;
+	        case 'sort': //name
+	            var sorts = '<div class="sorts">';
+	            randomize(group);
+	            for (var i = 0; i < group.length; i++){
+	                sorts += '<div class="sort" data-id="' + i + '" data-name="' + group[i].name + '" data-order="' + group[i].order + '"><span class="img"><img src="img/' + group[i].img + '" /></span></div>';
+	            }
+	            $('.content').html( sorts + '</div>');
+	            $('.content').append('<div class="answer answer_sort">Submit</div>');
+	            
+	            $draggable = $('.sort').draggabilly({
+	            	containment: '.sorts'
+	            });
+	            $sorts = $('.sorts').packery({
+	              'columnWidth': '.sort',
+	              'rowHeight': '.sort',
+	              'itemSelector': '.sort',
+				  'percentPosition': true
+	            });
+
+	            $sorts.find('.sort').each( function( i, itemElem ) {
+	              // make element draggable with Draggabilly
+	              var draggie = new Draggabilly( itemElem );
+	              // bind Draggabilly events to Packery
+	              $sorts.packery( 'bindDraggabillyEvents', draggie );
+	            });
+	            
+
+	            // $sorts.packery( 'on', 'layoutComplete', sort_sorted );
+	            // $sorts.packery( 'on', 'dragItemPositioned', sort_sorted );
+	            
+	          break;
 	        default: //face, face2
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">' + group[answer_index].name + '</h2>');
 	            for (var i = 0; i < 4; i++){
-	                $('.content').append(get_answer_div(group,mc_answers,i,2));
-	            } 
+	            	$('.content').append(get_answer_div(group,mc_answers,i,2));
+	            }
 	          //error
 	    }
 	    
@@ -740,10 +786,53 @@ jQuery(document).ready(function($) {
 	     myArray[j] = tempi;
 	   }
 	}
-
+    // show item order after layout
+    function sort_sorted() {
+    	var sorted = 0;
+		var itemElems = $sorts.packery('getItemElements');
+    	$( itemElems ).each( function( i, itemElem ) {
+    		// console.log($(itemElem).data('order'), i);
+        	if ( $(itemElem).data('order') != i + 1){
+        		sorted++;
+        	}
+      	});
+      	console.log(sorted);
+      	return(sorted);
+    }
 
 	$('.content').on('click', '.answer', function(e){
 		//console.log('clicked',$(this).attr('data-id'));
+		
+		if ( levels[level].slug == 'sort' ) {
+			
+			var sorted = sort_sorted();
+			
+			if ( sorted == 0 ) {
+				num_correct++;
+				num_total++;
+				
+				$('.content').html('');
+				
+				$('.score').text( langs[language].kudos[get_random_index(langs[language].kudos)] );
+				$('.score').append( ' ' + langs[language].kudos[get_random_index(langs[language].kudos)] );
+				
+				score_percent = parseInt(num_correct / (num_total+1)*100 );
+				$('.answer').remove();
+				$('.score').append('<div class="share_button" data-score="' + score_percent + '">' + langs[language].share_your_score + '!</div>');
+				$('.score').append('<br />Play another level?');
+
+			}
+			else {
+				
+				$('.score').text( langs[language].banter[get_random_index(langs[language].banter)] );
+				$('.score').append(' ' + sorted + ' ' + active_team_title + ' incorrect.' );				
+				
+				num_total++;
+				
+			}
+			
+			return;
+		}
 		
 		// LEARN MODE
 		if (mode == 'learn' ){
@@ -779,7 +868,7 @@ jQuery(document).ready(function($) {
 		    $('.score').html('');
 
 		    //if round complete
-		    console.log(is_correct, num_correct, active_team.length, num_total);
+		    // console.log(is_correct, num_correct, active_team.length, num_total);
 		    if( is_correct && num_correct == active_team.length ) {
 		        if (gaPlugin) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
@@ -871,7 +960,7 @@ jQuery(document).ready(function($) {
 		    if( $(this).data('alt') != undefined ) {
 		        $(this).prepend( '<p class="label">' + $(this).data('alt') +'</p>' );
 		    }
-
+		    
 		        // end_time = new Date();
 		        // seconds = Math.floor( (start_time - end_time ) / -1000);
 		        // var correct_per_minute = Math.round( (num_correct / seconds ) * 60 );
@@ -994,7 +1083,7 @@ jQuery(document).ready(function($) {
 		else { //past
 			active_team = latter_day_prophets;
 		}
-		active_team_title = langs[english][active_team];
+		active_team_title = langs[language][active_team];
 		game_players();
 	});
 	$('.about').on('click touch', function(e){
@@ -1031,7 +1120,12 @@ jQuery(document).ready(function($) {
 
 	  	window.plugins.socialsharing.available(function(isAvailable) {
 		    if (isAvailable) {
-		    	var message = langs[language].share_score_message_a + $('.share_button').data('score') + langs[language].share_score_message_b;
+		    	var message = langs[language].share_score_message_a + $('.share_button').data('score');
+		    	if ( levels[level].slug == 'sort') {
+		    		message += langs[language].share_score_message_b_2;
+		    	} else {
+		    		message += langs[language].share_score_message_b;
+				}
 				var subject = langs[language].share_score_subject;
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
