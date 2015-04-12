@@ -9,7 +9,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+		<meta name="apple-mobile-web-app-capable" content="yes">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <link rel="stylesheet" href="css/normalize.css">
@@ -88,7 +88,12 @@
                 ({{#unless player.deathdate}}{{player.age}}, {{/unless}}{{player.birthdate}}), 
                 ordained on {{player.ordained_date}} &amp; 
                 from {{player.hometown}}. 
-                <!-- {{#if player.conference_talks}} Given {{player.conference_talks}} conference talks{{/if}} -->
+                {{#if player.mission}} Served mission(s) in {{player.mission}}. {{/if}}
+                {{#if player.military}} Served in the {{player.military}}. {{/if}}
+                {{#if player.education}} {{player.education}}. {{/if}}
+                {{#if player.profession}} {{player.profession}}. {{/if}}
+                {{#if player.reason_called}} Called after the {{player.reason_called}}. {{/if}}
+                {{#if player.conference_talks}} Given a total of {{player.conference_talks}} conference talks. {{/if}}
                 </p>
                 <p class="question_bio">{{player.bio}}</p>
             </article>
@@ -105,6 +110,8 @@
         <script type="text/javascript" src="js/plugins.js"></script>
         <script type="text/javascript" src="js/handlebars-v1.3.0.js"></script>
         <script type="text/javascript" src="js/vendor/mmenu-4.5.7/source/jquery.mmenu.min.js"></script>
+        <script type="text/javascript" src="js/vendor/packery.pkgd.min.js"></script>
+        <script type="text/javascript" src="js/vendor/draggabilly.pkgd.min.js"></script>
         <script type="text/javascript" src="js/roster.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 

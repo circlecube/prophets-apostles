@@ -18,7 +18,7 @@ var num_levels = 4;
 var free_version = false;
 var mode = 'learn';// learn/test
 var subject = 'living'; //living/past
-var levels = [
+var levels_pro = [
 //['slug', 'fa-icon']
     {
     	slug:'face',
@@ -40,14 +40,68 @@ var levels = [
     	slug:'bday',
     	data:'birthday-cake'
     },
-    // ['talks', 'Conference Talks', 'comment'],
-    // ['education', 'Education', 'graduation-cap'],
-    // ['profession', 'Professtion', 'briefcase'],
-    // ['miliraty', 'Military Service', 'star-o'],
-    // ['seniority', 'Seniority', 'site-map']
-    //fa-institution
-    //fa-microphone
+    {
+    	slug:'seniority',
+    	data:'sitemap'
+    },
+    {
+    	slug:'sort',
+    	data:'arrows'
+    },
+    {
+    	// include mission, education, profession and military service
+    	slug:'bio',
+    	data:'briefcase' 
+    },
+    {
+    	//number of conference talks
+    	slug:'talks',
+    	data:'comment' //microphone
+    },
+    {
+    	slug:'mission',
+    	data:'bicycle'
+    },
+    {
+    	slug:'military',
+    	data:'star-o'
+    },
+    {
+    	slug:'education',
+    	data:'graduation-cap' //institution
+    },
+    {
+    	slug:'profession',
+    	data:'briefcase'
+    },
+    {
+    	slug:'reason',
+    	data:'asterisk'
+    }, 
+    {
+    	slug:'agecalled',
+    	data:'calendar'
+    }
 ];
+var levels_free = [
+    {
+    	slug:'face',
+    	data:'user'
+    },
+    {
+    	slug:'face2',
+    	data:'child'
+    },
+    {
+    	slug:'seniority',
+    	data:'sitemap'
+    },
+    {
+    	slug:'bio',
+    	data:'newspaper-o' 
+    }
+];
+var levels = levels_pro;
 var language = 'english';
 var langs = {
 	english: {
@@ -74,6 +128,16 @@ var langs = {
 		initial: "Initial",
 		face: "Face",
 		face2: "Young Face",
+		seniority: "Seniority",
+		sort: "Sort",
+		bio: "Biography",
+		talks: "Conference Talks",
+		education: "Education",
+		profession: "Profession",
+		military: "Military Service",
+		mission: "Mission Service",
+		reason: "Reason Called",
+		agecalled: "Age Called",
 		perfect: ['Perfect!', 'Thou art the Man!', 'Flawless!', 'Amazing!', 'On a Roll!', 'Impeccable!', 'Inspired!', 'Superb!', 'Unblemished!', '=D'],
 		kudos: ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!', 'Feelin\' it!', 'Dynamite!', 'Gold Star!', 'Impressive!', 'Exactly!', 'Correct!', '=)', 'Bingo!', 'On the nose!', 'Right!', 'Right on!', 'Righteous!', '', 'Inspiring!', 'Precisely!', 'Exactly!', 'Right as Rain!', ''],
 		banter: ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '],
@@ -83,8 +147,9 @@ var langs = {
 		upgrade: "Upgrade",
 		share_message: "Do you know the Latter-Day Prophets? Take the test in this mobile app!",
 		share_subject: "Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets.",
-		share_score_message_a: "Do you know the Latter-Day Prophets? I do! Just took the test and got ",
+		share_score_message_a: "Do you know the Latter-Day Prophets? I do! ",
 		share_score_message_b: "% correct!",
+		share_score_message_b_2: " tries!",
 		share_score_subject: "Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets.",
 		
 	},
@@ -112,17 +177,24 @@ var langs = {
 		initial: "Initiale",
 		face: "Visage",
 		face2: "Jeune Visage",
+		seniority: "Ancienneté",
+		sort: "Arranger",
+		bio: "Biographie",
+		talks: "Discours de conférence",
 		perfect: ['Parfait!', 'Impecable!', 'Bien Fait!', 'Vertueux!', 'C\'est Vrai!', '=D'],
 		kudos: ['Oui', '=)', 'Bon!'],
 		banter: ['Ouch!', 'Non!', 'Ce n\'est pas possible.', 'Ca fait mal.', 'Qu\'est-ce que c\'est!'],
 		accuracy: "précision",
 		all: "tout",
 		play_another_level: "Encore",
-		upgrade: "",
-		share_subject: "",
-		share_message: "",
-		share_score_subject: "",
-		share_score_message: "",
+		upgrade: "Aller Pro",
+		share_message: "Connaisez-vous les Prophèts des dernier jours? Passer le test dans c'est application mobile!",
+		share_subject: "Car le Seigneur, l'Eternel, ne fait rien Sans avoir révélé son secret à ses serviteurs les prophètes.",
+		share_score_message_a: "Connaisez-vous les Prophèts des dernier jours? Je les connais! Je suis passé le test avec un score de ",
+		share_score_message_b: "!",
+		share_score_message_b_2: " fois!",
+		share_score_subject: "Car le Seigneur, l'Eternel, ne fait rien Sans avoir révélé son secret à ses serviteurs les prophètes.",
+		
 	},
 	spanish: { 
 		language_native: "Español", 
@@ -150,7 +222,24 @@ if (active_team == current_leaders ) {
 var list_player;
 var list_player_template;
 
+var devicePlatform = 'Android';
+// var devicePlatform = 'iOS';
+if (typeof( device ) !== 'undefined') {
+	devicePlatform = device.platform;
+}
+// var devicePlatform = device.platform;
+var android_android_link = 'market://details?id=com.circlecube.ldsquizpro';
+var android_web_link = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
+var ios_ios_link = 'https://appstore.com/lds-prophets-and-apostles';
+var ios_web_link = 'https://appstore.com/lds-prophets-and-apostles';
+var store_link = android_android_link;
+var web_link = 'https://ldsmormonapps.com/app/lds-prophets-apostles-pro/';
+
+
 jQuery(document).ready(function($) {
+	
+var $sorts;
+var $draggable;
 
 	function init(){
 		document.addEventListener("deviceready", onDeviceReady, false);
@@ -162,7 +251,24 @@ jQuery(document).ready(function($) {
 		if (free_version) {
 			update_free();
 		}
-
+		
+		//platform check
+		if (devicePlatform == 'Android') {
+			//update links to point to play market
+			store_link = android_android_link;
+			// web_link = android_web_link;
+		}
+		else if (devicePlatform == 'iOS') {
+			//update links to point to itunes store
+			
+			//remove more apps - in the future update apps with links to itunes apps
+			$('.more_apps').parent('li').remove();
+			
+			//update share links
+			store_link = ios_ios_link;
+			// web_link = ios_web_link;
+			
+		}
 		
 		//get local storage settings
 		if (localStorage.language){
@@ -267,26 +373,30 @@ jQuery(document).ready(function($) {
 	}	
 
 	function update_free(){
+		levels = levels_free;
+		set_levels();
 		//set attributes/classes on top level quiz
 		$('.quiz_begin').addClass('quiz').addClass('quiz_face');
 		$('.quiz_begin').attr('data-index', 0);
 		$('.quiz_begin').attr('data-value', 'face');
 		//remove levels
-		$('.quiz_type').remove();
-		$('.quiz .mm-subopen').remove();
+		// $('.quiz_type').remove();
+		// $('.quiz .mm-subopen').remove();
 
 		//add upgrade link
-		$('.menu .share').parent().after('<li><a href="market://details?id=com.circlecube.ldsquizpro" class="about">' + langs[language].upgrade + '</a></li>');
+		$('.menu .share').parent().after('<li><a href="' + store_link + '" class="about">' + langs[language].upgrade + '</a></li>');
 		//remove list all link
 		// $('.list_all').parent().remove();
-		//
+		
 	}
 	function set_ages(){
 		for ( var i = 0; i < current_leaders.length; i++){
 			current_leaders[i].age = get_age(current_leaders[i].birthdate);
+			current_leaders[i].agecalled = current_leaders[i].age - get_age(current_leaders[i].ordained_date);
 		}
 		for ( var i = 0; i < latter_day_prophets.length; i++){
 			latter_day_prophets[i].age = get_age(latter_day_prophets[i].birthdate);
+			latter_day_prophets[i].agecalled = latter_day_prophets[i].age - get_age(latter_day_prophets[i].ordained_date);
 		}
 	}
 	function get_age(dateString) {
@@ -335,9 +445,23 @@ jQuery(document).ready(function($) {
 		num_correct = 0;
 		num_incorrect = 0;
 		score_percent = 0;
+		if ( level == 5 ){
+			quiz_counter = 0;
+			active_team.sort(sort_by_ordained_date);
+		}
 		new_question();
 	}
-
+	function sort_by_ordained_date(a,b){
+		var a_od = new Date(a.ordained_date);
+		var b_od = new Date(b.ordained_date);
+		
+		if (a_od < b_od)
+		  return -1;
+		if (a_od > b_od)
+		  return 1;
+		
+		return 0;
+	}
 	function list_players(){
 		var players = '';
 
@@ -365,9 +489,15 @@ jQuery(document).ready(function($) {
 	}
 
 	function new_question(){
-	    
-	    make_question(active_team, get_random_groupindex(active_team));
-
+	    if ( levels[level].slug == 'seniority' ) {
+	    	make_question(active_team, quiz_counter++);
+	    }
+	    else if( levels[level].slug == 'sort') {
+	    	make_question(active_team);
+	    }
+	    else {
+	    	make_question(active_team, get_random_groupindex(active_team));
+	    }
 	}
 	/*
     ['face'],
@@ -375,7 +505,8 @@ jQuery(document).ready(function($) {
     ['face2'],
     ['talks'],
     ['initial'],
-    ['hometown']
+    ['hometown'],
+    ['seniority']
     */
 	function make_question(group, answer_index){
 	    //get mc answers
@@ -414,7 +545,96 @@ jQuery(document).ready(function($) {
 	                $('.content').append(get_answer_div(group,mc_answers,i,1));
 	            }
 	          break;
-	        case 'Who Came First': //order
+	        case 'education':
+	        	var html = '<h2 data-answer="' + group[answer_index].education + '" class="question question_bio">';
+	        	if ( group[answer_index].education != undefined ) {
+	        		html += group[answer_index].education;
+	        	}
+	        	else {
+	        		html += 'No Formal Education';
+	        	}
+	        	html += '</h2>';
+	            $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'profession':
+            	var html = '<h2 data-answer="' + group[answer_index].profession + '" class="question question_bio">';
+            	if ( group[answer_index].profession != undefined ) {
+            		html += group[answer_index].profession;
+            	}
+            	else {
+            		html += 'No Formal Profession';
+            	}
+            	html += '</h2>';
+                $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'military':
+            	var html = '<h2 data-answer="' + group[answer_index].military + '" class="question question_bio">';
+            	if ( group[answer_index].military != undefined ) {
+            		html += group[answer_index].military;
+            	}
+            	else {
+            		html += 'No ' + langs[language].military;
+            	}
+            	html += '</h2>';
+                $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'mission':
+            	var html = '<h2 data-answer="' + group[answer_index].mission + '" class="question question_bio">';
+            	if ( group[answer_index].mission != undefined ) {
+            		html += group[answer_index].mission;
+            	}
+            	else {
+            		html += 'No ' + langs[language].mission;
+            	}
+            	html += '</h2>';
+                $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'bio':
+            	var html = '<h2 data-answer="' + group[answer_index].name + '" class="question question_bio">';
+            	html += 'From ' + group[answer_index].hometown + '. ';
+            	if ( group[answer_index].mission != undefined ) {
+            		html += langs[language].mission + ': ' + group[answer_index].mission + '. ';
+            	}
+            	if ( group[answer_index].military != undefined ) {
+            		html += langs[language].military + ': ' + group[answer_index].military + '. ';
+            	}
+            	if ( group[answer_index].education != undefined ) {
+            		html += langs[language].education + ': ' + group[answer_index].education + '. ';
+            	}
+            	if ( group[answer_index].profession != undefined ) {
+            		html += langs[language].profession + ': ' + group[answer_index].profession + '. ';
+            	}
+            	html += '</h2>';
+                $('.content').html(html);
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,1));
+	            }
+	          break;
+	        case 'reason': //order
+	            $('.content').html('<h2 data-answer="' + group[answer_index].reason_called + '" class="question">' + group[answer_index].reason_called +  '</h2>');
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,0));
+	            }
+	          break;
+	        case 'agecalled': //order
+	            $('.content').html('<h2 data-answer="' + group[answer_index].agecalled + '" class="question">' + group[answer_index].agecalled +  '</h2>');
+	            for (var i = 0; i < 4; i++){
+	                $('.content').append(get_answer_div(group,mc_answers,i,0));
+	            }
+	          break;
+	        case 'seniority': //order
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">Called ' + group[answer_index].ordinal +  '</h2>');
 	            for (var i = 0; i < 4; i++){
 	                $('.content').append(get_answer_div(group,mc_answers,i,0));
@@ -428,11 +648,42 @@ jQuery(document).ready(function($) {
 	            }
 	            $('.content').append( answers +'</div>');
 	          break;
+	        case 'sort': //name
+	            var sorts = '<div class="sorts">';
+	            randomize(group);
+	            for (var i = 0; i < group.length; i++){
+	                sorts += '<div class="sort" data-id="' + i + '" data-name="' + group[i].name + '" data-order="' + group[i].order + '"><span class="img"><img src="img/' + group[i].img + '" /></span></div>';
+	            }
+	            $('.content').html( sorts + '</div>');
+	            $('.content').append('<div class="answer answer_sort">Submit</div>');
+	            
+	            $draggable = $('.sort').draggabilly({
+	            	containment: '.sorts'
+	            });
+	            $sorts = $('.sorts').packery({
+	              'columnWidth': '.sort',
+	              'rowHeight': '.sort',
+	              'itemSelector': '.sort',
+				  'percentPosition': true
+	            });
+
+	            $sorts.find('.sort').each( function( i, itemElem ) {
+	              // make element draggable with Draggabilly
+	              var draggie = new Draggabilly( itemElem );
+	              // bind Draggabilly events to Packery
+	              $sorts.packery( 'bindDraggabillyEvents', draggie );
+	            });
+	            
+
+	            // $sorts.packery( 'on', 'layoutComplete', sort_sorted );
+	            // $sorts.packery( 'on', 'dragItemPositioned', sort_sorted );
+	            
+	          break;
 	        default: //face, face2
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">' + group[answer_index].name + '</h2>');
 	            for (var i = 0; i < 4; i++){
-	                $('.content').append(get_answer_div(group,mc_answers,i,2));
-	            } 
+	            	$('.content').append(get_answer_div(group,mc_answers,i,2));
+	            }
 	          //error
 	    }
 	    
@@ -458,6 +709,24 @@ jQuery(document).ready(function($) {
 	          break;
 	        case 'initial': //initial
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]][group[mc_answers[index]].initial] + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'military':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].military + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'education':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].education + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'mission':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].mission + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'profession':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].profession + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'reason':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].reason_called + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	          break;
+	        case 'agecalled':
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].agecalled + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'face2': //name
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img_young + '); background-position:'+ group[mc_answers[index]].img2_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
@@ -517,10 +786,53 @@ jQuery(document).ready(function($) {
 	     myArray[j] = tempi;
 	   }
 	}
-
+    // show item order after layout
+    function sort_sorted() {
+    	var sorted = 0;
+		var itemElems = $sorts.packery('getItemElements');
+    	$( itemElems ).each( function( i, itemElem ) {
+    		// console.log($(itemElem).data('order'), i);
+        	if ( $(itemElem).data('order') != i + 1){
+        		sorted++;
+        	}
+      	});
+      	console.log(sorted);
+      	return(sorted);
+    }
 
 	$('.content').on('click', '.answer', function(e){
 		//console.log('clicked',$(this).attr('data-id'));
+		
+		if ( levels[level].slug == 'sort' ) {
+			
+			var sorted = sort_sorted();
+			
+			if ( sorted == 0 ) {
+				num_correct++;
+				num_total++;
+				
+				$('.content').html('');
+				
+				$('.score').text( langs[language].kudos[get_random_index(langs[language].kudos)] );
+				$('.score').append( ' ' + langs[language].kudos[get_random_index(langs[language].kudos)] );
+				
+				score_percent = parseInt(num_correct / (num_total+1)*100 );
+				$('.answer').remove();
+				$('.score').append('<div class="share_button" data-score="' + score_percent + '">' + langs[language].share_your_score + '!</div>');
+				$('.score').append('<br />Play another level?');
+
+			}
+			else {
+				
+				$('.score').text( langs[language].banter[get_random_index(langs[language].banter)] );
+				$('.score').append(' ' + sorted + ' ' + active_team_title + ' incorrect.' );				
+				
+				num_total++;
+				
+			}
+			
+			return;
+		}
 		
 		// LEARN MODE
 		if (mode == 'learn' ){
@@ -539,6 +851,9 @@ jQuery(document).ready(function($) {
 		        	completed.push( parseInt($(this).attr('data-id')) );
 		            num_correct++;
 		        }
+		        else if ( level == 5 ) {
+		        	quiz_counter--;
+		        }
 		    }
 		    
 		    if( $(this).data('alt') != undefined ) {
@@ -553,7 +868,7 @@ jQuery(document).ready(function($) {
 		    $('.score').html('');
 
 		    //if round complete
-		    //console.log(is_correct, num_correct, active_team.length, num_total);
+		    // console.log(is_correct, num_correct, active_team.length, num_total);
 		    if( is_correct && num_correct == active_team.length ) {
 		        if (gaPlugin) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
@@ -566,6 +881,7 @@ jQuery(document).ready(function($) {
 		        num_total = -1;
 		        num_correct = 0;
 		        is_correct = false;
+		        quiz_counter = 0;
 		        $('.score').append('<br />' + langs[language].play_another_level + '?');
 		        
 		        $('.content').html('');
@@ -644,7 +960,7 @@ jQuery(document).ready(function($) {
 		    if( $(this).data('alt') != undefined ) {
 		        $(this).prepend( '<p class="label">' + $(this).data('alt') +'</p>' );
 		    }
-
+		    
 		        // end_time = new Date();
 		        // seconds = Math.floor( (start_time - end_time ) / -1000);
 		        // var correct_per_minute = Math.round( (num_correct / seconds ) * 60 );
@@ -767,7 +1083,7 @@ jQuery(document).ready(function($) {
 		else { //past
 			active_team = latter_day_prophets;
 		}
-		active_team_title = langs[english][active_team];
+		active_team_title = langs[language][active_team];
 		game_players();
 	});
 	$('.about').on('click touch', function(e){
@@ -784,7 +1100,7 @@ jQuery(document).ready(function($) {
 				var subject = langs[language].share_subject;
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
-				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
+				var url = web_link;
 				window.plugins.socialsharing.share(message, subject, files, url );
 		    }
 		});
@@ -804,11 +1120,16 @@ jQuery(document).ready(function($) {
 
 	  	window.plugins.socialsharing.available(function(isAvailable) {
 		    if (isAvailable) {
-		    	var message = langs[language].share_score_message_a + $('.share_button').data('score') + langs[language].share_score_message_b;
+		    	var message = langs[language].share_score_message_a + $('.share_button').data('score');
+		    	if ( levels[level].slug == 'sort') {
+		    		message += langs[language].share_score_message_b_2;
+		    	} else {
+		    		message += langs[language].share_score_message_b;
+				}
 				var subject = langs[language].share_score_subject;
 				// var files = 'https://lh4.ggpht.com/2wcDkVR7qhed98APHGy9NjfFHjHmTrhrgmrnQ083sDvQVNIR6LiLsOv08X1DvgElb_E';
 				var files = null;
-				var url = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
+				var url = web_link;
 				window.plugins.socialsharing.share(message, subject, files, url );
 		    }
 		});

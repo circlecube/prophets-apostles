@@ -2,98 +2,129 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.circlecube.ldsquizpro"
-        versionCode="500" 
-        version   = "0.5.0">
+        versionCode="540" 
+        version   = "0.5.4">
 
-    <name>LDS Prophets and Apostles</name>
+    <name>LDS Prophets and Apostles Pro</name>
 
-    <description>
-        LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquiz">Test the free version first!</a>.
+<description>
+LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
 
-        Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow.
+Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow.
 
-        Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples.
+Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples.
 
-        There are two groups to be quizzed on. Either select to be quizzed on current (living) apostles by selecting the apostles tab, or select the prophet mode and you will be quizzed on presidents of the church. There is also a study mode which will list all the current apostles along with their names followed by all the latter day prophets or presidents of the church. 
+There are two groups to be quizzed on. Either select to be quizzed on current (living) apostles by selecting the apostles tab, or select the prophet mode and you will be quizzed on presidents of the church. There is also a study mode which will list all the current apostles along with their names followed by all the latter day prophets or presidents of the church. 
 
 
-        There are also multiple levels to each group. 
-        Face - the original. Pick the right apostle/prophet from 4 images (multiple choice) when given a name.
-        Young Face - depictions of the apostles and prophets when they were young (or at least younger). - PRO
-        Initial - Name the initial in their name, be it their middle name or their first. - PRO
-        Birthday - Pick the apostle/prophet by their birthday and age. - PRO
-        Hometown - Pick by hometown or town they were born in. - PRO
+There are also multiple levels to each group. 
+Face - the original. Pick the right apostle/prophet from 4 images (multiple choice) when given a name.
+Young Face - depictions of the apostles and prophets when they were young (or at least younger). - PRO
+Initial - Name the initial in their name, be it their middle name or their first. - PRO
+Birthday - Pick the apostle/prophet by their birthday and age. - PRO
+Hometown - Pick by hometown or town they were born in. - PRO
 
-        Coming Soon:
-        Who Came First (seniority/order) - Name them in order.
-        Conference Talks - the total number of General Conference messages given to date. 
-        Name that Face – Pick the right name when shown an image
+Coming Soon:
+Who Came First (seniority/order) - Name them in order.
+Conference Talks - the total number of General Conference messages given to date. 
+Name that Face – Pick the right name when shown an image
 
-        Containing the First Presidency: 
-                President Thomas S. Monson (President)
-                President Henry B. Eyring (First Counselor) 
-                President Dieter F. Uchtdorf (Second Counselor)
+Containing the First Presidency: 
+        President Thomas S. Monson (President)
+        President Henry B. Eyring (First Counselor) 
+        President Dieter F. Uchtdorf (Second Counselor)
 
-        The Quorum of the Twelve Aposltes: 
-                Boyd K. Packer (President)
-                L. Tom Perry
-                Russell M. Nelson
-                Dallin H. Oaks
-                M. Russell Ballard
-                Richard G. Scott
-                Robert D. Hales
-                Jeffrey R. Holland
-                David A. Bednar
-                Quentin L. Cook
-                D. Todd Christofferson
-                Neil L. Andersen
+The Quorum of the Twelve Aposltes: 
+        Boyd K. Packer (President)
+        L. Tom Perry
+        Russell M. Nelson
+        Dallin H. Oaks
+        M. Russell Ballard
+        Richard G. Scott
+        Robert D. Hales
+        Jeffrey R. Holland
+        David A. Bednar
+        Quentin L. Cook
+        D. Todd Christofferson
+        Neil L. Andersen
 
-        Also all the Latter-Day Prophets of the Restoration:
-                Joseph Smith
-                Brigham Young
-                John Taylor
-                Wilford Woodruff
-                Lorenzo Snow
-                Joseph F. Smith
-                Heber J. Grant
-                George Albert Smith
-                David O. McKay
-                Joseph Fielding Smith
-                Harold B. Lee
-                Spencer W. Kimball
-                Ezra Taft Benson
-                Howard W. Hunter
-                Gordon B. Hinckley
-                Thomas S. Monson
+Also all the Latter-Day Prophets of the Restoration:
+        Joseph Smith
+        Brigham Young
+        John Taylor
+        Wilford Woodruff
+        Lorenzo Snow
+        Joseph F. Smith
+        Heber J. Grant
+        George Albert Smith
+        David O. McKay
+        Joseph Fielding Smith
+        Harold B. Lee
+        Spencer W. Kimball
+        Ezra Taft Benson
+        Howard W. Hunter
+        Gordon B. Hinckley
+        Thomas S. Monson
 
-        Master the faces, names and details of these great men, and then, try to beat your score and time.
+Master the faces, names and details of these great men, and then, try to beat your score and time.
 
-        Now supporting English and French.
+Now supporting English and French.
 
-        These leaders are according to The Church of Jesus Christ of Latter-Day Saints. This app is not connected with the church other than aiming to uplift it's members.
+These leaders are according to The Church of Jesus Christ of Latter-Day Saints. This app is not connected with the church other than aiming to uplift it's members.
     </description>
 
     <author href="http://circlecube.com" email="evan@circlecube.com">
         Evan Mullins 
     </author>
     <gap:platform name="android" />
+    <gap:platform name="ios" />
     <preference name="android-minSdkVersion" value="11" />
     <preference name="android-targetSdkVersion" value="19" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="com.adobe.plugins.gaplugin" />
-    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="phonegap-version" value="3.7.0" />
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
-    <icon src="icon-large.png" width="512" height="512" density="mdpi" />
-    <icon src="icon.png" width="64" height="64" density="mdpi" />
     <preference name="permissions" value="none"/>
+    
+    <icon src="res/icon-large.png" width="512" height="512" />
+    <icon src="res/icon.png" width="64" height="64" />
+    
+    <!-- Androind -->
+    <icon src="res/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
+    <icon src="res/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
+    <icon src="res/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
+    <icon src="res/android/xxhdpi.png" gap:platform="android" gap:qualifier="xxhdpi" />
+    <icon src="res/android/xxxhdpi.png" gap:platform="android" gap:qualifier="xxxhdpi" />
+    
+    <!-- iOS -->
+    <icon src="res/ios/Icon-57.png" gap:platform="ios" width="57" height="57" />
+    <icon src="res/ios/Icon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="res/icon-1024.png" gap:platform="ios" width="1024" height="1024" />
+    <!-- iPhone 6 / 6+ -->
+    <icon src="res/ios/Icon-60@3x.png" gap:platform="ios" width="180" height="180" />
+    <!-- iPhone / iPod Touch  -->
+    <icon src="res/ios/Icon-60.png" gap:platform="ios" width="60" height="60" />
+    <icon src="res/ios/Icon-60@2x.png" gap:platform="ios" width="120" height="120" />
+    <!-- iPad -->
+    <icon src="res/ios/Icon-76.png" gap:platform="ios" width="76" height="76" />
+    <icon src="res/ios/Icon-76@2x.png" gap:platform="ios" width="152" height="152" />
+    <!-- Settings Icon -->
+    <icon src="res/ios/Icon-Small.png" gap:platform="ios" width="29" height="29" />
+    <icon src="res/ios/Icon-Small@2x.png" gap:platform="ios" width="58" height="58" />
+    <icon src="res/ios/Icon-Small@3x.png" gap:platform="ios" width="87" height="87" />
+    <!-- Spotlight Icon -->
+    <icon src="res/ios/Icon-40.png" gap:platform="ios" width="40" height="40" />
+    <icon src="res/ios/Icon-40@2x.png" gap:platform="ios" width="80" height="80" />
+    
 </widget>
 <!--
 	update description first line - 
-		
-		LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquiz">Test the free version first!</a>.
-		
-		LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
+
+LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquiz">Test the free version first!</a>.
+
+LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
+
     update id - ldsquizpro - ldsquiz
     update name - LDS Prophets and Apostles - LDS Prophets and Apostles Lite
     update icon - icon-large.png - icon-large-lite.png
@@ -102,5 +133,16 @@
 	main.js
     free_version - false - true
     
-    ldsquiz.keystore
+    android: ldsquiz.keystore
+    ios: ldsquizpro
+    
+    
+    
+    
+    Bundle ID- The bundle ID must match the one you used in Xcode. It can't be changed after you submit your first build.
+    com.circlecube.ldsquizpro
+    Apple ID- An automatically generated ID assigned to your app.
+    971859234
+    SKU- A unique ID for your app that is not visible on the App Store.
+    com.circlecube.ldsquizpro
 -->

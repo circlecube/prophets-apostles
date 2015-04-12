@@ -230,11 +230,11 @@ textarea {
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
-
+/*
 @media only screen and (min-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
 }
-
+/*
 @media print,
        (-o-min-device-pixel-ratio: 5/4),
        (-webkit-min-device-pixel-ratio: 1.25),
@@ -695,8 +695,15 @@ body.font-small {
 .list_img{
 
 }
-
-.share_button {
+.answer_sort{
+	background: none;
+	width: 50%;
+	float: left;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);	
+}
+.share_button,
+.answer_sort {
     font-size: 22px;
     font-family:'Trajan','Georgia',serif;
     background: #00549d;
@@ -708,4 +715,32 @@ body.font-small {
     text-align:center;
     margin: 2em 10% .5em;
     cursor: pointer;
+}
+
+.sorts {
+	width: 100%;
+	overflow: hidden;
+}
+
+.sort {
+	position: relative;
+	float: left;
+	width: 25%;
+	height: 0;
+	padding-top: 28.5%;
+	cursor: pointer;
+}
+.sort .img {
+	display: block;
+	overflow:hidden;
+	width: 100%;
+	height: 100%;  
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.sort .img img {
+	width: 100%;
+	height: auto;
 }
