@@ -2,8 +2,8 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.circlecube.ldsquizpro"
-        versionCode="540" 
-        version   = "0.5.4">
+        versionCode="600" 
+        version   = "0.6.0">
 
     <name>LDS Prophets and Apostles Pro</name>
 
