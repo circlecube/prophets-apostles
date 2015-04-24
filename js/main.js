@@ -114,6 +114,7 @@ var langs = {
 		quiz: "Quiz",
 		list: "List All",
 		share: "Share",
+		rate: "Rate",
 		settings: "Settings",
 		quiz_settings: "Quiz Settings",
 		quiz_subject: "Quiz Subject",
@@ -123,6 +124,8 @@ var langs = {
 		you_know: "You know",
 		left: "left",
 		share_your_score: "Share Your Score",
+		rate_app: "Rate this App",
+		submit: "Submit",
 		hometown: "Hometown",
 		bday: "Birthday",
 		initial: "Initial",
@@ -163,6 +166,7 @@ var langs = {
 		quiz: "Quiz",
 		list: "Liste Complète",
 		share: "Partager",
+		rate: "Donner Votre Avis",
 		settings: "Paramètres",
 		quiz_settings: "Quiz Paramètres",
 		quiz_subject: "Quiz Sujet",
@@ -172,6 +176,8 @@ var langs = {
 		you_know: "Vous connissez",
 		left: "qui rest",
 		share_your_score: "Partagez votre score",
+		rate_app: "Donner Votre Avis",
+		submit: "Soumettre",
 		hometown: "Ville natale",
 		bday: "Anniversaire",
 		initial: "Initiale",
@@ -222,19 +228,27 @@ if (active_team == current_leaders ) {
 var list_player;
 var list_player_template;
 
-var devicePlatform = 'Android';
-// var devicePlatform = 'iOS';
-if (typeof( device ) !== 'undefined') {
-	devicePlatform = device.platform;
-}
 // var devicePlatform = device.platform;
-var android_android_link = 'market://details?id=com.circlecube.ldsquizpro';
-var android_web_link = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
-var ios_ios_link = 'https://appstore.com/lds-prophets-and-apostles';
-var ios_web_link = 'https://appstore.com/lds-prophets-and-apostles';
-var store_link = android_android_link;
-var web_link = 'https://ldsmormonapps.com/app/lds-prophets-apostles-pro/';
+var devicePlatform = 'Android';
 
+var android_android_link = 'market://details?id=com.circlecube.ldsquizpro';
+var android_android_link_free = 'market://details?id=com.circlecube.ldsquiz';
+var android_web_link = 'https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro';
+var android_android_rate_link = '';
+
+var amazon_android_link = 'http://www.amazon.com/Evan-Mullins-LDS-Prophets-Apostles/dp/B00UUPSG2E/';
+var amazon_web_link = 'http://www.amazon.com/Evan-Mullins-LDS-Prophets-Apostles/dp/B00UUPSG2E/';
+var amazon_android_rate_link = 'https://www.amazon.com/review/create-review?ie=UTF8&asin=B00UUPSG2E';
+
+var ios_ios_link = 'itms-apps://itunes.apple.com/app/id971859234';
+var ios_web_link = 'https://itunes.apple.com/us/app/lds-prophets-and-apostles-pro/id971859234';
+var ios_ios_rate_link = 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=971859234&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8';
+
+var web_link = 'https://ldsmormonapps.com/app/lds-prophets-apostles-pro/';
+var web_link_free = 'https://ldsmormonapps.com/app/lds-prophets-apostles-lite/';
+
+var store_link = android_android_link;
+var rate_link = android_android_link;
 
 jQuery(document).ready(function($) {
 	
@@ -246,28 +260,39 @@ var $draggable;
 		document.addEventListener("menubutton", onMenuKeyDown, false);
 		document.addEventListener("backbutton", onBackKeyDown, false);
 		
-
-		
-		if (free_version) {
-			update_free();
-		}
-		
 		//platform check
+		if ( typeof( device ) !== 'undefined' ) {
+			devicePlatform = device.platform;
+		}
+		// var devicePlatform = 'iOS';
+		// var devicePlatform = 'Amazon Fire OS';
+		
 		if (devicePlatform == 'Android') {
 			//update links to point to play market
-			store_link = android_android_link;
-			// web_link = android_web_link;
+			if (free_version) {
+				rate_link = store_link = android_android_link_free;
+			}
+			else {
+				rate_link = store_link = android_android_link;
+			}
+			
+		}
+		else if (devicePlatform == 'Amazon Fire OS') {
+			//update links to point to amazon store
+			store_link = amazon_android_link;
+			rate_link = amazon_android_rate_link;
 		}
 		else if (devicePlatform == 'iOS') {
 			//update links to point to itunes store
+			store_link = ios_ios_link;
+			rate_link = ios_ios_rate_link;
 			
 			//remove more apps - in the future update apps with links to itunes apps
 			$('.more_apps').parent('li').remove();
 			
-			//update share links
-			store_link = ios_ios_link;
-			// web_link = ios_web_link;
-			
+		}
+		if (free_version) {
+			update_free();
 		}
 		
 		//get local storage settings
@@ -275,8 +300,20 @@ var $draggable;
 			language = localStorage.language;
 		}
 		
+		$('.rate').attr( 'href', rate_link );
+
 		update_language();
 
+		
+		$('#mmenu').mmenu({
+			slidingSubmenus: false,
+			onClick: {
+				setSeleted: false,
+				preventDefault: null,
+				close: true
+			}
+		});
+		
 		if (localStorage.activity_log){
 			activity_log = JSON.parse(localStorage.activity_log);
 		}
@@ -340,6 +377,7 @@ var $draggable;
 
 		$('.list_all').text(	langs[language].list );
 		$('.share').text(		langs[language].share );
+		$('.rate').text(		langs[language].rate );
 		$('.settings').text(	langs[language].settings );
 
 		$('.subject').text( 			langs[language].quiz_subject );
@@ -373,6 +411,7 @@ var $draggable;
 	}	
 
 	function update_free(){
+		
 		levels = levels_free;
 		set_levels();
 		//set attributes/classes on top level quiz
@@ -384,7 +423,7 @@ var $draggable;
 		// $('.quiz .mm-subopen').remove();
 
 		//add upgrade link
-		$('.menu .share').parent().after('<li><a href="' + store_link + '" class="about">' + langs[language].upgrade + '</a></li>');
+		$('.menu .share').parent().after('<li><a href="' + web_link + '" class="about">' + langs[language].upgrade + '</a></li>');
 		//remove list all link
 		// $('.list_all').parent().remove();
 		
@@ -426,17 +465,8 @@ var $draggable;
 
 	function onBackKeyDown() {
 	    // Handle the back button
-	    // do nothing
+	    $('.menu-toggle').trigger('click');
 	}
-
-	$('#mmenu').mmenu({
-		slidingSubmenus: false,
-		onClick: {
-			setSeleted: false,
-			preventDefault: null,
-			close: true
-		}
-	});
 
 	function game_players(){
 		$('.score').html('');
@@ -655,7 +685,7 @@ var $draggable;
 	                sorts += '<div class="sort" data-id="' + i + '" data-name="' + group[i].name + '" data-order="' + group[i].order + '"><span class="img"><img src="img/' + group[i].img + '" /></span></div>';
 	            }
 	            $('.content').html( sorts + '</div>');
-	            $('.content').append('<div class="answer answer_sort">Submit</div>');
+	            $('.content').append('<div class="answer answer_sort">' + langs[language].submit + '</div>');
 	            
 	            $draggable = $('.sort').draggabilly({
 	            	containment: '.sorts'
@@ -796,7 +826,7 @@ var $draggable;
         		sorted++;
         	}
       	});
-      	console.log(sorted);
+      	// console.log(sorted);
       	return(sorted);
     }
 
@@ -819,7 +849,8 @@ var $draggable;
 				score_percent = parseInt(num_correct / (num_total+1)*100 );
 				$('.answer').remove();
 				$('.score').append('<div class="share_button" data-score="' + score_percent + '">' + langs[language].share_your_score + '!</div>');
-				$('.score').append('<br />Play another level?');
+				$('.score').append('<a class="rate_button" href="' + rate_link + '">' + langs[language].rate_app + '</a>');
+				$('.score').append('<div class="play_another_level_button">' + langs[language].play_another_level + '?</div>');
 
 			}
 			else {
@@ -882,7 +913,7 @@ var $draggable;
 		        num_correct = 0;
 		        is_correct = false;
 		        quiz_counter = 0;
-		        $('.score').append('<br />' + langs[language].play_another_level + '?');
+		        $('.score').append('<div class="play_another_level_button">' + langs[language].play_another_level + '?</div>');
 		        
 		        $('.content').html('');
 		    }
@@ -923,6 +954,9 @@ var $draggable;
 		    //share
 		    score_percent = parseInt(num_correct / (num_total+1)*100 );
 		    $('.score').append('<div class="share_button" data-score="' + score_percent + '">' + langs[language].share_your_score + '!</div>');
+		    $('.score').append('<a class="rate_button" href="' + rate_link + '">' + langs[language].rate_app + '</a>');
+		    $('.score').append('<div class="play_another_level_button">' + langs[language].play_another_level + '?</div>');
+
 
 		    num_total++;
 
@@ -981,7 +1015,7 @@ var $draggable;
 		        num_total = -1;
 		        num_correct = 0;
 		        is_correct = false;
-		        $('.score').append('<br />Play another level?');
+		        $('.score').append('<div class="play_another_level_button">' + langs[language].play_another_level + '?</div>');
 		        
 		        $('.content').html('');
 		    }
@@ -1024,6 +1058,8 @@ var $draggable;
 			    //share
 			    score_percent = parseInt(num_correct / (num_total+1)*100 );
 			    $('.score').append('<div class="share_button" data-score="' + score_percent + '">' + langs[language].share_your_score + '!</div>');
+			    $('.score').append('<a class="rate_button" href="' + rate_link + '">' + langs[language].rate_app + '</a>');
+			    $('.score').append('<div class="play_another_level_button">' + langs[language].play_another_level + '?</div>');
 
 			    num_total++;
 
@@ -1047,20 +1083,14 @@ var $draggable;
 	$('.list_all').on('click touch', function(e){
 		list_players();
 	});
-	$('body').on('touchstart', function(){
-		// commented for browser dev only??
-		//touching = true;
-	});
-	$('body').on('touchend', function(){
-		touching = false;
-	});
+	
 	$('.quiz').on('click touch', '.quiz', function(e){
 		//set level
 		$('.quiz .quiz').parent().removeClass('active');
 		$(this).parent().addClass('active');
 		level = $(this).data('index');
 		localStorage.level = level;
-		// console.log(level, levels[level][0]);
+		// console.log(level, levels[level][0]);		
 		game_players();
 	});
 	$('.mode').on('click touch', function(e){
@@ -1135,6 +1165,18 @@ var $draggable;
 		});
 	
 	});
+	
+	$('.score').on('click touch', '.play_another_level_button', function(e){
+		
+		$('.menu-toggle').trigger('click');
+		if ( !$('#mmenu > ul > .quiz').hasClass('mm-opened') ) {
+			console.log('trace');
+			$('#mmenu .quiz .mm-subopen').trigger('click');
+		}
+		
+		
+	});
+	
 	$('.content').on('click touch', '.button_skip', function(e){
 		game_players();
 	});
