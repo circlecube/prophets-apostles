@@ -2,8 +2,8 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.circlecube.ldsquizpro"
-        versionCode="600" 
-        version   = "0.6.0">
+        versionCode="620" 
+        version   = "0.6.2">
 
     <name>LDS Prophets and Apostles Pro</name>
 
@@ -21,13 +21,19 @@ There are also multiple levels to each group.
 Face - the original. Pick the right apostle/prophet from 4 images (multiple choice) when given a name.
 Young Face - depictions of the apostles and prophets when they were young (or at least younger). - PRO
 Initial - Name the initial in their name, be it their middle name or their first. - PRO
-Birthday - Pick the apostle/prophet by their birthday and age. - PRO
 Hometown - Pick by hometown or town they were born in. - PRO
+Birthday - Pick the apostle/prophet by their birthday and age. - PRO
+Seniority - Pick the leader by seniority. - PRO
+Sort - Arrange leaders in order of seniority (Drag and drop). - PRO
+Biography - Pick the leader based on a collection of information as their biography. - PRO
+Conference Talks - Pick the leader based on how many conference talks they have given. - PRO
+Mission Service - Pick leader based on their mission service. - PRO
+Military Service - Pick leader based on their military service and rank. - PRO
+Education - Pick leader based on their formal schooling. - PRO
+Profession - Pick the leader based on their professional career. - PRO
+Reason Called - Pick the leader based on the reason for the vacancy they were called to fill. - PRO
+Age Called - Pick the leader based on their age at time they were called. - PRO
 
-Coming Soon:
-Who Came First (seniority/order) - Name them in order.
-Conference Talks - the total number of General Conference messages given to date. 
-Name that Face – Pick the right name when shown an image
 
 Containing the First Presidency: 
         President Thomas S. Monson (President)

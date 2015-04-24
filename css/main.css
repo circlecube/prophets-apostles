@@ -703,13 +703,15 @@ body.font-small {
     transform: scaleX(1);	
 }
 .share_button,
+.rate_button,
+.play_another_level_button,
 .answer_sort {
     font-size: 22px;
     font-family:'Trajan','Georgia',serif;
     background: #00549d;
     color: #fff;
     border-radius: 6px;
-    display:block;
+    display: block;
     padding: 10px 20px;
     text-decoration: none;
     text-align:center;
