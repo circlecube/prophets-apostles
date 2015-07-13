@@ -1129,18 +1129,33 @@ members={
 	1998:
 	{membership:10354241,change:282458,growth:2.8},
 	1999:
-	{membership:10752986,change:398745,growth:3.85},2000:
-	{membership:11068861,change:315875,growth:2.94},2001:
-	{membership:11394522,change:325661,growth:2.94},2002:
-	{membership:11721548,change:327026,growth:2.87},2003:
-	{membership:11985254,change:263706,growth:2.25},2004:
-	{membership:12275822,change:290568,growth:2.42},2005:
-	{membership:12560869,change:285047,growth:2.32},2006:
-	{membership:12868606,change:307737,growth:2.45},2007:
-	{membership:13193999,change:325393,growth:2.53},2008:
-	{membership:13508509,change:314510,growth:2.38},2009:
-	{membership:13824854,change:316345,growth:2.34},2010:
-	{membership:14131467,change:306613,growth:2.22},2011:
-	{membership:14441346,change:309879,growth:2.19},2012:
-	{membership:14782473,change:341127,growth:2.31},2013:
-	{membership:14782473}};
+	{membership:10752986,change:398745,growth:3.85},
+	2000:
+	{membership:11068861,change:315875,growth:2.94},
+	2001:
+	{membership:11394522,change:325661,growth:2.94},
+	2002:
+	{membership:11721548,change:327026,growth:2.87},
+	2003:
+	{membership:11985254,change:263706,growth:2.25},
+	2004:
+	{membership:12275822,change:290568,growth:2.42},
+	2005:
+	{membership:12560869,change:285047,growth:2.32},
+	2006:
+	{membership:12868606,change:307737,growth:2.45},
+	2007:
+	{membership:13193999,change:325393,growth:2.53},
+	2008:
+	{membership:13508509,change:314510,growth:2.38},
+	2009:
+	{membership:13824854,change:316345,growth:2.34},
+	2010:
+	{membership:14131467,change:306613,growth:2.22},
+	2011:
+	{membership:14441346,change:309879,growth:2.19},
+	2012:
+	{membership:14782473,change:341127,growth:2.31},
+	2013:
+	{membership:14782473}
+};
