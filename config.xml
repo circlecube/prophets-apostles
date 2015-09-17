@@ -2,8 +2,8 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.circlecube.ldsquizpro"
-        versionCode="620" 
-        version   = "0.6.2">
+        versionCode="700" 
+        version   = "0.7.0">
 
     <name>LDS Prophets and Apostles Pro</name>
 
@@ -24,7 +24,6 @@ Initial - Name the initial in their name, be it their middle name or their first
 Hometown - Pick by hometown or town they were born in. - PRO
 Birthday - Pick the apostle/prophet by their birthday and age. - PRO
 Seniority - Pick the leader by seniority. - PRO
-Sort - Arrange leaders in order of seniority (Drag and drop). - PRO
 Biography - Pick the leader based on a collection of information as their biography. - PRO
 Conference Talks - Pick the leader based on how many conference talks they have given. - PRO
 Mission Service - Pick leader based on their mission service. - PRO
@@ -41,9 +40,7 @@ Containing the First Presidency:
         President Dieter F. Uchtdorf (Second Counselor)
 
 The Quorum of the Twelve Aposltes: 
-        Boyd K. Packer (President)
-        L. Tom Perry
-        Russell M. Nelson
+        Russell M. Nelson (President)
         Dallin H. Oaks
         M. Russell Ballard
         Richard G. Scott
@@ -54,7 +51,7 @@ The Quorum of the Twelve Aposltes:
         D. Todd Christofferson
         Neil L. Andersen
 
-Also all the Latter-Day Prophets of the Restoration:
+All the Latter-Day Prophets of the Restoration:
         Joseph Smith
         Brigham Young
         John Taylor
@@ -71,6 +68,8 @@ Also all the Latter-Day Prophets of the Restoration:
         Howard W. Hunter
         Gordon B. Hinckley
         Thomas S. Monson
+
+Also every Apostle called since the restoration!
 
 Master the faces, names and details of these great men, and then, try to beat your score and time.
 
