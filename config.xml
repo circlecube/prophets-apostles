@@ -87,7 +87,7 @@ These leaders are according to The Church of Jesus Christ of Latter-Day Saints. 
     <preference name="android-targetSdkVersion" value="19" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="com.adobe.plugins.gaplugin" />
-    <preference name="phonegap-version" value="3.7.0" />
+    <preference name="phonegap-version" value="cli-5.1.1" />
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
     <preference name="permissions" value="none"/>
