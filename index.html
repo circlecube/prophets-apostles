@@ -80,13 +80,15 @@
 
         <script id="list_player" type="text/x-handlebars-template">
             <article class='answer list' >
-                <img class="list_img" src='img/{{player.img}}'>
+                <img class="list_img" src='{{player.img}}'>
                 <p class="label">{{player.name}}</p>
-                <img class="list_img2" src='img/{{player.img_young}}'>
+                {{#if player.img_young}}<img class="list_img2" src='{{player.img_young}}'>{{/if}}
                 <p class="stats question_bio">
                 {{player.first_name}} {{player.middle_name}} {{player.last_name}}
                 {{#if player.position}}, {{player.position}}{{/if}} 
-                ({{#unless player.deathdate}}{{player.age}}, {{/unless}}{{player.birthdate}}), 
+                ({{player.birthdate}} 
+                	{{#if player.deathdate}} - {{player.deathdate}}{{/if}}
+                	{{#if player.age}}, {{player.age}}{{/if}}), 
                 ordained on {{player.ordained_date}} &amp; 
                 from {{player.hometown}}. 
                 {{#if player.mission}} Served mission(s) in {{player.mission}}. {{/if}}
@@ -94,7 +96,7 @@
                 {{#if player.education}} {{player.education}}. {{/if}}
                 {{#if player.profession}} {{player.profession}}. {{/if}}
                 {{#if player.reason_called}} Called after the {{player.reason_called}}. {{/if}}
-                {{#if player.conference_talks}} Given a total of {{player.conference_talks}} conference talks. {{/if}}
+                {{#if player.conference_talks}} A total of {{player.conference_talks}} conference talks. {{/if}}
                 </p>
                 <p class="question_bio">{{player.bio}}</p>
             </article>
