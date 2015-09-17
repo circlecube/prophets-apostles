@@ -1,7 +1,15 @@
 if (!window.console) console = {log: function() {}};
 /*
 
+calculate age on leaders.
+toggle levels depending on quiz subject
+
 */
+var current_leaders = [];
+var latter_day_prophets = [];
+var groups = [];
+var group = '';
+
 var gaPlugin;
 var activity_log = [];
 var completed = [];
@@ -44,10 +52,10 @@ var levels_pro = [
     	slug:'seniority',
     	data:'sitemap'
     },
-    {
-    	slug:'sort',
-    	data:'arrows'
-    },
+    // {
+    // 	slug:'sort',
+    // 	data:'arrows'
+    // },
     {
     	// include mission, education, profession and military service
     	slug:'bio',
@@ -78,10 +86,10 @@ var levels_pro = [
     	slug:'reason',
     	data:'asterisk'
     }, 
-    {
-    	slug:'agecalled',
-    	data:'calendar'
-    }
+    // {
+    // 	slug:'agecalled',
+    // 	data:'calendar'
+    // }
 ];
 var levels_free = [
     {
@@ -96,10 +104,10 @@ var levels_free = [
     	slug:'seniority',
     	data:'sitemap'
     },
-    {
-    	slug:'bio',
-    	data:'newspaper-o' 
-    }
+    // {
+    // 	slug:'bio',
+    // 	data:'newspaper-o' 
+    // }
 ];
 var levels = levels_pro;
 var language = 'english';
@@ -110,6 +118,7 @@ var langs = {
 		language_string: "Language",
 		lds_prophets_apostles: "LDS Prophets & Apostles",
 		current_leaders: "Living Apostles",
+		all_leaders: "Latter-Day Apostles",
 		latter_day_prophets: "Latter-Day Prophets",
 		quiz: "Quiz",
 		list: "List All",
@@ -162,6 +171,7 @@ var langs = {
 		language_string: "Langue",
 		lds_prophets_apostles: "SDJ Prophètes & Apôtres",
 		current_leaders: "Apôtres Vivant",
+		all_leaders: "Dernier Jour Apostles",
 		latter_day_prophets: "Dernier Jour Prophèts",
 		quiz: "Quiz",
 		list: "Liste Complète",
@@ -216,14 +226,8 @@ var end_time = new Date();
 var seconds = 0; // (start_time - end_time)/-1000;
 var delay_time = 900;
 
-var active_team = current_leaders;
-// var active_team = latter_day_prophets;
-var active_team_title;
-if (active_team == current_leaders ) {
-	active_team_title = langs[language].current_leaders;
-} else {
-	active_team_title = langs[language].latter_day_prophets;
-}
+var active_team = leaders;
+var active_team_title = group;
 // console.log(active_team, active_team_title);
 var list_player;
 var list_player_template;
@@ -303,7 +307,6 @@ var $draggable;
 		$('.rate').attr( 'href', rate_link );
 
 		update_language();
-
 		
 		$('#mmenu').mmenu({
 			slidingSubmenus: false,
@@ -327,24 +330,17 @@ var $draggable;
 			$('.mode').parent().removeClass('active');
 			$('.mode[data-mode="'+mode+'"]').parent().addClass('active');
 		}
-		if (localStorage.subject){
-			subject = localStorage.subject;
-			$('.subject').parent().removeClass('active');
-			$('.subject[data-subject="'+subject+'"]').parent().addClass('active');
-			
-			if (subject == 'living'){
-				active_team = current_leaders;
-				active_team_title = langs[language].current_leaders;
-			}
-			else { //past
-				active_team = latter_day_prophets;
-				active_team_title = langs[language].latter_day_prophets;
-			}
-
+		if (localStorage.group) {
+			group = localStorage.group;
+			$('.quiz_group .quiz').parent().removeClass('active');
+			$('.quiz .quiz[data-value="'+group+'"]').parent().addClass('active');
 		}
 
 		set_ages();
 
+		build_groups();
+		update_group();
+		
 		has_class_no_touch = $('html').hasClass('no-touch');
 		//reset log
 		//activity_log = [];
@@ -380,10 +376,6 @@ var $draggable;
 		$('.rate').text(		langs[language].rate );
 		$('.settings').text(	langs[language].settings );
 
-		$('.subject').text( 			langs[language].quiz_subject );
-		$('.subject_living').text( 		langs[language].current_leaders );
-		$('.subject_past').text( 		langs[language].latter_day_prophets );
-
 		$('.mode').text( 			langs[language].quiz_mode );
 		$('.mode_learn').text( 		langs[language].learn_mode );
 		$('.mode_test').text( 		langs[language].test_mode );
@@ -393,11 +385,6 @@ var $draggable;
 		$('.language-french').text( 	langs['french'].language_native );
 		// $('.language-spanish').text( langs['spanish'].language_native );
 		// $('.language-german').text( 	langs['german'].language_native );
-		if (active_team == current_leaders ) {
-			active_team_title = langs[language].current_leaders;
-		} else {
-			active_team_title = langs[language].latter_day_prophets;
-		}
 
 		$('.title').text(	langs[language].lds_prophets_apostles );
 
@@ -428,15 +415,191 @@ var $draggable;
 		// $('.list_all').parent().remove();
 		
 	}
+	function update_group() {
+		//filter out any leaders without a specific value
+		
+		console.log('update_group', levels[level].slug, group);
+		active_team_title = group;
+  		/*
+		  	face
+		  	face2
+			initial
+			hometown
+			bday
+			seniority
+			//sort
+			bio
+			talks
+			mission
+			military
+			education
+			profession
+			reason
+			agecalled
+		*/
+		switch(levels[level].slug) {
+			
+			case 'face2':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img2 != null && 
+							leader.img2 != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+		  		});
+	  			break;
+	  			
+			case 'initial':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.initial != 'none' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+			
+			case 'hometown':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.hometown != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+		
+			case 'bday':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.birthday != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+		
+			case 'seniority':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.ordained_date != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+		
+			case 'talks':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.conference_talks != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+		
+			case 'mission':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.mission != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+		
+			case 'military':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.military != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+		
+			case 'education':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.education != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+		
+			case 'profession':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.profession != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+		
+			case 'reason':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.reason_called != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+		
+			case 'agecalled':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.agecalled != '' && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+				break;
+			
+			default:  //face / default
+				//filter out any leaders without an image
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img!=null && 
+				  			leader.groups.indexOf( group ) > -1;
+				});
+			
+		}
+	}
+	function build_groups(){
+		//get groups from data and build master
+		for ( var i = 0; i < active_team.length; i++ ){
+			// active_team[i].groups += ',All';
+			var player_groups_string = active_team[i].groups;			
+			var player_groups = player_groups_string.split(',');
+			for ( var j = 0; j < player_groups.length; j++ ) {
+				//if not in groups already
+				if ( player_groups[j] !== '' ) {
+					var main_group_index = -1;
+					for( var k = 0; k < groups.length; k++){
+						//match
+						if( player_groups[j] == groups[k][0] ) {
+							main_group_index = k;
+							//increment count
+							groups[k][1]++;
+						}
+					}
+					if ( main_group_index === -1 ) {
+						//add to master groups list
+						// console.log('adding new group', player_groups[j]);
+						var new_group = [player_groups[j], 1];
+						groups.push( new_group );
+					}
+				}
+			}
+		}
+		
+		// console.log(groups);
+		
+		//sort alphabetically
+		groups.sort();
+		
+		// console.log(groups);
+		
+		//build menu item for each group
+		var groups_html = '';
+		for (var i = 0; i < groups.length; i++){
+			//only show near full squads - at least 20 men
+			// if (groups[i][1] >= 20 ) {
+				groups_html += '<li><a href="#" class="quiz quiz_group" data-index="'+i+'" data-value="' + groups[i][0] + '" data-count="' + groups[i][1] + '">' + groups[i][0] + 's</a></li>';
+			// }
+		}
+		$('.quiz_group ul').html(groups_html);
+	}
 	function set_ages(){
-		for ( var i = 0; i < current_leaders.length; i++){
-			current_leaders[i].age = get_age(current_leaders[i].birthdate);
-			current_leaders[i].agecalled = current_leaders[i].age - get_age(current_leaders[i].ordained_date);
+		
+		for ( var i = 0; i < leaders.length; i++){
+			if ( leaders[i].deathdate ) {
+				leaders[i].age = get_age(leaders[i].birthdate) - get_age(leaders[i].deathdate);
+			} else {
+				leaders[i].age = get_age(leaders[i].birthdate);
+			}
+			leaders[i].agecalled = leaders[i].age - get_age(leaders[i].ordained_date);
 		}
-		for ( var i = 0; i < latter_day_prophets.length; i++){
-			latter_day_prophets[i].age = get_age(latter_day_prophets[i].birthdate);
-			latter_day_prophets[i].agecalled = latter_day_prophets[i].age - get_age(latter_day_prophets[i].ordained_date);
-		}
+		
 	}
 	function get_age(dateString) {
 	    var today = new Date();
@@ -634,16 +797,16 @@ var $draggable;
 	        case 'bio':
             	var html = '<h2 data-answer="' + group[answer_index].name + '" class="question question_bio">';
             	html += 'From ' + group[answer_index].hometown + '. ';
-            	if ( group[answer_index].mission != undefined ) {
+            	if ( group[answer_index].mission != '' ) {
             		html += langs[language].mission + ': ' + group[answer_index].mission + '. ';
             	}
-            	if ( group[answer_index].military != undefined ) {
+            	if ( group[answer_index].military != '' ) {
             		html += langs[language].military + ': ' + group[answer_index].military + '. ';
             	}
-            	if ( group[answer_index].education != undefined ) {
+            	if ( group[answer_index].education != '' ) {
             		html += langs[language].education + ': ' + group[answer_index].education + '. ';
             	}
-            	if ( group[answer_index].profession != undefined ) {
+            	if ( group[answer_index].profession != '' ) {
             		html += langs[language].profession + ': ' + group[answer_index].profession + '. ';
             	}
             	html += '</h2>';
@@ -665,13 +828,13 @@ var $draggable;
 	            }
 	          break;
 	        case 'seniority': //order
-	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">Called ' + group[answer_index].ordinal +  '</h2>');
+	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question">Ordained ' + group[answer_index].ordained_date +  '</h2>');
 	            for (var i = 0; i < 4; i++){
 	                $('.content').append(get_answer_div(group,mc_answers,i,0));
 	            }
 	          break;
 	        case 'name': //name
-	            $('.content').html('<div data-answer="' + group[answer_index].name + '" class="question"><span class="img"><img src="img/' + group[answer_index].img + '" alt="guess my name" /></span></div>');
+	            $('.content').html('<div data-answer="' + group[answer_index].name + '" class="question"><span class="img"><img src="' + group[answer_index].img + '" alt="guess my name" /></span></div>');
 	            var answers = '<div class="answers">';
 	            for (var i = 0; i < 4; i++){
 	                answers += get_answer_div(group,mc_answers,i,0);
@@ -682,7 +845,7 @@ var $draggable;
 	            var sorts = '<div class="sorts">';
 	            randomize(group);
 	            for (var i = 0; i < group.length; i++){
-	                sorts += '<div class="sort" data-id="' + i + '" data-name="' + group[i].name + '" data-order="' + group[i].order + '"><span class="img"><img src="img/' + group[i].img + '" /></span></div>';
+	                sorts += '<div class="sort" data-id="' + i + '" data-name="' + group[i].name + '" data-order="' + group[i].order + '"><span class="img"><img src="' + group[i].img + '" /></span></div>';
 	            }
 	            $('.content').html( sorts + '</div>');
 	            $('.content').append('<div class="answer answer_sort">' + langs[language].submit + '</div>');
@@ -735,34 +898,34 @@ var $draggable;
 	            answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '"><p class="answer_' + index + ' label">' + group[mc_answers[index]].name + '</p></div>';
 	          break;
 	        case 'talks': //number
-	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + ' #' + group[mc_answers[index]].conference_talks + '"></div>';
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + ' #' + group[mc_answers[index]].conference_talks + '"></div>';
 	          break;
 	        case 'initial': //initial
-	        	answer_div = '<div data-answer="' + group[mc_answers[index]][group[mc_answers[index]].initial] + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]][group[mc_answers[index]].initial] + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'military':
-	        	answer_div = '<div data-answer="' + group[mc_answers[index]].military + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].military + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'education':
-	        	answer_div = '<div data-answer="' + group[mc_answers[index]].education + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].education + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'mission':
-	        	answer_div = '<div data-answer="' + group[mc_answers[index]].mission + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].mission + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'profession':
-	        	answer_div = '<div data-answer="' + group[mc_answers[index]].profession + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].profession + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'reason':
-	        	answer_div = '<div data-answer="' + group[mc_answers[index]].reason_called + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].reason_called + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'agecalled':
-	        	answer_div = '<div data-answer="' + group[mc_answers[index]].agecalled + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].agecalled + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        case 'face2': //name
-	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img_young + '); background-position:'+ group[mc_answers[index]].img2_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img2 + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
 	        default: //face, bio
-	            answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(img/' + group[mc_answers[index]].img + '); background-position:'+ group[mc_answers[index]].img_pos + ';" data-alt="' + group[mc_answers[index]].name + '"></div>';
+	            answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          //error
 	    }
 	    return answer_div;
@@ -1090,7 +1253,8 @@ var $draggable;
 		$(this).parent().addClass('active');
 		level = $(this).data('index');
 		localStorage.level = level;
-		// console.log(level, levels[level][0]);		
+		// console.log(level, levels[level][0]);
+		update_group();		
 		game_players();
 	});
 	$('.mode').on('click touch', function(e){
@@ -1099,21 +1263,17 @@ var $draggable;
 		mode = $(this).data('mode');
 		localStorage.mode = mode;
 		// console.log('mode set to', mode);
+		update_group();
 		game_players();
 	});
-	$('.subject').on('click touch', function(e){
-		$('.subject').parent().removeClass('active');
+	$('.quiz_group').on('click touch', '.quiz', function(e){
+		//set level
+		$('.quiz_group .quiz').parent().removeClass('active');
 		$(this).parent().addClass('active');
-		subject = $(this).data('subject');
-		localStorage.subject = subject;
-		// console.log('subject set to', subject);
-		if (subject == 'living'){
-			active_team = current_leaders;
-		}
-		else { //past
-			active_team = latter_day_prophets;
-		}
-		active_team_title = langs[language][active_team];
+		group = $(this).data('value');
+		localStorage.group = group;
+		// console.log(group);
+		update_group();
 		game_players();
 	});
 	$('.about').on('click touch', function(e){
