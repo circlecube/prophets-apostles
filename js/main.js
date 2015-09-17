@@ -23,7 +23,7 @@ var num_incorrect = 0;
 var score_percent = 0;
 var level = 0;
 var num_levels = 4;
-var free_version = false;
+var free_version = true;
 var mode = 'learn';// learn/test
 var subject = 'living'; //living/past
 var levels_pro = [
@@ -104,10 +104,10 @@ var levels_free = [
     	slug:'seniority',
     	data:'sitemap'
     },
-    // {
-    // 	slug:'bio',
-    // 	data:'newspaper-o' 
-    // }
+    {
+    	slug:'bio',
+    	data:'newspaper-o' 
+    }
 ];
 var levels = levels_pro;
 var language = 'english';
