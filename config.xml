@@ -88,7 +88,7 @@ These leaders are according to The Church of Jesus Christ of Latter-Day Saints. 
     <gap:plugin name="com.adobe.plugins.gaplugin" />
     <!-- Allow app to load assets from all *.circlecube.com domains -->
 	<access origin="app.circlecube.com" subdomains="true" />
-    <preference name="phonegap-version" value="cli-5.1.1" />
+	<preference name="phonegap-version" value="3.7.0" />
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
     <preference name="permissions" value="none"/>
