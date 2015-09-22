@@ -2,9 +2,8 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.circlecube.ldsquizpro"
-        versionCode="700" 
-        version   = "0.7.0">
-
+        versionCode="710" 
+        version   = "0.7.1">
     <name>LDS Prophets and Apostles Pro</name>
 
 <description>
@@ -87,6 +86,8 @@ These leaders are according to The Church of Jesus Christ of Latter-Day Saints. 
     <preference name="android-targetSdkVersion" value="19" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="com.adobe.plugins.gaplugin" />
+    <!-- Allow app to load assets from all *.circlecube.com domains -->
+	<access origin="https://circlecube.com" subdomains="true" />
     <preference name="phonegap-version" value="cli-5.1.1" />
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
