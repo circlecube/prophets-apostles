@@ -9,6 +9,8 @@ var current_leaders = [];
 var latter_day_prophets = [];
 var groups = [];
 var group = '';
+var served_withs = [];
+var served_with = '';
 
 var gaPlugin;
 var activity_log = [];
@@ -104,10 +106,10 @@ var levels_free = [
     	slug:'seniority',
     	data:'sitemap'
     },
-    // {
-    // 	slug:'bio',
-    // 	data:'newspaper-o' 
-    // }
+    {
+    	slug:'bio',
+    	data:'newspaper-o' 
+    }
 ];
 var levels = levels_pro;
 var language = 'english';
@@ -339,6 +341,7 @@ var $draggable;
 		set_ages();
 
 		build_groups();
+		build_served_withs();
 		update_group();
 		
 		has_class_no_touch = $('html').hasClass('no-touch');
@@ -418,7 +421,7 @@ var $draggable;
 	function update_group() {
 		//filter out any leaders without a specific value
 		
-		console.log('update_group', levels[level].slug, group);
+		console.log('update_group', levels[level].slug, group, served_with);
 		active_team_title = group;
   		/*
 		  	face
@@ -443,7 +446,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img2 != null && 
 							leader.img2 != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 		  		});
 	  			break;
 	  			
@@ -451,7 +455,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.initial != 'none' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 			
@@ -459,7 +464,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.hometown != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 		
@@ -467,7 +473,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.birthday != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 		
@@ -475,7 +482,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.ordained_date != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 		
@@ -483,7 +491,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.conference_talks != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 		
@@ -491,7 +500,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.mission != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 		
@@ -499,7 +509,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.military != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 		
@@ -507,7 +518,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.education != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 		
@@ -515,7 +527,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.profession != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 		
@@ -523,7 +536,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.reason_called != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 		
@@ -531,7 +545,8 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.agecalled != '' && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 				break;
 			
@@ -539,7 +554,8 @@ var $draggable;
 				//filter out any leaders without an image
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img!=null && 
-				  			leader.groups.indexOf( group ) > -1;
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
 				});
 			
 		}
@@ -584,10 +600,55 @@ var $draggable;
 		for (var i = 0; i < groups.length; i++){
 			//only show near full squads - at least 20 men
 			// if (groups[i][1] >= 20 ) {
-				groups_html += '<li><a href="#" class="quiz quiz_group" data-index="'+i+'" data-value="' + groups[i][0] + '" data-count="' + groups[i][1] + '">' + groups[i][0] + 's</a></li>';
+				groups_html += '<li><a href="#" class="quiz group quiz_group" data-index="'+i+'" data-value="' + groups[i][0] + '" data-count="' + groups[i][1] + '">' + groups[i][0] + 's (' + groups[i][1] + ')</a></li>';
 			// }
 		}
-		$('.quiz_group ul').html(groups_html);
+		$('.quiz_group > ul').prepend(groups_html);
+	}
+	function build_served_withs(){
+		//get served_withs from data and build master
+		for ( var i = 0; i < active_team.length; i++ ){
+			var player_served_withs_string = active_team[i].served_with;
+			active_team[i].served_with += ',All';			
+			var player_served_withs = player_served_withs_string.split(',');
+			for ( var j = 0; j < player_served_withs.length; j++ ) {
+				//if not in served_withs already
+				if ( player_served_withs[j] !== '' ) {
+					var main_served_with_index = -1;
+					for( var k = 0; k < served_withs.length; k++){
+						//match
+						if( player_served_withs[j] == served_withs[k][0] ) {
+							main_served_with_index = k;
+							//increment count
+							served_withs[k][1]++;
+						}
+					}
+					if ( main_served_with_index === -1 ) {
+						//add to master served_withs list
+						// console.log('adding new served_with', player_served_withs[j]);
+						var new_served_with = [player_served_withs[j], 1];
+						served_withs.push( new_served_with );
+					}
+				}
+			}
+		}
+		
+		// console.log(served_withs);
+		
+		//sort alphabetically
+		// served_withs.sort();
+		
+		// console.log(served_withs);
+		
+		//build menu item for each served_with
+		var served_withs_html = '';
+		for (var i = 0; i < served_withs.length; i++){
+			//only show near full squads - at least 20 men
+			// if (served_withs[i][1] >= 20 ) {
+				served_withs_html += '<li><a href="#" class="quiz served_with quiz_served_with" data-index="'+i+'" data-value="' + served_withs[i][0] + '" data-count="' + served_withs[i][1] + '">' + served_withs[i][0] + ' (' + served_withs[i][1] + ')</a></li>';
+			// }
+		}
+		$('.quiz_served_with ul').append(served_withs_html);
 	}
 	function set_ages(){
 		
@@ -1266,14 +1327,38 @@ var $draggable;
 		update_group();
 		game_players();
 	});
-	$('.quiz_group').on('click touch', '.quiz', function(e){
+	$('.quiz_group').on('click touch', '.group', function(e){
 		//set level
-		$('.quiz_group .quiz').parent().removeClass('active');
+		$('.quiz_group .group').parent().removeClass('active mm-selected');
 		$(this).parent().addClass('active');
 		group = $(this).data('value');
 		localStorage.group = group;
 		// console.log(group);
+		
+		//reset served_with to all
+		served_with = 'All';
+		$('.quiz_served_with .served_with').parent().removeClass('active');
+		// $('.quiz_group .group[data-value="All"]').parent().addClass('active');
+		
 		update_group();
+		$('.menu-toggle').trigger('click');
+		game_players();
+	});
+	$('.quiz_served_with').on('click touch', '.served_with', function(e){
+		//set level
+		$('.quiz_served_with .served_with').parent().removeClass('active mm-selected');
+		$(this).parent().addClass('active');
+		served_with = $(this).data('value');
+		localStorage.served_with = served_with;
+		// console.log(served_with);
+		
+		//reset group to all
+		group = 'Latter Day Apostle';
+		$('.quiz_group .group').parent().removeClass('active');
+		// $('.quiz_group .group[data-value="Latter Day Apostle"]').parent().addClass('active');
+		
+		update_group();
+		$('.menu-toggle').trigger('click');
 		game_players();
 	});
 	$('.about').on('click touch', function(e){

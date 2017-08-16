@@ -37,10 +37,12 @@
         </li>
         <li class="quiz_group"><a href="#" class="group">Group</a>
             <ul>
-	            <li class="active"><a href="#" class="group group_living" data-group="living">Current Leaders</a></li>
-	            <li><a href="#" class="group group_prophets" data-group="prophets">Latter-Day Prophets</a></li>
-	            <li><a href="#" class="group group_all" data-group="all">All Latter-Day Apostles</a></li>
-	        </ul>
+		        <li class="quiz_served_with"><a href="#" class="served_with">Served With</a>
+		            <ul>
+			            
+			        </ul>
+		        </li>
+		    </ul>
         </li>
         <li><a href="#" class="list_all">List All</a></li>
         <li><a href="#" class="share">Share</a></li>
@@ -78,7 +80,8 @@
 
 
     <div class="content">
-
+		<p style="padding:1rem;">Loading...</p>
+		
         <script id="list_player" type="text/x-handlebars-template">
             <article class='answer list' >
                 <img class="list_img" src='{{player.img}}'>
@@ -116,7 +119,7 @@
         <script type="text/javascript" src="js/vendor/mmenu-4.5.7/source/jquery.mmenu.min.js"></script>
         <script type="text/javascript" src="js/vendor/packery.pkgd.min.js"></script>
         <script type="text/javascript" src="js/vendor/draggabilly.pkgd.min.js"></script>
-        <script type="text/javascript" src="https://app.circlecube.com/lds-prophets/json/"></script>
+        <script type="text/javascript" src="https://circlecube.com/lds-prophets/wp-json/lds-leaders/v1/all-leaders"></script>
         <!-- <script type="text/javascript" src="js/roster.js"></script> -->
         <script type="text/javascript" src="js/main.js"></script>
 

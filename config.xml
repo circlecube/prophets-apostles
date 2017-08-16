@@ -2,9 +2,8 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.circlecube.ldsquizpro"
-        versionCode="700" 
-        version   = "0.7.0">
-
+        versionCode="900" 
+        version   = "0.9.0">
     <name>LDS Prophets and Apostles Pro</name>
 
 <description>
@@ -78,20 +77,23 @@ Now supporting English and French.
 These leaders are according to The Church of Jesus Christ of Latter-Day Saints. This app is not connected with the church other than aiming to uplift it's members.
     </description>
 
-    <author href="http://circlecube.com" email="evan@circlecube.com">
+    
+    <author href="https://circlecube.com" email="evan@circlecube.com">
         Evan Mullins 
     </author>
     <gap:platform name="android" />
     <gap:platform name="ios" />
-    <preference name="android-minSdkVersion" value="11" />
-    <preference name="android-targetSdkVersion" value="19" />
-    <gap:plugin name="nl.x-services.plugins.socialsharing" />
-    <gap:plugin name="com.adobe.plugins.gaplugin" />
-    <preference name="phonegap-version" value="3.7.0" />
+
+    <access origin="*" />
+
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+    <gap:plugin name="com.cmackay.plugins.googleanalytics" source="npm" />
+
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
     <preference name="permissions" value="none"/>
-    
+   
     <icon src="res/icon-large.png" width="512" height="512" />
     <icon src="res/icon.png" width="64" height="64" />
     
