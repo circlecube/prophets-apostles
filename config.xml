@@ -4,7 +4,7 @@
         id        = "com.circlecube.ldsquiz"
         versionCode="1000" 
         version   = "1.0.0">
-    <name>LDS Prophets and Apostles</name>
+    <name>LDS Prophets and Apostles Lite</name>
 
 <description>
 LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
@@ -95,7 +95,7 @@ These leaders are according to The Church of Jesus Christ of Latter-Day Saints. 
     <preference name="fullscreen" value="true" />
     <preference name="permissions" value="none"/>
    
-    <icon src="icon-lite.png" width="64" height="64" />
+    <icon src="res/icon-lite.png" width="64" height="64" />
     <icon src="res/icon-large-lite.png" width="512" height="512" />
     <icon src="res/icon-1024.png" width="1024" height="1024" />
     
