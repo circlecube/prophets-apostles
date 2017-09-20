@@ -7,6 +7,7 @@ toggle levels depending on quiz subject
 */
 var current_leaders = [];
 var latter_day_prophets = [];
+var leaders;
 var groups = [];
 var group = '';
 var served_withs = [];
@@ -262,6 +263,52 @@ var $sorts;
 var $draggable;
 
 	function init(){
+
+		// load json data via ajax
+		var reload_data_from_json = false;
+		// load data if it's not stored locally
+		// or if it's older than the expiration
+		// consolelog( localStorage.json_data, localStorage.expiration_time, start_time );
+		if ( !localStorage.getItem( 'json_data' ) || 
+			 start_time > localStorage.getItem( 'expiration_time' ) ||
+			 reload_data_from_json ) {
+
+			consolelog( 'loading new json data');
+
+			$.ajax({
+			  url: 'https://circlecube.com/lds-prophets/wp-json/lds-leaders/v1/all-leaders',
+			  cache: false,
+			  dataType: 'json',
+			  error: function ( jqXHR, textStatus, errorThrown ) {
+			  	for (key in jqXHR) {
+			  		//consolelog(key + ":" + jqxhr[key]);
+			  	}
+				//consolelog(textStatus);
+				consolelog(errorThrown);
+			  },
+			  success: function ( data ) {
+
+			  	//set expiration time
+			  	var expiration_length = 30; //5 days
+			  	var expiration_time = new Date();
+			  	expiration_time.setDate( start_time.getDate() + expiration_length );
+
+
+			  	localStorage.setItem( 'json_data', JSON.stringify(data) );
+			  	localStorage.setItem( 'expiration_time', expiration_time );
+			  	
+			  	consolelog('processing data ' + timer(start_time));
+			    //send json response to setup function
+			    setup(data);
+			  },
+			});
+
+		} else {
+			consolelog( 'loading existing json data');
+			setup( JSON.parse( localStorage.getItem( 'json_data' ) ) );
+		}
+
+
 		document.addEventListener("deviceready", onDeviceReady, false);
 		document.addEventListener("menubutton", onMenuKeyDown, false);
 		document.addEventListener("backbutton", onBackKeyDown, false);
@@ -297,6 +344,14 @@ var $draggable;
 			$('.more_apps').parent('li').remove();
 			
 		}
+	}
+
+	function setup(json){
+
+		leaders = json;
+
+		active_team = leaders;
+
 		if (free_version) {
 			update_free();
 		}
@@ -1495,6 +1550,18 @@ var $draggable;
       }
       return r;
     }
+
+    function timer(time){
+    	var now = new Date();
+    	// consolelog( (now-time)/1000 + 's' );
+    	return (now-time)/1000 + 's';
+    }
+
+    function consolelog(msg){
+    	//alert(msg);
+    	console.log(msg);
+    }
+
 
 
 	init();
