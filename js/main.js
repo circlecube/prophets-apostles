@@ -251,11 +251,13 @@ var ios_ios_link = 'itms-apps://itunes.apple.com/app/id971859234';
 var ios_web_link = 'https://itunes.apple.com/us/app/lds-prophets-and-apostles-pro/id971859234';
 var ios_ios_rate_link = 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=971859234&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8';
 
-var web_link = 'https://ldsmormonapps.com/app/lds-prophets-apostles-pro/';
-var web_link_free = 'https://ldsmormonapps.com/app/lds-prophets-apostles-lite/';
+var web_link = 'https://ldsmormonapps.com/apps/lds-prophets-apostles-pro/';
+var web_link_free = 'https://ldsmormonapps.com/apps/lds-prophets-apostles-lite/';
 
 var store_link = android_android_link;
 var rate_link = android_android_link;
+
+var api_endpoint = 'https://circlecube.com/lds-prophets/wp-json/lds-leaders/v1/all-leaders';
 
 jQuery(document).ready(function($) {
 	
@@ -276,7 +278,7 @@ var $draggable;
 			consolelog( 'loading new json data');
 
 			$.ajax({
-			  url: 'https://circlecube.com/lds-prophets/wp-json/lds-leaders/v1/all-leaders',
+			  url: api_endpoint,
 			  cache: false,
 			  dataType: 'json',
 			  error: function ( jqXHR, textStatus, errorThrown ) {
