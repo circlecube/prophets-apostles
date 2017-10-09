@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.circlecube.ldsquiz"
+        id        = "com.circlecube.ldsquizpro"
         versionCode="1020" 
         version   = "1.0.2">
-    <name>LDS Prophets and Apostles Lite</name>
+    <name>LDS Prophets and Apostles</name>
 
 <description>
-LDS Quiz will test your knowledge of and teach you about the apostles and prophets. <a href="https://play.google.com/store/apps/details?id=com.circlecube.ldsquizpro">Upgrade to the pro version for more levels!</a>.
+LDS Quiz will test your knowledge of and teach you about the apostles and prophets. 
 
 Do you know your LDS Church leaders? This quiz will not only test your knowledge, but teach you about the respected apostles and prophets we follow.
 
@@ -95,8 +95,8 @@ These leaders are according to The Church of Jesus Christ of Latter-Day Saints. 
     <preference name="fullscreen" value="true" />
     <preference name="permissions" value="none"/>
    
-    <icon src="res/icon-lite.png" width="64" height="64" />
-    <icon src="res/icon-large-lite.png" width="512" height="512" />
+    <icon src="res/icon.png" width="64" height="64" />
+    <icon src="res/icon-large.png" width="512" height="512" />
     <icon src="res/icon-1024.png" width="1024" height="1024" />
     
     <!-- Androind -->
