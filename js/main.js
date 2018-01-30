@@ -4,7 +4,7 @@ calculate age on leaders.
 toggle levels depending on quiz subject
 
 */
-var free_version = true;
+var free_version = false;
 var current_leaders = [];
 var latter_day_prophets = [];
 var leaders;
