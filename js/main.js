@@ -410,9 +410,10 @@ var $draggable;
 		$('body').attr('class', '');
 
 		//setup handlebars
-		list_player = $("#list_player").html();
-		list_player_template = Handlebars.compile(list_player);
-
+		if ( !list_player_template ) {
+			list_player = $("#list_player").html();
+			list_player_template = Handlebars.compile(list_player);
+		}
 		game_players();
 	}
 
