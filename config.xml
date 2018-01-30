@@ -2,8 +2,8 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.circlecube.ldsquizpro"
-        versionCode="1020" 
-        version   = "1.0.2">
+        versionCode="1100" 
+        version   = "1.1.0">
     <name>LDS Prophets and Apostles</name>
 
 <description>
@@ -13,7 +13,7 @@ Do you know your LDS Church leaders? This quiz will not only test your knowledge
 
 Too often they are just a name or a face, let's put the names and faces together and learn about their teachings and examples.
 
-There are two groups to be quizzed on. Either select to be quizzed on current (living) apostles by selecting the apostles tab, or select the prophet mode and you will be quizzed on presidents of the church. There is also a study mode which will list all the current apostles along with their names followed by all the latter day prophets or presidents of the church. 
+There are multiple groups to be quizzed on. Either select to be quizzed on current (living) apostles by selecting the apostles tab, or select the prophet mode and you will be quizzed on presidents of the church. There is also a study mode which will list all the current apostles along with their names followed by all the latter day prophets or presidents of the church. 
 
 
 There are many levels too! 
@@ -34,23 +34,21 @@ Age Called - Pick the leader based on their age at time they were called. - PRO
 
 
 Containing the First Presidency: 
-        President Thomas S. Monson (President)
-        President Henry B. Eyring (First Counselor) 
-        President Dieter F. Uchtdorf (Second Counselor)
+        Russell M. Nelson (President)
+        President Dallin H. Oaks (First Counselor) 
+        President Henry B. Eyring (Second Counselor)
 
 The Current Quorum of the Twelve Aposltes: 
-        Russell M. Nelson (President)
-        Dallin H. Oaks
-        M. Russell Ballard
-        Robert D. Hales
+        M. Russell Ballard (Acting President)
         Jeffrey R. Holland
+        Dieter F. Uchtdorf
         David A. Bednar
         Quentin L. Cook
         D. Todd Christofferson
         Neil L. Andersen
-        Dale G. Renlund
-        Gary E. Stevenson
         Ronald A. Rasband
+        Gary E. Stevenson
+        Dale G. Renlund
         (as well as all previous Apostles of the Latter-Days)
 
 All the Latter-Day Prophets of the Restoration:
@@ -70,6 +68,7 @@ All the Latter-Day Prophets of the Restoration:
         Howard W. Hunter
         Gordon B. Hinckley
         Thomas S. Monson
+        Russell M. Nelson
 
 Also every Apostle called since the restoration!
 
