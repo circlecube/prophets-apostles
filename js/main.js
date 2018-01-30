@@ -30,7 +30,7 @@ var free_version = false;
 var mode = 'learn';// learn/test
 var subject = 'living'; //living/past
 var levels_pro = [
-//['slug', 'fa-icon']
+// { 'slug', 'fa-icon' }
     {
     	slug:'face',
     	data:'user'
@@ -55,19 +55,10 @@ var levels_pro = [
     	slug:'seniority',
     	data:'sitemap'
     },
-    // {
-    // 	slug:'sort',
-    // 	data:'arrows'
-    // },
     {
     	// include mission, education, profession and military service
     	slug:'bio',
     	data:'briefcase' 
-    },
-    {
-    	//number of conference talks
-    	slug:'talks',
-    	data:'comment' //microphone
     },
     {
     	slug:'mission',
@@ -231,7 +222,7 @@ var delay_time = 900;
 
 var active_team = leaders;
 var active_team_title = group;
-// console.log(active_team, active_team_title);
+// consolelog(active_team, active_team_title);
 var list_player;
 var list_player_template;
 
@@ -428,7 +419,7 @@ var $draggable;
 	}
 	
 	function update_language(){
-		//console.log('update_language!', language);
+		//consolelog('update_language!', language);
 
 		$('.quiz_begin').text(	langs[language].quiz );
 		
@@ -452,7 +443,7 @@ var $draggable;
 		$('.title').text(	langs[language].lds_prophets_apostles );
 
 		//set active from local storage vars
-		// console.log(font_size, difficulty, language);
+		// consolelog(font_size, difficulty, language);
 		$('.difficulty_option, .language_option, .font_size_option, .hints_option').parent().removeClass('active');
 		// $('.font_size_option[data-value="' + font_size + '"]').parent().addClass('active');
 		$('.language_option[data-value="' + language + '"]').parent().addClass('active');
@@ -481,7 +472,7 @@ var $draggable;
 	function update_group() {
 		//filter out any leaders without a specific value
 		
-		console.log('update_group', levels[level].slug, group, served_with);
+		consolelog('update_group', levels[level].slug, group, served_with);
 		active_team_title = group;
   		/*
 		  	face
@@ -640,7 +631,7 @@ var $draggable;
 					}
 					if ( main_group_index === -1 ) {
 						//add to master groups list
-						// console.log('adding new group', player_groups[j]);
+						// consolelog('adding new group', player_groups[j]);
 						var new_group = [player_groups[j], 1];
 						groups.push( new_group );
 					}
@@ -648,12 +639,12 @@ var $draggable;
 			}
 		}
 		
-		// console.log(groups);
+		// consolelog(groups);
 		
 		//sort alphabetically
 		groups.sort();
 		
-		// console.log(groups);
+		// consolelog(groups);
 		
 		//build menu item for each group
 		var groups_html = '';
@@ -685,7 +676,7 @@ var $draggable;
 					}
 					if ( main_served_with_index === -1 ) {
 						//add to master served_withs list
-						// console.log('adding new served_with', player_served_withs[j]);
+						// consolelog('adding new served_with', player_served_withs[j]);
 						var new_served_with = [player_served_withs[j], 1];
 						served_withs.push( new_served_with );
 					}
@@ -693,12 +684,12 @@ var $draggable;
 			}
 		}
 		
-		// console.log(served_withs);
+		// consolelog(served_withs);
 		
 		//sort alphabetically
 		// served_withs.sort();
 		
-		// console.log(served_withs);
+		// consolelog(served_withs);
 		
 		//build menu item for each served_with
 		var served_withs_html = '';
@@ -825,7 +816,7 @@ var $draggable;
 	function make_question(group, answer_index){
 	    //get mc answers
 	    var mc_answers = get_random_mc_answers(group, answer_index);
-	    // console.log(level, levels[level].slug);
+	    // consolelog(level, levels[level].slug);
 	    switch(levels[level].slug) {
 	        case 'hometown': //photo
 	            $('.content').html('<h2 data-answer="' + group[answer_index].name + '" class="question question_bio">From ' + group[answer_index].hometown + '</h2>');
@@ -1005,7 +996,7 @@ var $draggable;
 	    // var correct = $.inArray(answer_index, mc_answers);
 	    // $('.answer_'+correct).addClass('correct');
 	    $('.answer').each(function(idx, ele){
-	    	// console.log( $(this).data('answer'), $('.question').data('answer') );
+	    	// consolelog( $(this).data('answer'), $('.question').data('answer') );
 	    	if ( $(this).data('answer') == $('.question').data('answer') ) {
 	    		$(this).addClass('correct');
 		    }
@@ -1070,10 +1061,10 @@ var $draggable;
 	}
 	function get_random_groupindex(group){
 	    var random_index = Math.floor(Math.random()*group.length);
-		// console.log(completed);
-	    //console.log(completed.toString(), random_index, $.inArray(random_index, completed));
+		// consolelog(completed);
+	    //consolelog(completed.toString(), random_index, $.inArray(random_index, completed));
 	    if ( $.inArray(random_index, completed) < 0 ){
-	        //console.log('unique found');
+	        //consolelog('unique found');
 	        return random_index;
 	    }
 	    else if( completed.length == group.length ){
@@ -1081,7 +1072,7 @@ var $draggable;
 	        return random_index;
 	    }
 	    else{
-	        //console.log('repeat found');
+	        //consolelog('repeat found');
 	        return get_random_groupindex(group);
 	    }
 	}
@@ -1105,17 +1096,17 @@ var $draggable;
     	var sorted = 0;
 		var itemElems = $sorts.packery('getItemElements');
     	$( itemElems ).each( function( i, itemElem ) {
-    		// console.log($(itemElem).data('order'), i);
+    		// consolelog($(itemElem).data('order'), i);
         	if ( $(itemElem).data('order') != i + 1){
         		sorted++;
         	}
       	});
-      	// console.log(sorted);
+      	// consolelog(sorted);
       	return(sorted);
     }
 
 	$('.content').on('click', '.answer', function(e){
-		//console.log('clicked',$(this).attr('data-id'));
+		//consolelog('clicked',$(this).attr('data-id'));
 		
 		if ( levels[level].slug == 'sort' ) {
 			
@@ -1178,12 +1169,12 @@ var $draggable;
 		        // end_time = new Date();
 		        // seconds = Math.floor( (start_time - end_time ) / -1000);
 		        // var correct_per_minute = Math.round( (num_correct / seconds ) * 60 );
-		    //console.log( correct_per_minute );
+		    //consolelog( correct_per_minute );
 		    //update score + feedback
 		    $('.score').html('');
 
 		    //if round complete
-		    // console.log(is_correct, num_correct, active_team.length, num_total);
+		    // consolelog(is_correct, num_correct, active_team.length, num_total);
 		    if( is_correct && num_correct == active_team.length ) {
 		        if (gaPlugin) {
 		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
@@ -1272,7 +1263,7 @@ var $draggable;
 		    else{
 		    	num_incorrect++;
 		    }
-		    //console.log('pushing to complete list: '+$('.correct').attr('data-id'), $('.correct').data('alt') );
+		    //consolelog('pushing to complete list: '+$('.correct').attr('data-id'), $('.correct').data('alt') );
 		    completed.push( parseInt($('.correct').attr('data-id')) );
 		    
 		    if( $(this).data('alt') != undefined ) {
@@ -1282,7 +1273,7 @@ var $draggable;
 		        // end_time = new Date();
 		        // seconds = Math.floor( (start_time - end_time ) / -1000);
 		        // var correct_per_minute = Math.round( (num_correct / seconds ) * 60 );
-		    //console.log( correct_per_minute );
+		    //consolelog( correct_per_minute );
 		    //update score + feedback
 		    $('.score').html('');
 
@@ -1374,7 +1365,7 @@ var $draggable;
 		$(this).parent().addClass('active');
 		level = $(this).data('index');
 		localStorage.level = level;
-		// console.log(level, levels[level][0]);
+		// consolelog(level, levels[level][0]);
 		update_group();		
 		game_players();
 	});
@@ -1383,7 +1374,7 @@ var $draggable;
 		$(this).parent().addClass('active');
 		mode = $(this).data('mode');
 		localStorage.mode = mode;
-		// console.log('mode set to', mode);
+		// consolelog('mode set to', mode);
 		update_group();
 		game_players();
 	});
@@ -1393,7 +1384,7 @@ var $draggable;
 		$(this).parent().addClass('active');
 		group = $(this).data('value');
 		localStorage.group = group;
-		// console.log(group);
+		// consolelog(group);
 		
 		//reset served_with to all
 		served_with = 'All';
@@ -1410,7 +1401,7 @@ var $draggable;
 		$(this).parent().addClass('active');
 		served_with = $(this).data('value');
 		localStorage.served_with = served_with;
-		// console.log(served_with);
+		// consolelog(served_with);
 		
 		//reset group to all
 		group = 'Latter Day Apostle';
@@ -1428,7 +1419,7 @@ var $draggable;
 		show_activity_log();
 	});
 	$('.share').on('click touch', function(e){
-		//console.log('share social_sharing');
+		//consolelog('share social_sharing');
 	  	window.plugins.socialsharing.available(function(isAvailable) {
 		    if (isAvailable) {
 		    	var message = langs[language].share_message;
@@ -1441,7 +1432,7 @@ var $draggable;
 		});
 	});
 	$('.language_option').on('click touch', function(e){
-		//console.log('language change:', $(this).val() );
+		//consolelog('language change:', $(this).val() );
 		language = $(this).data('value');
 		localStorage.language = language;
 		$(this).parent().siblings().removeClass('active');
@@ -1451,7 +1442,7 @@ var $draggable;
 	});
 
 	$('.score').on('click touch', '.share_button', function(e){
-		//console.log('share_button social_sharing');
+		//consolelog('share_button social_sharing');
 
 	  	window.plugins.socialsharing.available(function(isAvailable) {
 		    if (isAvailable) {
@@ -1475,7 +1466,7 @@ var $draggable;
 		
 		$('.menu-toggle').trigger('click');
 		if ( !$('#mmenu > ul > .quiz').hasClass('mm-opened') ) {
-			console.log('trace');
+			consolelog('trace');
 			$('#mmenu .quiz .mm-subopen').trigger('click');
 		}
 		
@@ -1514,7 +1505,7 @@ var $draggable;
 	function show_activity_log(){
 		var content = '<dt>' + langs[language].log + '</dt>';
 		for( var i=0; i<activity_log.length;i++){
-			//console.log(activity_log[i]);
+			//consolelog(activity_log[i]);
 			if ( activity_log[i].s != undefined ) {
 				content += '<dd>' + activity_log[i].s + '% - ';
 				content += active_team[ activity_log[i].i ].reference + ' ';
