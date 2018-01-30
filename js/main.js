@@ -1498,7 +1498,7 @@ var $draggable;
 		start_time = new Date();
 		reload_data_from_json = true;
 		localStorage.removeItem( 'json_data');
-		$('.content').html('<p style="padding:1rem;">Reloading...</p>');
+		$('.content').html('<p style="padding:1rem;text-align: center;"><i class="fa fa-refresh fa-spin fa-5x fa-fw"></i></p>');
 		init();
 		reload_data_from_json = false;
 	})
