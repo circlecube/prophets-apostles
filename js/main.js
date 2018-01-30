@@ -258,6 +258,7 @@ var store_link = android_android_link;
 var rate_link = android_android_link;
 
 var api_endpoint = 'https://circlecube.com/lds-prophets/wp-json/lds-leaders/v1/all-leaders';
+var reload_data_from_json = false;
 
 jQuery(document).ready(function($) {
 	
@@ -267,10 +268,10 @@ var $draggable;
 	function init(){
 
 		// load json data via ajax
-		var reload_data_from_json = false;
+		// reload_data_from_json = false;
 		// load data if it's not stored locally
 		// or if it's older than the expiration
-		// consolelog( localStorage.json_data, localStorage.expiration_time, start_time );
+		consolelog( 'data check - expires: ' + localStorage.expiration_time );
 		if ( !localStorage.getItem( 'json_data' ) || 
 			 start_time > localStorage.getItem( 'expiration_time' ) ||
 			 reload_data_from_json ) {
@@ -298,7 +299,8 @@ var $draggable;
 
 			  	localStorage.setItem( 'json_data', JSON.stringify(data) );
 			  	localStorage.setItem( 'expiration_time', expiration_time );
-			  	
+				  
+				consolelog('data loaded - expires:'+ expiration_time);
 			  	consolelog('processing data ' + timer(start_time));
 			    //send json response to setup function
 			    setup(data);
@@ -1490,6 +1492,16 @@ var $draggable;
 	$('.options_toggle').on('click touch', function(){
 		$('.options').toggleClass('active');
 	})
+
+	$('.cache').on('click touch', function(){
+		start_time = new Date();
+		reload_data_from_json = true;
+		localStorage.removeItem( 'json_data');
+		$('.content').html('<p style="padding:1rem;">Reloading...</p>');
+		init();
+		reload_data_from_json = false;
+	})
+
 	$('.content').on('click touch', '.button_clear_log', function(e){
 		activity_log = [];
 		localStorage.activity_log = JSON.stringify(activity_log);
