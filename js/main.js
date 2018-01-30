@@ -13,7 +13,7 @@ var group = '';
 var served_withs = [];
 var served_with = '';
 
-var analytics;
+var gaPlugin;
 var activity_log = [];
 var completed = [];
 var touching = false;
@@ -724,13 +724,12 @@ var $draggable;
 	    return age;
 	}
 	function onDeviceReady() {
-		analytics = navigator.analytics;
-		// set the tracking id
-		analytics.setTrackingId('UA-1466312-14');
-		analytics.sendAppView('ldsquiz', successCallback, errorCallback);
-		//sendEvent(category, action, [label], [value], [success], [error])
-		//track free vs pro usage.
-		analytics.sendEvent('App', 'Begin', free_version);
+		//https://github.com/phonegap-build/GAPlugin/blob/c928e353feb1eb75ca3979b129b10b216a27ad59/README.md
+		//gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event only", 1);
+	    gaPlugin = window.plugins.gaPlugin;
+	    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-1466312-14", 10);
+
+		gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "App", "Begin");
 	}
 	
 
@@ -1177,9 +1176,9 @@ var $draggable;
 		    //if round complete
 		    // consolelog(is_correct, num_correct, active_team.length, num_total);
 		    if( is_correct && num_correct == active_team.length ) {
-		        if (analytics) {
-		        	analytics.sendEvent("Answer", "Correct", $(this).data('alt') );
-		        	analytics.sendEvent("Round", "End", levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
+		        if (gaPlugin) {
+		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
+		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Round", "End", levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
 		        }
 		        $('.score').html( langs[language].kudos[get_random_index(langs[language].kudos)] + ' ' + langs[language].you_know + ' ' + langs[language].all + ' ' + active_team.length + '! ');
 		        $('.score').append( score_percent + '% ' + langs[language].accuracy + '! ');
@@ -1200,8 +1199,8 @@ var $draggable;
 		        if (num_correct > 1){ $('.score').append('s'); }
 		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 		        //$('.score').append( seconds + ' seconds! ');
-		        if (analytics) {
-					analytics.sendEvent("Answer", "Correct", $(this).data('alt') );
+		        if (gaPlugin) {
+					gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
 				}
 		    }
 		    //correct answer
@@ -1211,8 +1210,8 @@ var $draggable;
 		        if (num_correct > 1){ $('.score').append('s'); }
 		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 		        //$('.score').append( seconds + ' seconds! ');
-		        if (analytics) {
-			        analytics.sendEvent("Answer", "Correct", $(this).data('alt') );
+		        if (gaPlugin) {
+			        gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
 			    }
 		    }
 		    //incorrect answer
@@ -1222,8 +1221,8 @@ var $draggable;
 		        if (num_correct > 1){ $('.score').append('s'); }
 		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 		        //$('.score').append( seconds + ' seconds! ');
-		        if (analytics) {
-		        	analytics.sendEvent("Answer", "Incorrect", $(this).parent().find('.correct').data('alt') );
+		        if (gaPlugin) {
+		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Incorrect", $(this).parent().find('.correct').data('alt') );
 				}
 		    }
 
@@ -1280,9 +1279,9 @@ var $draggable;
 
 		    //round complete
 		    if( parseInt(active_team.length - completed.length) <= 0 ) {
-		        if (analytics) {
-		        	analytics.sendEvent("Answer", "Correct", $(this).data('alt') );
-		        	analytics.sendEvent("Round", "End", levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
+		        if (gaPlugin) {
+		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt') );
+		        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Round", "End", levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
 		        }
 		        $('.score').html('Test Complete. ' + langs[language].you_know + ' ' + num_correct + ' of ' + active_team.length + '! ');
 		        $('.score').append( score_percent + '% ' + langs[language].accuracy + '! ');
@@ -1304,8 +1303,8 @@ var $draggable;
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 			        //$('.score').append( seconds + ' seconds! ');
-			        if (analytics) {
-			        	analytics.sendEvent("Answer", "Correct", $(this).data('alt'));
+			        if (gaPlugin) {
+			        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt'));
 			        }
 			    }
 			    //correct answer
@@ -1315,8 +1314,8 @@ var $draggable;
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 			        //$('.score').append( seconds + ' seconds! ');
-			        if (analytics) {
-			        	analytics.sendEvent("Answer", "Correct", $(this).data('alt'));
+			        if (gaPlugin) {
+			        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Correct", $(this).data('alt'));
 					}
 			    }
 			    //incorrect answer
@@ -1326,8 +1325,8 @@ var $draggable;
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 			        //$('.score').append( seconds + ' seconds! ');
-			        if (analytics) {
-			        	analytics.sendEvent("Answer", "Incorrect", $(this).parent().find('.correct').data('alt') );
+			        if (gaPlugin) {
+			        	gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Answer", "Incorrect", $(this).parent().find('.correct').data('alt') );
 					}
 			    }
 
@@ -1519,9 +1518,18 @@ var $draggable;
 	}
 
 
+
+	function nativePluginResultHandler(){
+		//success
+		//console.log('nativePluginResultHandler', 'success');
+	}
+	function nativePluginErrorHandler() {
+		//error
+		//console.log('nativePluginErrorHandler', 'fail');
+	}
 	function goingAway() {
-		analytics.sendEvent("App", "End");
-	    analytics.close();
+		gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "App", "End");
+	    gaPlugin.exit(nativePluginResultHandler, nativePluginErrorHandler);
 	}
 
 
