@@ -101,7 +101,7 @@ These leaders are according to The Church of Jesus Christ of Latter-Day Saints. 
     
     <plugin name="cordova-plugin-whitelist" source="npm" />
     <plugin name="cordova-plugin-x-socialsharing" source="npm" />
-    <plugin name="com.cmackay.plugins.googleanalytics" source="npm" />
+    <plugin name="cordova-plugin-google-analytics" source="npm" />
 
     <preference name="orientation" value="portrait"/>
     <preference name="fullscreen" value="true" />
