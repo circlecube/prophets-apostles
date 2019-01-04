@@ -9,7 +9,7 @@ var current_leaders = [];
 var latter_day_prophets = [];
 var leaders;
 var groups = [];
-var group = '';
+var group = 'Living Apostle';
 var served_withs = [];
 var served_with = '';
 
