@@ -77,6 +77,10 @@ var levels_pro = [
     {
     	slug:'reason',
     	data:'asterisk'
+    },
+    {
+    	slug:'polygamy',
+    	data:'users'
     }, 
     // {
     // 	slug:'agecalled',
@@ -99,7 +103,11 @@ var levels_free = [
     {
     	slug:'bio',
     	data:'newspaper-o' 
-    }
+    },
+    {
+    	slug:'polygamy',
+    	data:'users'
+    }, 
 ];
 var levels = levels_pro;
 var language = 'english';
@@ -142,6 +150,7 @@ var langs = {
 		mission: "Mission Service",
 		reason: "Reason Called",
 		agecalled: "Age Called",
+		polygamy: "Polygamy",
 		perfect: ['Perfect!', 'Thou art the Man!', 'Flawless!', 'Amazing!', 'On a Roll!', 'Impeccable!', 'Inspired!', 'Superb!', 'Unblemished!', '=D'],
 		kudos: ['Great!', 'Awesome!', 'Well done,', 'You\'re Smart,', 'Crazy Good!', 'Feelin\' it!', 'Dynamite!', 'Gold Star!', 'Impressive!', 'Exactly!', 'Correct!', '=)', 'Bingo!', 'On the nose!', 'Right!', 'Right on!', 'Righteous!', '', 'Inspiring!', 'Precisely!', 'Exactly!', 'Right as Rain!', ''],
 		banter: ['Ouch!', 'Doh!', 'Focus, only', 'Finger Slip?', 'Don\'t Give Up!', 'Good Grief!', 'Embarrasing!', 'Wrong!', 'Guessing?', 'Nobody\'s Perfect', 'Incorrect!', '=(', 'You Blew It!', 'Negative!', 'You Must Be Joking!', 'Woah!', 'Need Help?', 'Try Studying,', 'Incorrect!', 'False!', 'Make sure to keep your eyes open.', 'Try Again,', 'Two wrongs does not make a right.', 'Nice try, '],
@@ -189,6 +198,13 @@ var langs = {
 		sort: "Arranger",
 		bio: "Biographie",
 		talks: "Discours de conférence",
+		education: "Education",
+		profession: "Profession",
+		military: "Service Militaire",
+		mission: "Service de Mission",
+		reason: "Raison Appelée",
+		agecalled: "Age Appelé",
+		polygamy: "Polygame",
 		perfect: ['Parfait!', 'Impecable!', 'Bien Fait!', 'Vertueux!', 'C\'est Vrai!', '=D'],
 		kudos: ['Oui', '=)', 'Bon!'],
 		banter: ['Ouch!', 'Non!', 'Ce n\'est pas possible.', 'Ca fait mal.', 'Qu\'est-ce que c\'est!'],
@@ -257,7 +273,7 @@ var $draggable;
 	function init(){
 
 		// load json data via ajax
-		// reload_data_from_json = false;
+		// reload_data_from_json = true;
 		// load data if it's not stored locally
 		// or if it's older than the expiration
 		consolelog( 'data check - expires: ' + localStorage.expiration_time );
@@ -387,6 +403,7 @@ var $draggable;
 		}
 
 		set_ages();
+		set_wife_count();
 
 		build_groups();
 		build_served_withs();
@@ -540,6 +557,15 @@ var $draggable;
 				active_team = $.grep( leaders, function( leader, i ) {
 				  return 	leader.img != null && 
 				  			leader.conference_talks != '' && 
+				  			leader.groups.indexOf( group ) > -1 &&
+				  			leader.served_with.indexOf( served_with ) > -1;
+				});
+				break;
+			
+			case 'polygamy':
+				active_team = $.grep( leaders, function( leader, i ) {
+				  return 	leader.img != null && 
+				  			leader.polygamist != 'null' && 
 				  			leader.groups.indexOf( group ) > -1 &&
 				  			leader.served_with.indexOf( served_with ) > -1;
 				});
@@ -711,6 +737,14 @@ var $draggable;
 		}
 		
 	}
+	function set_wife_count(){
+		for ( var i = 0; i < leaders.length; i++){
+			if ( leaders[i].polygamist === null || leaders[i].polygamist === false || leaders[i].polygamist === "false" ) {
+				leaders[i].polygamist = false;
+				leaders[i].number_of_wives = "1";
+			}
+		}
+	}
 	function get_age(dateString) {
 	    var today = new Date();
 	    var birthDate = new Date(dateString);
@@ -826,7 +860,15 @@ var $draggable;
 	            for (var i = 0; i < 4; i++){
 	                $('.content').append(get_answer_div(group,mc_answers,i,2));
 	            } 
-	          break;
+			  break;  
+			case 'polygamy': //photo
+			  var numwives = group[answer_index].number_of_wives;
+			  numwives = numwives > 1 ? numwives + " Wives" : "1 Wife";
+			  $('.content').html('<h2 data-answer="' + group[answer_index].number_of_wives + '" class="question">' + numwives + '</h2>');
+			  for (var i = 0; i < 4; i++){
+				  $('.content').append(get_answer_div(group,mc_answers,i,2));
+			  } 
+			break;
 	        case 'initial': //middle initial/name
 	        	var html = '<h2 data-answer="' + group[answer_index][group[answer_index].initial] + '" class="question">';
 	        	if ( group[answer_index][group[answer_index].initial] != undefined ) {
@@ -1008,7 +1050,10 @@ var $draggable;
 	          break;
 	        case 'talks': //number
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]].name + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + ' #' + group[mc_answers[index]].conference_talks + '"></div>';
-	          break;
+			  break;
+			case 'polygamy': //number
+			  answer_div = '<div data-answer="' + group[mc_answers[index]].number_of_wives + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + ' (' + group[mc_answers[index]].number_of_wives + ')"></div>';
+			break;
 	        case 'initial': //initial
 	        	answer_div = '<div data-answer="' + group[mc_answers[index]][group[mc_answers[index]].initial] + '" class="answer answer_' + index + '" data-id="' + mc_answers[index] + '" style="background-image: url(' + group[mc_answers[index]].img + ');" data-alt="' + group[mc_answers[index]].name + '"></div>';
 	          break;
