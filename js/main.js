@@ -1173,7 +1173,7 @@ var $draggable;
 		    //if round complete
 		    // consolelog(is_correct, num_correct, active_team.length, num_total);
 		    if( is_correct && num_correct == active_team.length ) {
-		        if (typeof window.ga.trackEvent === 'function') { 
+		        if (window.ga && typeof window.ga.trackEvent === 'function') { 
 		        	window.ga.trackEvent('Answer', 'Correct', $(this).data('alt') );
 		        	window.ga.trackEvent('Round', 'End', levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
 		        }
@@ -1196,7 +1196,7 @@ var $draggable;
 		        if (num_correct > 1){ $('.score').append('s'); }
 		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 		        //$('.score').append( seconds + ' seconds! ');
-		        if (typeof window.ga.trackEvent === 'function') {
+		        if (window.ga && typeof window.ga.trackEvent === 'function') {
 					window.ga.trackEvent('Answer', 'Correct', $(this).data('alt') );
 				}
 		    }
@@ -1207,7 +1207,7 @@ var $draggable;
 		        if (num_correct > 1){ $('.score').append('s'); }
 		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 		        //$('.score').append( seconds + ' seconds! ');
-		        if (typeof window.ga.trackEvent === 'function') {
+		        if (window.ga && typeof window.ga.trackEvent === 'function') {
 			        window.ga.trackEvent('Answer', 'Correct', $(this).data('alt') );
 			    }
 		    }
@@ -1218,7 +1218,7 @@ var $draggable;
 		        if (num_correct > 1){ $('.score').append('s'); }
 		        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 		        //$('.score').append( seconds + ' seconds! ');
-		        if (typeof window.ga.trackEvent === 'function') {
+		        if (window.ga && typeof window.ga.trackEvent === 'function') {
 		        	window.ga.trackEvent('Answer', 'Incorrect', $(this).parent().find('.correct').data('alt') );
 				}
 		    }
@@ -1276,7 +1276,7 @@ var $draggable;
 
 		    //round complete
 		    if( parseInt(active_team.length - completed.length) <= 0 ) {
-		        if (typeof window.ga.trackEvent === 'function') {
+		        if (window.ga && typeof window.ga.trackEvent === 'function') {
 		        	window.ga.trackEvent('Answer', 'Correct', $(this).data('alt') );
 		        	window.ga.trackEvent('Round', 'End', levels[level].slug + ' ' + mode, parseInt(num_correct / (num_total+1)*100 ) );
 		        }
@@ -1300,7 +1300,7 @@ var $draggable;
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 			        //$('.score').append( seconds + ' seconds! ');
-			        if (typeof window.ga.trackEvent === 'function') {
+			        if (window.ga && typeof window.ga.trackEvent === 'function') {
 			        	window.ga.trackEvent('Answer', 'Correct', $(this).data('alt'));
 			        }
 			    }
@@ -1311,7 +1311,7 @@ var $draggable;
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 			        //$('.score').append( seconds + ' seconds! ');
-			        if (typeof window.ga.trackEvent === 'function') {
+			        if (window.ga && typeof window.ga.trackEvent === 'function') {
 			        	window.ga.trackEvent('Answer', 'Correct', $(this).data('alt'));
 					}
 			    }
@@ -1322,7 +1322,7 @@ var $draggable;
 			        // if (num_correct > 1){ $('.score').append('s'); }
 			        $('.score').append( '! ' + parseInt(active_team.length - completed.length)  + ' ' + langs[language].left + '. ');
 			        //$('.score').append( seconds + ' seconds! ');
-			        if (typeof window.ga.trackEvent === 'function') {
+			        if (window.ga && typeof window.ga.trackEvent === 'function') {
 			        	window.ga.trackEvent('Answer', 'Incorrect', $(this).parent().find('.correct').data('alt') );
 					}
 			    }
