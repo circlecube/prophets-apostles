@@ -458,7 +458,11 @@ body,
 .options.active {
     top:0;
 }
-
+.content,
+.score {
+	max-width: 400px;
+	margin: 0 auto;
+}
 .content h1 {
     font-family:'Trajan','Georgia',serif;
     padding:.5em;
